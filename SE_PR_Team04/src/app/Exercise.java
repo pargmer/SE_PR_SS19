@@ -4,12 +4,11 @@ import java.util.LinkedList;
 public class Exercise implements Comparable<Exercise> {
 	
 	private String name;
-	private int difficulty;
+	private int reps;
 	private LinkedList<Muscle> trains;
-	//fefefefefef
-	public Exercise(String name, int difficulty) {
+	
+	public Exercise(String name) {
 		this.name = name;
-		this.difficulty = difficulty;
 		trains = new LinkedList<Muscle>();
 	}
 
@@ -21,46 +20,32 @@ public class Exercise implements Comparable<Exercise> {
 		this.name = name;
 	}
 
-	public int getDifficulty() {
-		return difficulty;
+	public int getReps() {
+		return reps;
 	}
 
-	public void setDifficulty(int difficulty) {
-		this.difficulty = difficulty;
+	public void setReps(int reps) {
+		this.reps = reps;
 	}
 
 	public LinkedList<Muscle> getMuscle() {
 		return trains;
 	}
 	
-	public boolean addMuscle(Muscle muscle) {
-		for(Muscle m : trains) {
-			if(m.getName().equals(muscle.getName())){
+	public boolean addMuscle(Muscle m) {
+		for(Muscle muscle : trains) {
+			if(muscle.equals(m)) {
 				return false;
 			}
 		}
-		trains.add(muscle);
+		trains.add(m);
 		return true;
-	}
-	
-	public String toString() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("Übung: "+this.name+"\nFolgende Muskeln werden trainiert:\n");
-		for(Muscle m : trains) {
-			sb.append("-"+m.getName()+"\n");
-		}
-		return sb.toString();
 	}
 
 	@Override
-	public int compareTo(Exercise e) {
-		int i = this.difficulty - e.getDifficulty();
-		if(i == 0) {
-			return this.getName().compareTo(e.getName());
-		}
-		return i;
+	public int compareTo(Exercise arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-
 	
-
 }

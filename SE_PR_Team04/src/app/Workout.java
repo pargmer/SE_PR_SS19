@@ -4,13 +4,11 @@ import java.util.LinkedList;
 
 public class Workout {
 
-	String name;
-	Duration duration;
-	LinkedList<Exercise> exercises;
+	private String name;
+	private LinkedList<Exercise> exercises;
 
 	public Workout(String name, Duration duration) {
 		this.name = name;
-		this.duration = duration;
 		exercises = new LinkedList<>();
 	}
 

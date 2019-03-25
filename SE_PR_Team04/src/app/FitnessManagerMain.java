@@ -2,9 +2,12 @@ package app;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class FitnessManagerMain {
+	
+	private LinkedList<Workout> workouts;
 	
 	public static void main(String[] args) {
 		
@@ -14,12 +17,12 @@ public class FitnessManagerMain {
 		Muscle quadriceps = new Muscle("Beinstrecker");
 		Muscle shoulder = new Muscle("Schulter");
 		
-		Exercise liegestuetze = new Exercise("Liegestütze", 3);
+		Exercise liegestuetze = new Exercise("Liegestütze");
 		liegestuetze.addMuscle(chest);
 		liegestuetze.addMuscle(triceps);
 		liegestuetze.addMuscle(shoulder);
 		
-		Exercise dips = new Exercise("Dips", 2);
+		Exercise dips = new Exercise("Dips");
 		dips.addMuscle(triceps);
 		
 		Scanner keyboard = new Scanner(System.in);
@@ -31,12 +34,6 @@ public class FitnessManagerMain {
 		String duration = keyboard.nextLine();
 		System.out.print("min:");
 		int min = keyboard.nextInt();
-		
-		
-//		Workout workout1 = new Workout(name, duration);
-		
-//		System.out.println(liegestuetze);
-		
 		
 	}
 	
