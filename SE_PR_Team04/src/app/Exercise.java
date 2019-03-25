@@ -6,7 +6,7 @@ public class Exercise implements Comparable<Exercise> {
 	private String name;
 	private int difficulty;
 	private LinkedList<Muscle> trains;
-	
+	//fefefefefef
 	public Exercise(String name, int difficulty) {
 		this.name = name;
 		this.difficulty = difficulty;
