@@ -31,7 +31,7 @@ public class FitnessManagerMain {
 		String duration = keyboard.nextLine();
 		System.out.print("min:");
 		int min = keyboard.nextInt();
-		
+		//jzedjdtuetfktrifziltvgt
 		
 //		Workout workout1 = new Workout(name, duration);
 		
