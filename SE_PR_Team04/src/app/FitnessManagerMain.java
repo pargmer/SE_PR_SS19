@@ -40,8 +40,8 @@ public class FitnessManagerMain {
 		
 	}
 	
-	public void setUp() {
+	/*public void setUp() {
 		
-	}
+	}*/
 
 }
