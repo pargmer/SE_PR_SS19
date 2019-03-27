@@ -1,16 +1,14 @@
 package app;
-import java.time.Duration;
+
 import java.util.LinkedList;
 
 public class Workout {
 
 	String name;
-	Duration duration;
 	LinkedList<Exercise> exercises;
 
-	public Workout(String name, Duration duration) {
+	public Workout(String name) {
 		this.name = name;
-		this.duration = duration;
 		exercises = new LinkedList<>();
 	}
 

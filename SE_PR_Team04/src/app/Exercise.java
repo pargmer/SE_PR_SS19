@@ -1,15 +1,14 @@
 package app;
 import java.util.LinkedList;
 
-public class Exercise implements Comparable<Exercise> {
+public class Exercise {
 	
 	private String name;
-	private int difficulty;
+	private int reps;
 	private LinkedList<Muscle> trains;
-	//fefefefefef
-	public Exercise(String name, int difficulty) {
+
+	public Exercise(String name) {
 		this.name = name;
-		this.difficulty = difficulty;
 		trains = new LinkedList<Muscle>();
 	}
 
@@ -21,12 +20,12 @@ public class Exercise implements Comparable<Exercise> {
 		this.name = name;
 	}
 
-	public int getDifficulty() {
-		return difficulty;
+	public int getReps() {
+		return reps;
 	}
 
-	public void setDifficulty(int difficulty) {
-		this.difficulty = difficulty;
+	public void setReps(int reps) {
+		this.reps = reps;
 	}
 
 	public LinkedList<Muscle> getMuscle() {
@@ -51,16 +50,6 @@ public class Exercise implements Comparable<Exercise> {
 		}
 		return sb.toString();
 	}
-
-	@Override
-	public int compareTo(Exercise e) {
-		int i = this.difficulty - e.getDifficulty();
-		if(i == 0) {
-			return this.getName().compareTo(e.getName());
-		}
-		return i;
-	}
-
 	
 
 }
