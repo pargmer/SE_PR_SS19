@@ -4,6 +4,7 @@ import java.util.LinkedList;
 public class Exercise implements Comparable<Exercise> {
 	
 	private String name;
+	int i;
 	private int reps;
 	private LinkedList<Muscle> trains;
 	
