@@ -1,80 +1,51 @@
 package gui;
 
-import java.awt.EventQueue;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
-import javax.swing.JFrame;
-import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JList;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
-import java.awt.ComponentOrientation;
 
-public class Home {
+public class Home extends JDialog {
 
-	private JFrame frame;
+	private final JPanel contentPanel = new JPanel();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void newScreen() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Home window = new Home();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args) {
+		try {
+			Home dialog = new Home();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Create the application.
+	 * Create the dialog.
 	 */
 	public Home() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(SystemColor.textHighlight);
-		frame.getContentPane().setForeground(Color.BLACK);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		contentPanel.setBounds(0, 0, 434, 261);
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel);
+		contentPanel.setLayout(null);
 		
 		JButton btnCreateWorkout = new JButton("Create Workout");
-		btnCreateWorkout.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		btnCreateWorkout.setBounds(265, 227, 109, 23);
 		btnCreateWorkout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//frame.dispose();
-				CreateWorkout createWorkout = new CreateWorkout();
-				createWorkout.newScreen();
-				
+				new CreateWorkout().setVisible(true);;
+				dispose();
 			}
 		});
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(btnCreateWorkout);
-		
-		JLabel lblFitnessmanager = new JLabel("Fitnessmanager");
-		lblFitnessmanager.setBounds(117, 0, 202, 36);
-		lblFitnessmanager.setFont(new Font("Microsoft New Tai Lue", Font.BOLD, 27));
-		lblFitnessmanager.setHorizontalAlignment(SwingConstants.CENTER);
-		frame.getContentPane().add(lblFitnessmanager);
+		btnCreateWorkout.setBounds(141, 49, 146, 45);
+		contentPanel.add(btnCreateWorkout);
 	}
 }

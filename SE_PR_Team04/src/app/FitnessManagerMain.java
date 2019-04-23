@@ -10,7 +10,6 @@ import gui.Home;
 
 public class FitnessManagerMain {
 	
-	static Home home;
 
 	private LinkedList<Workout> workouts;
 
@@ -30,7 +29,7 @@ public class FitnessManagerMain {
 		Exercise dips = new Exercise("Dips");
 		dips.addMuscle(trizeps);
 
-		home.newScreen();
+		new Home().setVisible(true);
 		
 
 	}

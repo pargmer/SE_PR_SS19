@@ -1,55 +1,61 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.Window;
+import java.awt.FlowLayout;
 
-import javax.swing.JFrame;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
 
-public class CreateWorkout extends JFrame {
-
-	private JPanel contentPane;
+public class CreateWorkout extends JDialog {
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void newScreen() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateWorkout frame = new CreateWorkout();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args) {
+		try {
+			CreateWorkout dialog = new CreateWorkout();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
-	 * Create the frame.
+	 * Create the dialog.
 	 */
 	public CreateWorkout() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		
-		JButton btnHome = new JButton("Home");
-		btnHome.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new Home();
+		getContentPane().setLayout(null);
+		{
+			JButton btnHome = new JButton("Home");
+			btnHome.setFont(new Font("Tw Cen MT", Font.ITALIC, 16));
+			btnHome.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
 				
-			}
-		});
-		contentPane.add(btnHome, BorderLayout.SOUTH);
+					new Home().setVisible(true);;
+					dispose();
+				}
+			});
+			btnHome.setBounds(134, 162, 164, 47);
+			getContentPane().add(btnHome);
+		}
+		
+		JLabel lblWorkoutErstellen = new JLabel("Workout erstellen");
+		lblWorkoutErstellen.setBounds(0, 0, 125, 19);
+		getContentPane().add(lblWorkoutErstellen);
+		
+		textField = new JTextField();
+		textField.setBounds(0, 30, 86, 20);
+		getContentPane().add(textField);
+		textField.setColumns(10);
 	}
-
 }
