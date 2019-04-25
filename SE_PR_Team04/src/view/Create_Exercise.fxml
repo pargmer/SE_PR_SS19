@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" prefHeight="292.0" prefWidth="225.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateExerciseController">
+   <children>
+      <TextField fx:id="tf_name" layoutX="38.0" layoutY="77.0" />
+      <TextField fx:id="tf_muscle" layoutX="38.0" layoutY="134.0" />
+      <TextField fx:id="tf_reps" layoutX="38.0" layoutY="193.0" />
+      <Label layoutX="99.0" layoutY="46.0" text="Name:" />
+      <Label layoutX="92.0" layoutY="109.0" text="Muskel:" />
+      <Label layoutX="67.0" layoutY="169.0" text="Wiederholungen:" />
+      <Button layoutX="38.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleBtn_saveExercise" prefHeight="32.0" prefWidth="149.0" text="Save Exercise" />
+      <Label layoutX="62.0" layoutY="14.0" text="Neue Übung">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <ListView fx:id="lv_exercises" layoutX="219.0" layoutY="80.0" prefHeight="306.0" prefWidth="184.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="80.0" />
+      <Button fx:id="btn_NewWorkout" layoutX="417.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleButton_newWorkout" prefHeight="34.0" prefWidth="156.0" text="Neues Workout" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="80.0" />
+      <ComboBox fx:id="cb_workouts" layoutX="23.0" layoutY="80.0" prefHeight="25.0" prefWidth="184.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
+      <Label layoutX="198.0" layoutY="24.0" prefHeight="35.0" prefWidth="204.0" text="Workout Manager" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="198.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
