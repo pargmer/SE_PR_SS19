@@ -2,6 +2,7 @@ package model;
 
 import java.util.List;
 
+
 public class Exercise {
 
 	
@@ -9,17 +10,12 @@ public class Exercise {
 	private String trains;
 	private int reps;
 	
-	
-	
-	
 	public Exercise(String name, String trains, int reps) {
 		this.name = name;
 		this.trains = trains;
 		this.reps = reps;
 	}
-	
-	
-	
+		
 	public Exercise() {
 		super();
 	}
