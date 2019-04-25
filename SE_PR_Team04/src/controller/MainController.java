@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controller;
 
 import java.io.BufferedReader;
@@ -27,24 +30,43 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MainController.
+ */
 public class MainController implements Initializable{
 	
+	/** The exercises. */
 	private List<Exercise> exercises = new LinkedList<Exercise>();;
 	
-	 @FXML
+	 /** The root. */
+ 	@FXML
 	 private AnchorPane root;
 	 
-	 @FXML
+	 /** The lv exercises. */
+ 	@FXML
 	 private ListView<Exercise> lv_exercises;
-	 private ObservableList<Exercise> ov_exercises;
 	 
-	 @FXML
+ 	/** The ov exercises. */
+ 	private ObservableList<Exercise> ov_exercises;
+	 
+	 /** The cb workouts. */
+ 	@FXML
 	 private ComboBox<String> cb_workouts;
-	 private ObservableList<String> ov_workouts;
 	 
+ 	/** The ov workouts. */
+ 	private ObservableList<String> ov_workouts;
+	 
+	/** The btn new workout. */
 	@FXML
 	private Button btn_NewWorkout;
 	
+	/**
+	 * Handle button new workout.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	private void handleButton_newWorkout(ActionEvent event) throws IOException {
 		
@@ -62,6 +84,9 @@ public class MainController implements Initializable{
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 	

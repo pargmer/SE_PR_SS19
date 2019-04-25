@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controller;
 
 import java.io.IOException;
@@ -11,16 +14,28 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateExerciseController.
+ */
 public class CreateExerciseController {
 
+	/** The root. */
 	@FXML
 	private AnchorPane root;
 	
+	/** The tf muscle. */
 	@FXML
 	private TextField tf_name,tf_reps,tf_muscle;
 	
 	
 	
+	/**
+	 * Handle btn save exercise.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	private void handleBtn_saveExercise(ActionEvent event) throws IOException {
 		
