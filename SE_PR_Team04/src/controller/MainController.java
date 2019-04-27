@@ -89,8 +89,34 @@ public class MainController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		List<Workout> workouts = new LinkedList<Workout>();
+		try {
+			workouts = readWorkoutsFromCsv("./././workouts.csv");
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	
-	
+	}
+
+	private List<Workout> readWorkoutsFromCsv(String file) throws IOException{
+		List<Workout> workouts = new LinkedList<Workout>();
+		List<Exercise> exercises = new LinkedList<Exercise>();
+		 String row;
+		BufferedReader csvReader = new BufferedReader(new FileReader(file));  
+		while ((row = csvReader.readLine()) != null) {  
+		    String[] data = row.split(";");
+		    String[] dataexercise = data[2].split(",");
+		    
+		    for(int i = 0; i < dataexercise.length;i++) {
+		    	exercises.add(new Exercise(dataexercise[i],"",0));
+		    }
+		    Date date = new Date(data[0]);
+		    workouts.add(new Workout(data[1],date,exercises));
+		    }
+		csvReader.close();  
+		
+		return workouts;
 	}
 	
 }
