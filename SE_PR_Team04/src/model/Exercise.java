@@ -5,43 +5,40 @@ package model;
 
 import java.util.List;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Exercise.
  */
 public class Exercise {
 
-	
 	/** The name. */
 	private String name;
-	
+
 	/** The trains. */
 	private String trains;
-	
+
 	/** The reps. */
 	private int reps;
-	
+
 	/**
 	 * Instantiates a new exercise.
 	 *
-	 * @param name the name
+	 * @param name   the name
 	 * @param trains the trains
-	 * @param reps the reps
+	 * @param reps   the reps
 	 */
 	public Exercise(String name, String trains, int reps) {
 		this.name = name;
 		this.trains = trains;
 		this.reps = reps;
 	}
-		
+
 	/**
 	 * Instantiates a new exercise.
 	 */
 	public Exercise() {
 		super();
 	}
-
 
 	/**
 	 * Gets the name.
@@ -51,7 +48,7 @@ public class Exercise {
 	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * Sets the name.
 	 *
@@ -60,7 +57,7 @@ public class Exercise {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	/**
 	 * Gets the trains.
 	 *
@@ -69,7 +66,7 @@ public class Exercise {
 	public String getTrains() {
 		return trains;
 	}
-	
+
 	/**
 	 * Sets the trains.
 	 *
@@ -78,7 +75,7 @@ public class Exercise {
 	public void setTrains(String trains) {
 		this.trains = trains;
 	}
-	
+
 	/**
 	 * Gets the reps.
 	 *
@@ -87,7 +84,7 @@ public class Exercise {
 	public int getReps() {
 		return reps;
 	}
-	
+
 	/**
 	 * Sets the reps.
 	 *
@@ -96,37 +93,23 @@ public class Exercise {
 	public void setReps(int reps) {
 		this.reps = reps;
 	}
-	
-	/*public Muscle getMuscle(String name) {
-		for(int i=0; i < trains.size();i++) {
-			if(trains.get(i).getName() == name) {
-				return trains.get(i);		
-			}
-		}	
-		return null;
-	}
-	
-	public Boolean addMuscle(String name) {
-		if(trains.add(new Muscle(name)) == true) {
-			trains.add(new Muscle(name));
-			return true;
-		}
-		else {
-			return false;
-		}
-		
-		
-	}
-	
-	public Boolean deleteMuscle(String name) {
-		for(int i=0; i < trains.size();i++) {
-			if(trains.get(i).getName() == name) {
-				trains.remove(i);
-				return true;
-			}
-		}
-		
-		return false;
-	}*/
-	
+
+	/*
+	 * public Muscle getMuscle(String name) { for(int i=0; i < trains.size();i++) {
+	 * if(trains.get(i).getName() == name) { return trains.get(i); } } return null;
+	 * }
+	 * 
+	 * public Boolean addMuscle(String name) { if(trains.add(new Muscle(name)) ==
+	 * true) { trains.add(new Muscle(name)); return true; } else { return false; }
+	 * 
+	 * 
+	 * }
+	 * 
+	 * public Boolean deleteMuscle(String name) { for(int i=0; i <
+	 * trains.size();i++) { if(trains.get(i).getName() == name) { trains.remove(i);
+	 * return true; } }
+	 * 
+	 * return false; }
+	 */
+
 }

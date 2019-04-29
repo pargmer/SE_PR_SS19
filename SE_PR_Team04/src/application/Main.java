@@ -39,7 +39,6 @@ public class Main extends Application {
 	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
-		com.sun.javafx.runtime.VersionInfo.getRuntimeVersion();
 		launch(args);
 	}
 }
