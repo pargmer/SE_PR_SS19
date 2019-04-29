@@ -20,10 +20,6 @@ public class Workout {
 	
 	/** The exercises. */
 	private List<Exercise> exercises;
-	
-	
-	
-	
 
 	/**
 	 * Instantiates a new workout.
