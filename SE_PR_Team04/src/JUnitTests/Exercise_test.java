@@ -30,7 +30,6 @@ class Exercise_test {
 		w1.addExercise(liegestuetze);
 		w1.addExercise(dips);
 		
-		
 	}
 	@Test
 	void test() throws ParseException {
