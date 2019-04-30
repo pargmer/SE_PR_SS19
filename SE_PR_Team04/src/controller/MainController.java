@@ -1,6 +1,3 @@
-/*
- * 
- */
 package controller;
 
 import java.io.BufferedReader;
@@ -25,48 +22,34 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class MainController.
- */
 public class MainController implements Initializable{
 	
-	/** The exercises. */
-	private List<Exercise> exercises = new LinkedList<Exercise>();;
+	private List<Exercise> exercises;
+	private List<Workout> workouts;
 	
-	 /** The root. */
- 	@FXML
+	 @FXML
 	 private AnchorPane root;
 	 
-	 /** The lv exercises. */
- 	@FXML
-	 private ListView<Exercise> lv_exercises;
+	 @FXML
+	 private Label lb_test;
 	 
- 	/** The ov exercises. */
- 	private ObservableList<Exercise> ov_exercises;
+	 @FXML
+	 private ListView<String> lv_exercises;
+	 private ObservableList<String> ov_exercises;
 	 
-	 /** The cb workouts. */
- 	@FXML
+	 @FXML
 	 private ComboBox<String> cb_workouts;
+	 private ObservableList<String> ov_workouts;
 	 
- 	/** The ov workouts. */
- 	private ObservableList<String> ov_workouts;
-	 
-	/** The btn new workout. */
 	@FXML
 	private Button btn_NewWorkout;
 	
-	/**
-	 * Handle button new workout.
-	 *
-	 * @param event the event
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
 	@FXML
 	private void handleButton_newWorkout(ActionEvent event) throws IOException {
 		
@@ -84,39 +67,70 @@ public class MainController implements Initializable{
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
-	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		List<Workout> workouts = new LinkedList<Workout>();
+
+	List<String> sworkouts = new LinkedList<String>();
 		try {
-			workouts = readWorkoutsFromCsv("./././workouts.csv");
+			workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
+			exercises = ReadAndWriteCSV.getInstance().readExercisesFromCsv("exercises.csv");
+			 
 		} catch (IOException e) {
 			
 			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
-	}
 
-	private List<Workout> readWorkoutsFromCsv(String file) throws IOException{
-		List<Workout> workouts = new LinkedList<Workout>();
-		List<Exercise> exercises = new LinkedList<Exercise>();
-		 String row;
-		BufferedReader csvReader = new BufferedReader(new FileReader(file));  
-		while ((row = csvReader.readLine()) != null) {  
-		    String[] data = row.split(";");
-		    String[] dataexercise = data[2].split(",");
-		    
-		    for(int i = 0; i < dataexercise.length;i++) {
-		    	exercises.add(new Exercise(dataexercise[i],"",0));
-		    }
-		    Date date = new Date(data[0]);
-		    workouts.add(new Workout(data[1],date,exercises));
-		    }
-		csvReader.close();  
+		 
+		for(Workout workout : workouts) {
+			sworkouts.add(workout.getName());
+		}
+		ov_workouts = FXCollections.observableArrayList(sworkouts);
+		cb_workouts.setItems(ov_workouts);
 		
-		return workouts;
+		
+		
 	}
+	
+	@FXML
+	public void comboChanged(ActionEvent event) {
+		
+		
+		
+		List<String> lvexercises = new LinkedList<String>();
+	
+		/*for(Workout workout : workouts) {
+			System.out.println(workout.getName());
+			System.out.println(workout.getDate());
+			System.out.println();
+			for(int i = 0; i < workout.getExercises().size();i++) {
+				System.out.println(workout.getExercises().get(i).getName());
+				System.out.println(workout.getExercises().get(i).getReps());
+				System.out.println(workout.getExercises().get(i).getTrains());
+			}
+		}*/
+		
+		
+		
+		lvexercises.clear();
+		for(Workout workout : workouts) {
+			if(cb_workouts.getValue().equals(workout.getName()) == true) {
+				
+				for(int i = 0; i < workout.getExercises().size();i++) {
+					lvexercises.add(workout.getExercises().get(i).getName());
+					}
+					
+				}
+			
+		}
+		System.out.println(lvexercises.size());
+		ov_exercises = FXCollections.observableArrayList(lvexercises);
+		lv_exercises.setItems(ov_exercises);
+	}
+	
+	
+	
 	
 }
