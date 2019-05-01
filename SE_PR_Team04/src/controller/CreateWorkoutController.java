@@ -1,7 +1,10 @@
 package controller;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -19,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Exercise;
+import model.ReadAndWriteCSV;
 import model.Workout;
 
 public class CreateWorkoutController{
@@ -58,13 +62,44 @@ public class CreateWorkoutController{
 	}
 	
 	@FXML
-	private void handleBtn_saveWorkout(ActionEvent event) throws IOException {
+	private void handleBtn_saveWorkout(ActionEvent event) throws IOException, SQLException {
+		
+		List<Workout> workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
+		 Workout newworkout = new Workout(tf_workoutname.getText(),new Date(),exercises);
+		 
+		 workouts.add(newworkout);
+		 String help="";
+		 FileWriter writer = new FileWriter("workouts.csv");
+		  StringBuilder sb = new StringBuilder();
+		 for(Workout workout: workouts) {
+			 help="";
+			
+			 for(int i = 0; i < workout.getExercises().size();i++) {
+				if(help=="") {
+					help = help+  workout.getExercises().get(i).getName();
+				}
+				else {
+					help = help+","+workout.getExercises().get(i).getName();
+				}
+			 }
+			 
+			 sb.append(workout.getDate().toString());
+			 sb.append(";");
+			 sb.append(workout.getName());
+			 sb.append(";");
+			 sb.append(help);
+			 sb.append("\n");
+		 }
+		 
+		 writer.write(sb.toString());
+		writer.flush();
+		writer.close();
 		
 		  Stage oldStage;
           oldStage = (Stage)root.getScene().getWindow();
 
           FXMLLoader fxmlLoader = new FXMLLoader();
-          fxmlLoader.setLocation(getClass().getResource("/view/Create_Workout.fxml"));
+          fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
           Parent root2 = (Parent) fxmlLoader.load();
           Stage stage = new Stage();
           stage.setTitle("Create Workout!");
