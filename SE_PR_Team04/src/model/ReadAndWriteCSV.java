@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package model;
 
 import java.io.BufferedReader;
@@ -8,18 +11,36 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List; 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ReadAndWriteCSV.
+ */
 public class ReadAndWriteCSV {
 
 	
-	 private static ReadAndWriteCSV instance;
+	 /** The instance. */
+ 	private static ReadAndWriteCSV instance;
 		
-	  public static ReadAndWriteCSV getInstance() throws SQLException{
+	  /**
+  	 * Gets the single instance of ReadAndWriteCSV.
+  	 *
+  	 * @return single instance of ReadAndWriteCSV
+  	 * @throws SQLException the SQL exception
+  	 */
+  	public static ReadAndWriteCSV getInstance() throws SQLException{
 	        if(instance == null){
 	            instance = new ReadAndWriteCSV();
 	        }
 	        return instance;
 	    }
 	
+	/**
+	 * Read workouts from csv.
+	 *
+	 * @param file the file
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public List<Workout> readWorkoutsFromCsv(String file) throws IOException { 
 		
 		List<Workout> workouts = new LinkedList<Workout>();
@@ -49,6 +70,13 @@ public class ReadAndWriteCSV {
 		return workouts;
 	}
 	
+	/**
+	 * Read exercises from csv.
+	 *
+	 * @param file the file
+	 * @return the list
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public List<Exercise> readExercisesFromCsv(String file) throws IOException { 
 		
 		List<Exercise> exercises = new LinkedList<Exercise>();

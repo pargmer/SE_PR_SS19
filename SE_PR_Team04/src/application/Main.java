@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package application;
 	
 import javafx.application.Application;
@@ -8,7 +11,17 @@ import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Main.
+ */
 public class Main extends Application {
+	
+	/**
+	 * Start.
+	 *
+	 * @param primaryStage the primary stage
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -22,6 +35,11 @@ public class Main extends Application {
 		}
 	}
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

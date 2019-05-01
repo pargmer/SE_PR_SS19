@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controller;
 
 import java.io.IOException;
@@ -14,17 +17,32 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Exercise;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateExerciseController.
+ */
 public class CreateExerciseController {
 
+	/** The root. */
 	@FXML
 	private AnchorPane root;
 	
+	/** The tf muscle. */
 	@FXML
 	private TextField tf_name,tf_reps,tf_muscle;
 	
+	/** The exercises. */
 	List<Exercise> exercises = new LinkedList<Exercise>();
+	
+	/** The workoutname. */
 	String workoutname;
 	
+	/**
+	 * Handle btn save exercise.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	private void handleBtn_saveExercise(ActionEvent event) throws IOException {
 		
@@ -49,6 +67,12 @@ public class CreateExerciseController {
 		
 	}
 	
+	/**
+	 * Sets the data.
+	 *
+	 * @param oexercises the oexercises
+	 * @param oworkoutname the oworkoutname
+	 */
 	public void setData(List<Exercise> oexercises, String oworkoutname) {
 		exercises = oexercises;
 		workoutname = oworkoutname;

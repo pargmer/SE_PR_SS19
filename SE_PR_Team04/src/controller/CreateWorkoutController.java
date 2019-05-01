@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controller;
 
 import java.io.FileWriter;
@@ -25,23 +28,41 @@ import model.Exercise;
 import model.ReadAndWriteCSV;
 import model.Workout;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateWorkoutController.
+ */
 public class CreateWorkoutController{
 
 	
+	/** The exercises. */
 	List<Exercise> exercises = new LinkedList<Exercise>();
 	
+	/** The workoutname. */
 	String workoutname ="";
+	
+	/** The root. */
 	@FXML
 	private AnchorPane root;
 	
+	/** The tf workoutname. */
 	@FXML
 	private TextField tf_workoutname;
 	
 	 
-	 @FXML
+	 /** The lv exercises. */
+ 	@FXML
 	 private ListView<String> lv_exercises;
-	 private ObservableList<String> ov_exercises;
+	 
+ 	/** The ov exercises. */
+ 	private ObservableList<String> ov_exercises;
 	
+	/**
+	 * Handle btn new exercise.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	private void handleBtn_newExercise(ActionEvent event) throws IOException {
 		
@@ -61,6 +82,13 @@ public class CreateWorkoutController{
 		
 	}
 	
+	/**
+	 * Handle btn save workout.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws SQLException the SQL exception
+	 */
 	@FXML
 	private void handleBtn_saveWorkout(ActionEvent event) throws IOException, SQLException {
 		
@@ -122,6 +150,12 @@ public class CreateWorkoutController{
 		lv_exercises.setItems(ov_exercises);
 	}*/
 	
+	/**
+	 * Sets the data.
+	 *
+	 * @param oexercises the oexercises
+	 * @param oworkoutname the oworkoutname
+	 */
 	public void setData(List<Exercise> oexercises, String oworkoutname) {
 		
 		exercises = oexercises;
