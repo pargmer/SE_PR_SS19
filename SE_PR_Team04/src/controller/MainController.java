@@ -67,7 +67,7 @@ public class MainController implements Initializable {
 
 	/** The btn new workout. */
 	@FXML
-	private Button btn_NewWorkout;
+	private Button btn_NewWorkout, btn_deleteWorkout;
 
 	/**
 	 * Handle button new workout.
@@ -89,6 +89,27 @@ public class MainController implements Initializable {
 		stage.setScene(new Scene(root2));
 		stage.show();
 		oldStage.close();
+
+	}
+	
+	//JAVADOC
+	
+	@FXML
+	private void handleBtn_deleteWorkout(ActionEvent event) throws IOException, SQLException {
+
+		for (Workout workout : workouts) {
+			if (workout.getName().equals(cb_workouts.getValue()) == true) {
+				workouts.remove(workout);
+			}
+		}
+
+		ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
+		ov_workouts.remove(cb_workouts.getValue());
+		cb_workouts.setItems(ov_workouts);
+		cb_workouts.setValue("Wähle ein Workout aus!");
+
+		ov_exercises.removeAll();
+		lv_exercises.setItems(ov_exercises);
 
 	}
 
@@ -130,6 +151,18 @@ public class MainController implements Initializable {
 	@FXML
 	public void comboChanged(ActionEvent event) {
 
+		try {
+			workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
+			exercises = ReadAndWriteCSV.getInstance().readExercisesFromCsv("exercises.csv");
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
 		List<String> lvexercises = new LinkedList<String>();
 
 		/*
@@ -152,7 +185,6 @@ public class MainController implements Initializable {
 			}
 
 		}
-		System.out.println(lvexercises.size());
 		ov_exercises = FXCollections.observableArrayList(lvexercises);
 		lv_exercises.setItems(ov_exercises);
 	}
