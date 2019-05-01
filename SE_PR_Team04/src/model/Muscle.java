@@ -9,13 +9,9 @@ package model;
  */
 public class Muscle {
 
-	
 	/** The name. */
 	private String name;
 
-	
-	
-	
 	/**
 	 * Instantiates a new muscle.
 	 *
@@ -42,6 +38,6 @@ public class Muscle {
 	 */
 	public void setName(String name) {
 		this.name = name;
-	} 
-	
+	}
+
 }

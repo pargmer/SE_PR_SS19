@@ -14,26 +14,22 @@ public class Workout {
 
 	/** The name. */
 	private String name;
-	
+
 	/** The date. */
 	private Date date;
-	
+
 	/** The exercises. */
 	private List<Exercise> exercises;
-	
-	
-	
-	
 
 	/**
 	 * Instantiates a new workout.
 	 *
-	 * @param name the name
-	 * @param date the date
+	 * @param name      the name
+	 * @param date      the date
 	 * @param exercises the exercises
 	 */
 	public Workout(String name, Date date, List<Exercise> exercises) {
-		
+
 		this.name = name;
 		this.date = date;
 		this.exercises = exercises;
@@ -75,8 +71,6 @@ public class Workout {
 		this.date = date;
 	}
 
-	
-	
 	/**
 	 * Adds the exercise.
 	 *
@@ -84,16 +78,15 @@ public class Workout {
 	 * @return the boolean
 	 */
 	public Boolean addExercise(Exercise exercise) {
-		
-		if(exercises.add(exercise) == true) {
+
+		if (exercises.add(exercise) == true) {
 			exercises.add(exercise);
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Delete exercise.
 	 *
@@ -101,32 +94,28 @@ public class Workout {
 	 * @return the boolean
 	 */
 	public Boolean deleteExercise(String name) {
-		
-		for(int i=0; i < exercises.size();i++) {
-			
-			if(exercises.get(i).getName().toString() == name) {
-				 exercises.remove(i);
-				 return true;
+
+		for (int i = 0; i < exercises.size(); i++) {
+
+			if (exercises.get(i).getName().toString() == name) {
+				exercises.remove(i);
+				return true;
 			}
 		}
-		
+
 		return false;
 	}
-	
-	
-	/*public Exercise getExercise(String name) {
-		
-		
-		for(int i=0; i < exercises.size();i++) {
-			
-			if(exercises.get(i).getName().toString() == name) {
-				return exercises.get(i);
-			}
-		}
-		return null;
-	}*/
-	
-	
+
+	/*
+	 * public Exercise getExercise(String name) {
+	 * 
+	 * 
+	 * for(int i=0; i < exercises.size();i++) {
+	 * 
+	 * if(exercises.get(i).getName().toString() == name) { return exercises.get(i);
+	 * } } return null; }
+	 */
+
 	/**
 	 * Gets the date.
 	 *
@@ -144,5 +133,5 @@ public class Workout {
 	public List<Exercise> getExercises() {
 		return exercises;
 	}
-	
+
 }

@@ -26,17 +26,17 @@ public class CreateExerciseController {
 	/** The root. */
 	@FXML
 	private AnchorPane root;
-	
+
 	/** The tf muscle. */
 	@FXML
-	private TextField tf_name,tf_reps,tf_muscle;
-	
+	private TextField tf_name, tf_reps, tf_muscle;
+
 	/** The exercises. */
 	List<Exercise> exercises = new LinkedList<Exercise>();
-	
+
 	/** The workoutname. */
 	String workoutname;
-	
+
 	/**
 	 * Handle btn save exercise.
 	 *
@@ -45,37 +45,36 @@ public class CreateExerciseController {
 	 */
 	@FXML
 	private void handleBtn_saveExercise(ActionEvent event) throws IOException {
-		
-		
-		
-		Exercise newExercise = new Exercise(tf_name.getText().toString(), tf_muscle.getText().toString(),Integer.parseInt(tf_reps.getText().toString()));
-		exercises.add(newExercise);		
-		
-		  Stage oldStage;
-          oldStage = (Stage)root.getScene().getWindow();
 
-          FXMLLoader fxmlLoader = new FXMLLoader();
-          fxmlLoader.setLocation(getClass().getResource("/view/Create_Workout.fxml"));
-          Parent root2 = (Parent) fxmlLoader.load();
-          CreateWorkoutController create = fxmlLoader.getController();
-          create.setData(exercises, workoutname);
-          Stage stage = new Stage();
-          stage.setTitle("Create Workout!");
-          stage.setScene(new Scene(root2));  
-          stage.show();
-          oldStage.close();
-		
+		Exercise newExercise = new Exercise(tf_name.getText().toString(), tf_muscle.getText().toString(),
+				Integer.parseInt(tf_reps.getText().toString()));
+		exercises.add(newExercise);
+
+		Stage oldStage;
+		oldStage = (Stage) root.getScene().getWindow();
+
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		fxmlLoader.setLocation(getClass().getResource("/view/Create_Workout.fxml"));
+		Parent root2 = (Parent) fxmlLoader.load();
+		CreateWorkoutController create = fxmlLoader.getController();
+		create.setData(exercises, workoutname);
+		Stage stage = new Stage();
+		stage.setTitle("Create Workout!");
+		stage.setScene(new Scene(root2));
+		stage.show();
+		oldStage.close();
+
 	}
-	
+
 	/**
 	 * Sets the data.
 	 *
-	 * @param oexercises the oexercises
+	 * @param oexercises   the oexercises
 	 * @param oworkoutname the oworkoutname
 	 */
 	public void setData(List<Exercise> oexercises, String oworkoutname) {
 		exercises = oexercises;
 		workoutname = oworkoutname;
-		
+
 	}
 }

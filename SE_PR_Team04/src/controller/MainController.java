@@ -35,40 +35,40 @@ import model.*;
 /**
  * The Class MainController.
  */
-public class MainController implements Initializable{
-	
+public class MainController implements Initializable {
+
 	/** The exercises. */
 	private List<Exercise> exercises;
-	
+
 	/** The workouts. */
 	private List<Workout> workouts;
-	
-	 /** The root. */
- 	@FXML
-	 private AnchorPane root;
-	 
-	 /** The lb test. */
- 	@FXML
-	 private Label lb_test;
-	 
-	 /** The lv exercises. */
- 	@FXML
-	 private ListView<String> lv_exercises;
-	 
- 	/** The ov exercises. */
- 	private ObservableList<String> ov_exercises;
-	 
-	 /** The cb workouts. */
- 	@FXML
-	 private ComboBox<String> cb_workouts;
-	 
- 	/** The ov workouts. */
- 	private ObservableList<String> ov_workouts;
-	 
+
+	/** The root. */
+	@FXML
+	private AnchorPane root;
+
+	/** The lb test. */
+	@FXML
+	private Label lb_test;
+
+	/** The lv exercises. */
+	@FXML
+	private ListView<String> lv_exercises;
+
+	/** The ov exercises. */
+	private ObservableList<String> ov_exercises;
+
+	/** The cb workouts. */
+	@FXML
+	private ComboBox<String> cb_workouts;
+
+	/** The ov workouts. */
+	private ObservableList<String> ov_workouts;
+
 	/** The btn new workout. */
 	@FXML
 	private Button btn_NewWorkout;
-	
+
 	/**
 	 * Handle button new workout.
 	 *
@@ -77,51 +77,51 @@ public class MainController implements Initializable{
 	 */
 	@FXML
 	private void handleButton_newWorkout(ActionEvent event) throws IOException {
-		
-		  Stage oldStage;
-          oldStage = (Stage)root.getScene().getWindow();
 
-          FXMLLoader fxmlLoader = new FXMLLoader();
-          fxmlLoader.setLocation(getClass().getResource("/view/Create_Workout.fxml"));
-          Parent root2 = (Parent) fxmlLoader.load();
-          Stage stage = new Stage();
-          stage.setTitle("Create Workout!");
-          stage.setScene(new Scene(root2));  
-          stage.show();
-          oldStage.close();
-		
+		Stage oldStage;
+		oldStage = (Stage) root.getScene().getWindow();
+
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		fxmlLoader.setLocation(getClass().getResource("/view/Create_Workout.fxml"));
+		Parent root2 = (Parent) fxmlLoader.load();
+		Stage stage = new Stage();
+		stage.setTitle("Create Workout!");
+		stage.setScene(new Scene(root2));
+		stage.show();
+		oldStage.close();
+
 	}
 
-	/* (non-Javadoc)
-	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL,
+	 * java.util.ResourceBundle)
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-	List<String> sworkouts = new LinkedList<String>();
+		List<String> sworkouts = new LinkedList<String>();
 		try {
 			workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
 			exercises = ReadAndWriteCSV.getInstance().readExercisesFromCsv("exercises.csv");
-			 
+
 		} catch (IOException e) {
-			
+
 			e.printStackTrace();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		 
-		for(Workout workout : workouts) {
+		for (Workout workout : workouts) {
 			sworkouts.add(workout.getName());
 		}
 		ov_workouts = FXCollections.observableArrayList(sworkouts);
 		cb_workouts.setItems(ov_workouts);
-		
-		
-		
+
 	}
-	
+
 	/**
 	 * Combo changed.
 	 *
@@ -129,41 +129,32 @@ public class MainController implements Initializable{
 	 */
 	@FXML
 	public void comboChanged(ActionEvent event) {
-		
-		
-		
+
 		List<String> lvexercises = new LinkedList<String>();
-	
-		/*for(Workout workout : workouts) {
-			System.out.println(workout.getName());
-			System.out.println(workout.getDate());
-			System.out.println();
-			for(int i = 0; i < workout.getExercises().size();i++) {
-				System.out.println(workout.getExercises().get(i).getName());
-				System.out.println(workout.getExercises().get(i).getReps());
-				System.out.println(workout.getExercises().get(i).getTrains());
-			}
-		}*/
-		
-		
-		
+
+		/*
+		 * for(Workout workout : workouts) { System.out.println(workout.getName());
+		 * System.out.println(workout.getDate()); System.out.println(); for(int i = 0; i
+		 * < workout.getExercises().size();i++) {
+		 * System.out.println(workout.getExercises().get(i).getName());
+		 * System.out.println(workout.getExercises().get(i).getReps());
+		 * System.out.println(workout.getExercises().get(i).getTrains()); } }
+		 */
+
 		lvexercises.clear();
-		for(Workout workout : workouts) {
-			if(cb_workouts.getValue().equals(workout.getName()) == true) {
-				
-				for(int i = 0; i < workout.getExercises().size();i++) {
+		for (Workout workout : workouts) {
+			if (cb_workouts.getValue().equals(workout.getName()) == true) {
+
+				for (int i = 0; i < workout.getExercises().size(); i++) {
 					lvexercises.add(workout.getExercises().get(i).getName());
-					}
-					
 				}
-			
+
+			}
+
 		}
 		System.out.println(lvexercises.size());
 		ov_exercises = FXCollections.observableArrayList(lvexercises);
 		lv_exercises.setItems(ov_exercises);
 	}
-	
-	
-	
-	
+
 }
