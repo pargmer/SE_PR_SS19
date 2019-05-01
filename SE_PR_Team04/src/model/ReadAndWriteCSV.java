@@ -5,6 +5,7 @@ package model;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
@@ -92,6 +93,36 @@ public class ReadAndWriteCSV {
 		csvReader.close();  
 		
 		return exercises;
+	}
+	
+	public void writeWorkoutsOnCSV(List<Workout> workouts) throws IOException { 
+		
+		 String help="";
+		 FileWriter writer = new FileWriter("workouts.csv");
+		  StringBuilder sb = new StringBuilder();
+		 for(Workout workout: workouts) {
+			 help="";
+			
+			 for(int i = 0; i < workout.getExercises().size();i++) {
+				if(help=="") {
+					help = help+  workout.getExercises().get(i).getName();
+				}
+				else {
+					help = help+","+workout.getExercises().get(i).getName();
+				}
+			 }
+			 
+			 sb.append(workout.getDate().toString());
+			 sb.append(";");
+			 sb.append(workout.getName());
+			 sb.append(";");
+			 sb.append(help);
+			 sb.append("\n");
+		 }
+		 
+		 writer.write(sb.toString());
+		writer.flush();
+		writer.close();
 	}
 }
 
