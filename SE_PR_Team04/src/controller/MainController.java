@@ -185,6 +185,7 @@ public class MainController implements Initializable {
 			}
 
 		}
+		System.out.println(lvexercises.size());
 		ov_exercises = FXCollections.observableArrayList(lvexercises);
 		lv_exercises.setItems(ov_exercises);
 	}
