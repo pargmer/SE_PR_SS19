@@ -20,6 +20,13 @@ public class Workout {
 
 	/** The exercises. */
 	private List<Exercise> exercises;
+	
+	/**
+	 * Instantiates a new workout without @param.
+	 */
+	public Workout() {
+
+	}
 
 	/**
 	 * Instantiates a new workout.
