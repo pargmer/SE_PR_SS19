@@ -6,6 +6,7 @@ package JUnitTests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,21 +37,23 @@ class ReadAndWriteCSV_test {
 		ReadAndWriteCSV rw = new ReadAndWriteCSV();
 		List<Exercise> el = new LinkedList<Exercise>();
 		el.add(e1); el.add(e2); el.add(e3);
-		Workout w1 = new Workout("Oberkörpertraining", "Thu May 02 07:29:00 CEST 2019", el);
+		Date date1 =new Date(2019, 5,2,7,29);
+		Workout w1 = new Workout("Oberkörpertraining", date1, el);
 		List<Exercise> e = new LinkedList<Exercise>();
 		e.add(e4); e.add(e5);
-		Workout w2 = new Workout("Beine", "Thu May 02 07:29:00 CEST 2019", e);
+		Workout w2 = new Workout("Beine", date1, e);
 		List<Workout> w = new LinkedList<Workout>();
 		w.add(w1); w.add(w2);
 		List<Workout> workouts;
 		try {
 			workouts = rw.readWorkoutsFromCsv("workouts.csv");
-		} catch (IOException e) {
+			assertEquals(workouts, w);
+		} catch (IOException exe) {
 			
-			e.printStackTrace();
+			exe.printStackTrace();
 			fail("Something went wrong!");
 		}
-		assertEquals(workouts, w);
+		
 	}
 
 	/**
