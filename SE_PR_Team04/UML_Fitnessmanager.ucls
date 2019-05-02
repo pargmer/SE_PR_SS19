@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="controller.MainController" project="SE_PR_SS19_SE_PR_Team04" 
     file="/SE_PR_SS19_SE_PR_Team04/src/controller/MainController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="261" width="246" x="89" y="23"/>    
+    <position height="333" width="246" x="139" y="37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,62 +12,130 @@
   </class>  
   <class id="2" language="java" name="controller.CreateExerciseController" project="SE_PR_SS19_SE_PR_Team04" 
     file="/SE_PR_SS19_SE_PR_Team04/src/controller/CreateExerciseController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="485" y="128"/>    
+    <position height="-1" width="-1" x="577" y="156"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="model.Exercise" project="SE_PR_SS19_SE_PR_Team04" 
+  <class id="3" language="java" name="controller.CreateWorkoutController" project="SE_PR_SS19_SE_PR_Team04" 
+    file="/SE_PR_SS19_SE_PR_Team04/src/controller/CreateWorkoutController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="930" y="162"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="model.Muscle" project="SE_PR_SS19_SE_PR_Team04" 
+    file="/SE_PR_SS19_SE_PR_Team04/src/model/Muscle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="773" y="621"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="model.ReadAndWriteCSV" project="SE_PR_SS19_SE_PR_Team04" 
+    file="/SE_PR_SS19_SE_PR_Team04/src/model/ReadAndWriteCSV.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="945" y="425"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="model.Database" project="SE_PR_SS19_SE_PR_Team04" 
+    file="/SE_PR_SS19_SE_PR_Team04/src/model/Database.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="997" y="654"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="model.Exercise" project="SE_PR_SS19_SE_PR_Team04" 
     file="/SE_PR_SS19_SE_PR_Team04/src/model/Exercise.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="201" y="485"/>    
+    <position height="-1" width="-1" x="582" y="597"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="model.Workout" project="SE_PR_SS19_SE_PR_Team04" 
+  <class id="8" language="java" name="model.Workout" project="SE_PR_SS19_SE_PR_Team04" 
     file="/SE_PR_SS19_SE_PR_Team04/src/model/Workout.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="468" y="490"/>    
+    <position height="-1" width="-1" x="258" y="593"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="application.Main" project="SE_PR_SS19_SE_PR_Team04" 
+  <class id="9" language="java" name="application.Main" project="SE_PR_SS19_SE_PR_Team04" 
     file="/SE_PR_SS19_SE_PR_Team04/src/application/Main.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="731" y="101"/>    
+    <position height="-1" width="-1" x="67" y="112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="6">    
+  <association id="10">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="7" name="ov_exercises"/>      
-      <multiplicity id="8" minimum="0" maximum="2147483647"/>    
+      <attribute id="11" name="exercises"/>      
+      <multiplicity id="12" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="9">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="10" name="exercises"/>      
-      <multiplicity id="11" minimum="0" maximum="2147483647"/>    
+  <association id="13">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="14" name="instance"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="12">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="13" name="exercises"/>      
-      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
+  <association id="16">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="17" name="exercises"/>      
+      <multiplicity id="18" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="19">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="20" name="workouts"/>      
+      <multiplicity id="21" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="23" name="exercises"/>      
+      <multiplicity id="24" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="26" name="instance"/>      
+      <multiplicity id="27" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="29" name="exercises"/>      
+      <multiplicity id="30" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

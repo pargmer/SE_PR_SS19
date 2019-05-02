@@ -25,7 +25,6 @@ class Exercise_test {
 		/*DateFormat df = new SimpleDateFormat("dd.mm.yyyy");
 		Date d1 = df.parse("22.04.2019");
 		
-		
 		Workout w1 = new Workout("Oberkörper", d1, new LinkedList<Exercise>());
 		w1.addExercise(liegestuetze);
 		w1.addExercise(dips);*/
