@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Exercise;
@@ -51,6 +52,9 @@ public class CreateWorkoutController {
 	/** The lv exercises. */
 	@FXML
 	private ListView<String> lv_exercises;
+	
+	//@FXML
+	//private CheckBoxListCell<String> clv_exercises;
 
 	/** The ov exercises. */
 	private ObservableList<String> ov_exercises;
@@ -162,6 +166,7 @@ public class CreateWorkoutController {
 		}
 		ov_exercises = FXCollections.observableArrayList(sexercise);
 		lv_exercises.setItems(ov_exercises);
+		//clv_exercises.setItem(ov_exercises.toString());
 	}
 
 }
