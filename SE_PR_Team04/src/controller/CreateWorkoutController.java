@@ -36,7 +36,7 @@ import model.Workout;
 public class CreateWorkoutController {
 
 	/** The exercises. */
-	List<Exercise> exercises = new LinkedList<Exercise>();
+	List<Exercise> exercises = new LinkedList<>();
 
 	/** The workoutname. */
 	String workoutname = "";
@@ -47,17 +47,17 @@ public class CreateWorkoutController {
 
 	/** The tf workoutname. */
 	@FXML
-	private TextField tf_workoutname;
+	private TextField tfWorkoutname;
 
 	/** The lv exercises. */
 	@FXML
-	private ListView<String> lv_exercises;
+	private ListView<String> lvExercises;
 	
 	//@FXML
 	//private CheckBoxListCell<String> clv_exercises;
 
 	/** The ov exercises. */
-	private ObservableList<String> ov_exercises;
+	private ObservableList<String> ovExercises;
 
 	/**
 	 * Handle btn new exercise.
@@ -66,7 +66,7 @@ public class CreateWorkoutController {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	@FXML
-	private void handleBtn_newExercise(ActionEvent event) throws IOException {
+	private void handleBtnNewExercise(ActionEvent event) throws IOException {
 
 		Stage oldStage;
 		oldStage = (Stage) root.getScene().getWindow();
@@ -75,7 +75,7 @@ public class CreateWorkoutController {
 		fxmlLoader.setLocation(getClass().getResource("/view/Create_Exercise.fxml"));
 		Parent root2 = (Parent) fxmlLoader.load();
 		CreateExerciseController create = fxmlLoader.getController();
-		create.setData(exercises, tf_workoutname.getText().toString());
+		create.setData(exercises, tfWorkoutname.getText().toString());
 		Stage stage = new Stage();
 		stage.setTitle("Create Workout!");
 		stage.setScene(new Scene(root2));
@@ -92,10 +92,10 @@ public class CreateWorkoutController {
 	 * @throws SQLException the SQL exception
 	 */
 	@FXML
-	private void handleBtn_saveWorkout(ActionEvent event) throws IOException, SQLException {
+	private void handleBtnSaveWorkout(ActionEvent event) throws IOException, SQLException {
 
 		List<Workout> workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
-		Workout newworkout = new Workout(tf_workoutname.getText(), new Date(), exercises);
+		Workout newworkout = new Workout(tfWorkoutname.getText(), new Date(), exercises);
 
 		workouts.add(newworkout);
 		String help = "";
@@ -105,7 +105,7 @@ public class CreateWorkoutController {
 			help = "";
 
 			for (int i = 0; i < workout.getExercises().size(); i++) {
-				if (help == "") {
+				if (help.equals("")) {
 					help = help + workout.getExercises().get(i).getName();
 				} else {
 					help = help + "," + workout.getExercises().get(i).getName();
@@ -159,13 +159,13 @@ public class CreateWorkoutController {
 		exercises = oexercises;
 		workoutname = oworkoutname;
 
-		tf_workoutname.setText(workoutname);
-		List<String> sexercise = new LinkedList<String>();
+		tfWorkoutname.setText(workoutname);
+		List<String> sexercise = new LinkedList<>();
 		for (Exercise exercise : exercises) {
 			sexercise.add(exercise.getName());
 		}
-		ov_exercises = FXCollections.observableArrayList(sexercise);
-		lv_exercises.setItems(ov_exercises);
+		ovExercises = FXCollections.observableArrayList(sexercise);
+		lvExercises.setItems(ovExercises);
 		//clv_exercises.setItem(ov_exercises.toString());
 	}
 

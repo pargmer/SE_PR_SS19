@@ -20,7 +20,7 @@ import model.Workout;
  * @author Pargan
  *
  */
-class ReadAndWriteCSV_test {
+class ReadAndWriteCSVTest {
 
 	private static Exercise e1 = new Exercise("Liegestuetz","Trizeps",15); 
 	private static Exercise e2 = new Exercise("Klimmzüge","Trizeps",15);

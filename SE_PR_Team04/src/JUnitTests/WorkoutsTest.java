@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import model.Exercise;
 
-class Workouts_test {
+class WorkoutsTest {
 	private static Exercise e1 = new Exercise("Liegestuetz","Trizeps",15); 
 	private static Exercise e2 = new Exercise("Klimmzüge","Trizeps",15);
 	private static Exercise e3 = new Exercise("Sit-Ups","Trizeps",15);

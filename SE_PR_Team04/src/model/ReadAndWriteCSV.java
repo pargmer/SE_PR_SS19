@@ -42,8 +42,8 @@ public class ReadAndWriteCSV {
 	 */
 	public List<Workout> readWorkoutsFromCsv(String file) throws IOException {
 
-		List<Workout> workouts = new LinkedList<Workout>();
-		List<Exercise> exercises = new LinkedList<Exercise>();
+		List<Workout> workouts = new LinkedList<>();
+		List<Exercise> exercises = new LinkedList<>();
 		String row;
 		BufferedReader csvReader = new BufferedReader(new FileReader(file));
 
@@ -78,7 +78,7 @@ public class ReadAndWriteCSV {
 	 */
 	public List<Exercise> readExercisesFromCsv(String file) throws IOException {
 
-		List<Exercise> exercises = new LinkedList<Exercise>();
+		List<Exercise> exercises = new LinkedList<>();
 		// List<Exercise> exercises = new LinkedList<Exercise>();
 		String row;
 		BufferedReader csvReader = new BufferedReader(new FileReader(file));
@@ -102,7 +102,7 @@ public class ReadAndWriteCSV {
 			help = "";
 
 			for (int i = 0; i < workout.getExercises().size(); i++) {
-				if (help == "") {
+				if (help.equals("")) {
 					help = help + workout.getExercises().get(i).getName();
 				} else {
 					help = help + "," + workout.getExercises().get(i).getName();

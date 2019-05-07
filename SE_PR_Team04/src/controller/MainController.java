@@ -49,25 +49,26 @@ public class MainController implements Initializable {
 
 	/** The lb test. */
 	@FXML
-	private Label lb_test;
+	private Label lbTest;
 
 	/** The lv exercises. */
 	@FXML
-	private ListView<String> lv_exercises;
+	private ListView<String> lvExercises;
 
 	/** The ov exercises. */
-	private ObservableList<String> ov_exercises;
+	private ObservableList<String> ovExercises;
 
 	/** The cb workouts. */
 	@FXML
-	private ComboBox<String> cb_workouts;
+	private ComboBox<String> cbWorkouts;
 
 	/** The ov workouts. */
-	private ObservableList<String> ov_workouts;
+	private ObservableList<String> ovWorkouts;
 
 	/** The btn new workout. */
 	@FXML
-	private Button btn_NewWorkout, btn_deleteWorkout;
+	private Button btnNewWorkout;
+	private Button btnDeleteWorkout;
 
 	/**
 	 * Handle button new workout.
@@ -76,7 +77,7 @@ public class MainController implements Initializable {
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
 	@FXML
-	private void handleButton_newWorkout(ActionEvent event) throws IOException {
+	private void handleButtonNewWorkout(ActionEvent event) throws IOException {
 
 		Stage oldStage;
 		oldStage = (Stage) root.getScene().getWindow();
@@ -95,21 +96,21 @@ public class MainController implements Initializable {
 	//JAVADOC
 	
 	@FXML
-	private void handleBtn_deleteWorkout(ActionEvent event) throws IOException, SQLException {
+	private void handleBtnDeleteWorkout(ActionEvent event) throws IOException, SQLException {
 
 		for (Workout workout : workouts) {
-			if (workout.getName().equals(cb_workouts.getValue()) == true) {
+			if (workout.getName().equals(cbWorkouts.getValue()) == true) {
 				workouts.remove(workout);
 			}
 		}
 
 		ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
-		ov_workouts.remove(cb_workouts.getValue());
-		cb_workouts.setItems(ov_workouts);
-		cb_workouts.setValue("Wähle ein Workout aus!");
+		ovWorkouts.remove(cbWorkouts.getValue());
+		cbWorkouts.setItems(ovWorkouts);
+		cbWorkouts.setValue("Wähle ein Workout aus!");
 
-		ov_exercises.removeAll();
-		lv_exercises.setItems(ov_exercises);
+		ovExercises.removeAll();
+		lvExercises.setItems(ovExercises);
 
 	}
 
@@ -122,7 +123,7 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		List<String> sworkouts = new LinkedList<String>();
+		List<String> sworkouts = new LinkedList<>();
 		try {
 			workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
 			exercises = ReadAndWriteCSV.getInstance().readExercisesFromCsv("exercises.csv");
@@ -138,8 +139,8 @@ public class MainController implements Initializable {
 		for (Workout workout : workouts) {
 			sworkouts.add(workout.getName());
 		}
-		ov_workouts = FXCollections.observableArrayList(sworkouts);
-		cb_workouts.setItems(ov_workouts);
+		ovWorkouts = FXCollections.observableArrayList(sworkouts);
+		cbWorkouts.setItems(ovWorkouts);
 
 	}
 
@@ -163,7 +164,7 @@ public class MainController implements Initializable {
 			e.printStackTrace();
 		}
 
-		List<String> lvexercises = new LinkedList<String>();
+		List<String> lvexercises = new LinkedList<>();
 
 		/*
 		 * for(Workout workout : workouts) { System.out.println(workout.getName());
@@ -176,7 +177,7 @@ public class MainController implements Initializable {
 
 		lvexercises.clear();
 		for (Workout workout : workouts) {
-			if (cb_workouts.getValue().equals(workout.getName()) == true) {
+			if (cbWorkouts.getValue().equals(workout.getName())) {
 
 				for (int i = 0; i < workout.getExercises().size(); i++) {
 					lvexercises.add(workout.getExercises().get(i).getName());
@@ -186,8 +187,8 @@ public class MainController implements Initializable {
 
 		}
 		System.out.println(lvexercises.size());
-		ov_exercises = FXCollections.observableArrayList(lvexercises);
-		lv_exercises.setItems(ov_exercises);
+		ovExercises = FXCollections.observableArrayList(lvexercises);
+		lvExercises.setItems(ovExercises);
 	}
 
 }

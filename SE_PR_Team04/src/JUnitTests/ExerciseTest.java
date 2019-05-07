@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import model.Exercise;
 import model.Workout;
 
-class Exercise_test {
+class ExerciseTest {
 
 	public void setup() throws ParseException {
 		Exercise liegestuetze = new Exercise("Liegestütze", "Brust, Trizeps", 15);
