@@ -83,7 +83,7 @@ public class MainController implements Initializable {
 
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setLocation(getClass().getResource("/view/Create_Workout.fxml"));
-		Parent root2 = (Parent) fxmlLoader.load();
+		SParent root2 = (Parent) fxmlLoader.load();
 		Stage stage = new Stage();
 		stage.setTitle("Create Workout!");
 		stage.setScene(new Scene(root2));

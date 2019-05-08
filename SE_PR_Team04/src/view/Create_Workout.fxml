@@ -20,6 +20,5 @@
          </font>
       </Label>
       <Button layoutX="30.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleBtn_saveWorkout" prefHeight="37.0" prefWidth="149.0" text="Save Workout" />
-      <CheckListView fx:id="clv_exercises" layoutX="445.0" layoutY="84.0" prefHeight="306.0" prefWidth="190.0" />
    </children>
 </AnchorPane>
