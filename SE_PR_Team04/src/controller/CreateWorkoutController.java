@@ -83,6 +83,30 @@ public class CreateWorkoutController {
 		oldStage.close();
 
 	}
+	/**
+	 * Handle btn back.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	@FXML
+	private void handleBtn_back(ActionEvent event) throws IOException {
+
+		Stage oldStage;
+		oldStage = (Stage) root.getScene().getWindow();
+
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
+		Parent root2 = (Parent) fxmlLoader.load();
+		CreateExerciseController create = fxmlLoader.getController();
+		create.setData(exercises, tf_workoutname.getText().toString());
+		Stage stage = new Stage();
+		stage.setTitle("Create Workout!");
+		stage.setScene(new Scene(root2));
+		stage.show();
+		oldStage.close();
+
+	}
 
 	/**
 	 * Handle btn save workout.
