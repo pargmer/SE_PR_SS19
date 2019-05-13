@@ -102,7 +102,7 @@ public class ReadAndWriteCSV {
 			help = "";
 
 			for (int i = 0; i < workout.getExercises().size(); i++) {
-				if (help == "") {
+				if (help.equals("")) {
 					help = help + workout.getExercises().get(i).getName();
 				} else {
 					help = help + "," + workout.getExercises().get(i).getName();
