@@ -32,7 +32,7 @@ public class CalendarView extends Application {
 		ObjectProperty<TimeSlot> mouseAnchor = new SimpleObjectProperty<>();
 
 		LocalDate today = LocalDate.now();
-		LocalDate startOfWeek = today.minusDays(today.getDayOfWeek().getValue() - 1);
+		LocalDate startOfWeek = today.minusDays(today.getDayOfWeek().getValue() -1L);
 		LocalDate endOfWeek = startOfWeek.plusDays(6);
 
 		for (LocalDate date = startOfWeek; !date.isAfter(endOfWeek); date = date.plusDays(1)) {
