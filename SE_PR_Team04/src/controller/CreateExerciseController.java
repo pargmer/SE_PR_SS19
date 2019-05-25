@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +67,25 @@ public class CreateExerciseController {
 		stage.show();
 		oldStage.close();
 
+	}
+
+	@FXML
+	private void handleBtn_backToMain(ActionEvent event) {
+		try {
+			Stage oldStage;
+			oldStage = (Stage) root.getScene().getWindow();
+
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
+			Parent root2 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.setTitle("Workouts");
+			stage.setScene(new Scene(root2));
+			stage.show();
+			oldStage.close();
+		} catch (IOException ex) {
+			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 	/**
