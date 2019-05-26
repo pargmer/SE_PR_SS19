@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -121,7 +122,46 @@ public class Database {
 		}
 		return id;
 	}
-
+    public int getExerciseId(String name)  {
+        int id = 0;
+        try {
+            
+            String statement = "Select id from Exercise where '"+name+"'=name" ;
+            
+            ResultSet rs = null;
+            PreparedStatement pstmt = conn.prepareStatement(statement);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                id = Integer.parseInt(rs.getString(1));
+                
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return id;
+	}
+        
+         public int getMuscleId(String name)  {
+        int id = 0;
+        try {
+            
+            String statement = "Select id from Muscle where '"+name+"'=name" ;
+            
+            ResultSet rs = null;
+            PreparedStatement pstmt = conn.prepareStatement(statement);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                id = Integer.parseInt(rs.getString(1));
+                
+            }
+           
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return id;
+	}
+        
 	public List<Exercise> getExercisesFromWorkout(int id) {
 		List<String> exerciseId = new LinkedList<String>();
 		List<Exercise> exercises = new LinkedList<Exercise>();
@@ -191,5 +231,82 @@ public class Database {
 
 		return outputList;
 	}
-
+	 public void createWorkout(String name, LocalDateTime date, List<Exercise> exercises)  { 
+	        List<String> outputList = new LinkedList<String>();
+	        try {
+	           
+	            String statement = "Insert into Workout (date,name) values (?,?)";
+	            
+	            ResultSet rs = null;
+	            PreparedStatement pstmt = conn.prepareStatement(statement);
+	            pstmt.setString(1, date.toString() );
+	            pstmt.setString(2, name);
+	            
+	            
+	            pstmt.executeUpdate();
+	           
+	            int id = getWorkoutId(name);
+	            
+	            int exid = 0;
+	            for (int i = 0; i < exercises.size(); i++) {
+	                statement = "Insert into WorkoutExercise (WorkoutId,ExerciseID) values (?,?)";
+	                  pstmt = conn.prepareStatement(statement);
+	                  pstmt.setString(1, id +"");
+	                  exid = getExerciseId(exercises.get(i).getName());
+	                  pstmt.setString(2, exid+"");
+	                 pstmt.executeUpdate();
+	            }
+	          
+	            
+	        } catch (SQLException ex) {
+	            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+	        
+	     
+	    }
+	    
+	    
+	    public void createExercise(String name, Muscle muscle, int reps)  { 
+	        List<String> outputList = new LinkedList<String>();
+	        try {
+	           
+	            String statement = "Insert into Exercise (name,reps) values (?,?)";
+	            
+	            ResultSet rs = null;
+	            PreparedStatement pstmt = conn.prepareStatement(statement);
+	            pstmt.setString(1, name );
+	            pstmt.setString(2, reps+"");
+	            
+	            
+	            pstmt.executeUpdate();
+	           
+	            int id = getExerciseId(name);
+	            int muscleid = getMuscleId(muscle.getName());
+	            
+	            if(muscleid == 0){
+	                 statement = "Insert into Muscle (name) values (?)";
+	                  pstmt = conn.prepareStatement(statement);
+	                  pstmt.setString(1, muscle.getName());
+	                 
+	               
+	                 pstmt.executeUpdate();
+	            }
+	              muscleid = getMuscleId(muscle.getName());
+	                statement = "Insert into ExerciseMuscle (ExerciseID,MuscleId) values (?,?)";
+	                  pstmt = conn.prepareStatement(statement);
+	                  pstmt.setString(1, id +"");
+	                 
+	                  pstmt.setString(2, muscleid+"");
+	                 pstmt.executeUpdate();
+	            
+	          
+	            
+	        } catch (SQLException ex) {
+	            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+	        
+	     
+	    }
+	    
+	    
 }

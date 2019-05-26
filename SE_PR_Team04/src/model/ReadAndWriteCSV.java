@@ -43,24 +43,24 @@ public class ReadAndWriteCSV {
 	public List<Workout> readWorkoutsFromCsv(String file) throws IOException {
 
 		List<Workout> workouts = new LinkedList<Workout>();
-		List<Exercise> exercises = new LinkedList<Exercise>();
+		
 		String row;
 		BufferedReader csvReader = new BufferedReader(new FileReader(file));
 
 		while ((row = csvReader.readLine()) != null) {
-			
+			List<Exercise> exercises = new LinkedList<Exercise>();
 			String[] data = row.split(";");
 			String[] dataexercise = data[2].split(",");
 			exercises.clear();
-			
+			 Date date = new Date();
 			
 			for (int i = 0; i < dataexercise.length; i++) {
 				exercises.add(new Exercise(dataexercise[i], "", 0));
 
 			}
-			System.out.println();
-			Date date = new Date();
-			Workout helpwork = new Workout(data[1], date, exercises);
+			Workout helpwork = new Workout();
+			helpwork = new Workout(data[1], date, exercises);
+			
 			workouts.add(helpwork);
 
 		}

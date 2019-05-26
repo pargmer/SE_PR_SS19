@@ -104,6 +104,7 @@ public class CreateWorkoutController implements Initializable{
 	@FXML
 	private void handleBtn_saveWorkout(ActionEvent event) throws IOException, SQLException {
 
+      try {
 		List<Workout> workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
 		Workout newworkout = new Workout(tf_workoutname.getText(), new Date(), exercises);
 
@@ -121,7 +122,11 @@ public class CreateWorkoutController implements Initializable{
 		stage.setScene(new Scene(root2));
 		stage.show();
 		oldStage.close();
-
+	 } catch (SQLException ex) {
+         Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+     } catch (IOException ex) {
+         Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+     }
 	}
 
 	/*
@@ -133,7 +138,28 @@ public class CreateWorkoutController implements Initializable{
 	 * FXCollections.observableArrayList(sexercise);
 	 * lv_exercises.setItems(ov_exercises); }
 	 */
+	
+	  @FXML
+		private void handleBtn_backToMain(ActionEvent event) {
 
+	            try {
+	                Stage oldStage;
+	                oldStage = (Stage)root.getScene().getWindow();
+	                
+	                FXMLLoader fxmlLoader = new FXMLLoader();
+	                fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
+	                Parent root2 = (Parent) fxmlLoader.load();
+	                Stage stage = new Stage();
+	                stage.setTitle("Workouts");
+	                stage.setScene(new Scene(root2));
+	                stage.show();
+	                oldStage.close();
+	            } catch (IOException ex) {
+	                Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+	            }
+	           
+			
+		}
 	/**
 	 * Sets the data.
 	 *
@@ -157,6 +183,8 @@ public class CreateWorkoutController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
         try {
            hexercises = Database.getInstance().getAllExercises();
+           //  Database.getInstance().createExercise("Ober",new Muscle("help"),15);
+           //Database.getInstance().getMuscleId("help");
         } catch (SQLException ex) {
             Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
         }
