@@ -31,6 +31,10 @@ import model.Database;
 import model.Exercise;
 import model.ReadAndWriteCSV;
 import model.Workout;
+import java.sql.SQLException;
+import model.Database;
+import model.Exercise;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -45,6 +49,23 @@ public class CreateWorkoutController implements Initializable{
 
 	/** The workoutname. */
 	String workoutname = "";
+	
+	@FXML
+    TableView<ExerciseTV> tvExercise;
+    ObservableList<ExerciseTV> olist;
+
+    @FXML
+    TableColumn<ExerciseTV, String> nameCol = new TableColumn<ExerciseTV,String>("Name");
+
+    @FXML
+    TableColumn<ExerciseTV, String> muscleCol = new TableColumn<ExerciseTV,String>("Muscle");
+
+    @FXML
+    TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV,Integer>("Reps");
+
+    @FXML
+    TableColumn<ExerciseTV, Boolean> activeCol = new TableColumn<ExerciseTV,Boolean>("Select");
+
 
 	/** The root. */
 	@FXML
@@ -102,14 +123,18 @@ public class CreateWorkoutController implements Initializable{
 	 * @throws SQLException the SQL exception
 	 */
 	@FXML
-	private void handleBtn_saveWorkout(ActionEvent event) throws IOException, SQLException {
+	private void handleBtn_saveWorkout(ActionEvent event){
 
-      try {
-		List<Workout> workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
-		Workout newworkout = new Workout(tf_workoutname.getText(), new Date(), exercises);
+		for (int i = 0; i < olist.size(); i++) {
+            if(olist.get(i).getActive().isSelected() == true){
+                exercises.add(new Exercise(olist.get(i).getName(),olist.get(i).getTrains(),olist.get(i).getReps()));
+            }
+        }
+       
+        try {
+           
+            Database.getInstance().createWorkout(tf_workoutname.getText(), datePicker.getValue(), exercises);
 
-		workouts.add(newworkout);
-		 ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
 
 		Stage oldStage;
 		oldStage = (Stage) root.getScene().getWindow();
@@ -168,18 +193,13 @@ public class CreateWorkoutController implements Initializable{
 	 */
 	public void setData(List<Exercise> oexercises, String oworkoutname) {
 
-		exercises = oexercises;
-		workoutname = oworkoutname;
-
-		tf_workoutname.setText(workoutname);
-		List<String> sexercise = new LinkedList<String>();
-		for (Exercise exercise : exercises) {
-			sexercise.add(exercise.getName());
-		}
-		ov_exercises = FXCollections.observableArrayList(sexercise);
-		lv_exercises.setItems(ov_exercises);
-		
+        hexercises = oexercises;
+        workoutname = oworkoutname;
+        
+        tf_workoutname.setText(workoutname);
 	}
+	
+	
 	public void initialize(URL location, ResourceBundle resources) {
         try {
            hexercises = Database.getInstance().getAllExercises();
@@ -188,6 +208,18 @@ public class CreateWorkoutController implements Initializable{
         } catch (SQLException ex) {
             Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        nameCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("name"));
+        muscleCol.setCellValueFactory(new PropertyValueFactory("trains"));
+        repsCol.setCellValueFactory(new PropertyValueFactory("reps"));
+
+        activeCol.setCellValueFactory(new PropertyValueFactory("active"));
+
+        getExerciseList();
+        tvExercise.setItems(olist);
+       // tvExercise.getColumns().setAll(nameCol, muscleCol,repsCol,activeCol);
+       
+        //tvExercise.getColumns().addAll(nameCol, muscleCol, repsCol, activeCol);
+ 
         
      /* List<String> sexercise = new LinkedList<String>();
 	for(Exercise exercise : hexercises) {
@@ -197,5 +229,16 @@ public class CreateWorkoutController implements Initializable{
 	lv_exercises.setItems(ov_exercises);
         System.out.println("");*/
 }
+	
+	private void getExerciseList() {
+        List<ExerciseTV> list = new LinkedList<ExerciseTV>();
+        olist = FXCollections.observableArrayList();
+        for (int i = 0; i < hexercises.size(); i++) {
+
+            olist.add(new ExerciseTV(hexercises.get(i).getName(), hexercises.get(i).getTrains(), 
+            hexercises.get(i).getReps(), true));
+
+        }
+
 
 }
