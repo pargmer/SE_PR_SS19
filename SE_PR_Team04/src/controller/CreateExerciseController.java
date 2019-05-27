@@ -19,6 +19,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Exercise;
+import java.sql.SQLException;
+import model.Database;
+import model.Exercise;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -49,9 +53,13 @@ public class CreateExerciseController {
 	@FXML
 	private void handleBtn_saveExercise(ActionEvent event) throws IOException {
 
-		Exercise newExercise = new Exercise(tf_name.getText().toString(), tf_muscle.getText().toString(),
-				Integer.parseInt(tf_reps.getText().toString()));
-		exercises.add(newExercise);
+        try {
+            Database.getInstance().createExercise(tf_name.getText(), 
+            		tf_muscle.getText(),Integer.parseInt(tf_reps.getText()));
+        } catch (SQLException ex) {
+            Logger.getLogger(CreateExerciseController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
 
 		Stage oldStage;
 		oldStage = (Stage) root.getScene().getWindow();
