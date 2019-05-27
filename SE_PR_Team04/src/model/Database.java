@@ -25,7 +25,7 @@ public class Database {
 	private static Database instance;
 
 	/** The Constant CONNECTION_STRING. */
-	static final String CONNECTION_STRING = "jdbc:mysql://sql11.freesqldatabase.com:3306/sql2291991";
+	static final String CONNECTION_STRING = "jdbc:mysql://sql2.freesqldatabase.com:3306/sql2291991";
 
 	/** The Constant USER. */
 	static final String USER = "sql2291991";
