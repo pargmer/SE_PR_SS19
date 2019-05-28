@@ -221,9 +221,28 @@ public class Database {
 			ResultSet rs = null;
 			PreparedStatement pstmt = conn.prepareStatement(statement);
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				outputList.add(new Exercise(rs.getString(1), null, Integer.parseInt(rs.getString(2))));
-			}
+			 int mid =0;
+			 while (rs.next()) {
+
+	                String statementem = "Select MuscleID from ExerciseMuscle where ExerciseID = " + rs.getString(1);
+
+	                PreparedStatement pstmtem = conn.prepareStatement(statementem);
+	                rsem = pstmtem.executeQuery();
+	                while (rsem.next()) {
+	                    mid = Integer.parseInt(rsem.getString(1));
+	                }
+
+	                String statementm = "Select name from Muscle where id = " + mid;
+	                String muscle ="";
+	                ResultSet rsm = null;
+	                PreparedStatement pstmtm = conn.prepareStatement(statementm);
+	                rsm = pstmtm.executeQuery();
+	                
+	                 while (rsm.next()) {
+	                    muscle = rsm.getString(1);
+	                }
+	                outputList.add(new Exercise(rs.getString(2), muscle, Integer.parseInt(rs.getString(3))));
+	            }   
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
@@ -232,7 +251,7 @@ public class Database {
 		return outputList;
 	}
 	 public void createWorkout(String name, LocalDateTime date, List<Exercise> exercises)  { 
-	        List<String> outputList = new LinkedList<String>();
+	      
 	        try {
 	           
 	            String statement = "Insert into Workout (date,name) values (?,?)";
@@ -267,7 +286,7 @@ public class Database {
 	    
 	    
 	    public void createExercise(String name, Muscle muscle, int reps)  { 
-	        List<String> outputList = new LinkedList<String>();
+	    
 	        try {
 	           
 	            String statement = "Insert into Exercise (name,reps) values (?,?)";

@@ -79,22 +79,7 @@ public class CreateWorkoutController implements Initializable{
     @FXML
     private DatePicker datePicker;
     
-	/** The lv exercises. */
-	@FXML
-	private ListView<String> lv_exercises;
 	
-	//@FXML
-	//private CheckBoxListCell<String> clv_exercises;
-
-	/** The ov exercises. */
-	private ObservableList<String> ov_exercises;
-
-	/**
-	 * Handle btn new exercise.
-	 *
-	 * @param event the event
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
 	@FXML
 	private void handleBtn_newExercise(ActionEvent event) throws IOException {
 
@@ -143,7 +128,7 @@ public class CreateWorkoutController implements Initializable{
 		fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
 		Parent root2 = (Parent) fxmlLoader.load();
 		Stage stage = new Stage();
-		stage.setTitle("Create Workout!");
+		stage.setTitle("Workout!");
 		stage.setScene(new Scene(root2));
 		stage.show();
 		oldStage.close();
@@ -154,15 +139,7 @@ public class CreateWorkoutController implements Initializable{
      }
 	}
 
-	/*
-	 * @Override public void initialize(URL location, ResourceBundle resources) {
-	 * 
-	 * tf_workoutname.setText(workoutname); List<String> sexercise = new
-	 * LinkedList<String>(); for(Exercise exercise : exercises) {
-	 * sexercise.add(exercise.getName()); } ov_exercises =
-	 * FXCollections.observableArrayList(sexercise);
-	 * lv_exercises.setItems(ov_exercises); }
-	 */
+
 	
 	  @FXML
 		private void handleBtn_backToMain(ActionEvent event) {
@@ -203,8 +180,7 @@ public class CreateWorkoutController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
         try {
            hexercises = Database.getInstance().getAllExercises();
-           //  Database.getInstance().createExercise("Ober",new Muscle("help"),15);
-           //Database.getInstance().getMuscleId("help");
+   
         } catch (SQLException ex) {
             Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -216,18 +192,7 @@ public class CreateWorkoutController implements Initializable{
 
         getExerciseList();
         tvExercise.setItems(olist);
-       // tvExercise.getColumns().setAll(nameCol, muscleCol,repsCol,activeCol);
-       
-        //tvExercise.getColumns().addAll(nameCol, muscleCol, repsCol, activeCol);
- 
-        
-     /* List<String> sexercise = new LinkedList<String>();
-	for(Exercise exercise : hexercises) {
-		sexercise.add(exercise.getName());
-	}
-	ov_exercises = FXCollections.observableArrayList(sexercise);
-	lv_exercises.setItems(ov_exercises);
-        System.out.println("");*/
+
 }
 	
 	private void getExerciseList() {
@@ -241,4 +206,5 @@ public class CreateWorkoutController implements Initializable{
         }
 
 
+}
 }

@@ -129,7 +129,6 @@ public class MainController implements Initializable {
 		try {
 			sworkouts = Database.getInstance().getWorkouts();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
