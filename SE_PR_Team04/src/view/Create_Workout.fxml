@@ -23,6 +23,8 @@
          </font>
       </Label>
       <Button layoutX="31.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleBtn_saveWorkout" prefHeight="37.0" prefWidth="149.0" text="Save Workout" />
+      <DatePicker fx:id="datePicker" layoutX="30.0" layoutY="144.0" />
+      <Button layoutX="31.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleBtn_backToMain" prefHeight="37.0" prefWidth="149.0" text="Back to MainMenü" />
       <TableView fx:id="tvExercise" layoutX="216.0" layoutY="84.0" prefHeight="304.0" prefWidth="460.0">
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="131.0" text="Name" />

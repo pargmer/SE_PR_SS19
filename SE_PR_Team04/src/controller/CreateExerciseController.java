@@ -21,10 +21,8 @@ import javafx.stage.Stage;
 import model.Exercise;
 import java.sql.SQLException;
 import model.Database;
-import model.Exercise;
 
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class CreateExerciseController.
  */
@@ -54,8 +52,7 @@ public class CreateExerciseController {
 	private void handleBtn_saveExercise(ActionEvent event) throws IOException {
 
         try {
-            Database.getInstance().createExercise(tf_name.getText(), 
-            		tf_muscle.getText(),Integer.parseInt(tf_reps.getText()));
+            Database.getInstance().createExercise(tf_name.getText(), tf_muscle.getText(),Integer.parseInt(tf_reps.getText()));
         } catch (SQLException ex) {
             Logger.getLogger(CreateExerciseController.class.getName()).log(Level.SEVERE, null, ex);
         }

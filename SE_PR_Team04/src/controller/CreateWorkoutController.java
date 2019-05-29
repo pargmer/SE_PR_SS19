@@ -3,11 +3,10 @@
  */
 package controller;
 
-import java.io.FileWriter;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,50 +21,46 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.CheckBoxListCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Database;
 import model.Exercise;
-import model.ReadAndWriteCSV;
-import model.Workout;
-import java.sql.SQLException;
-import model.Database;
-import model.Exercise;
+import model.ExerciseTV;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class CreateWorkoutController.
  */
-public class CreateWorkoutController implements Initializable{
+public class CreateWorkoutController implements Initializable {
 
 	List<Exercise> hexercises = new LinkedList<Exercise>();
-	
+
 	/** The exercises. */
 	List<Exercise> exercises = new LinkedList<Exercise>();
 
 	/** The workoutname. */
 	String workoutname = "";
-	
+
 	@FXML
-    TableView<ExerciseTV> tvExercise;
-    ObservableList<ExerciseTV> olist;
+	TableView<ExerciseTV> tvExercise;
+	ObservableList<ExerciseTV> olist;
 
-    @FXML
-    TableColumn<ExerciseTV, String> nameCol = new TableColumn<ExerciseTV,String>("Name");
+	@FXML
+	TableColumn<ExerciseTV, String> nameCol = new TableColumn<ExerciseTV, String>("Name");
 
-    @FXML
-    TableColumn<ExerciseTV, String> muscleCol = new TableColumn<ExerciseTV,String>("Muscle");
+	@FXML
+	TableColumn<ExerciseTV, String> muscleCol = new TableColumn<ExerciseTV, String>("Muscle");
 
-    @FXML
-    TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV,Integer>("Reps");
+	@FXML
+	TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV, Integer>("Reps");
 
-    @FXML
-    TableColumn<ExerciseTV, Boolean> activeCol = new TableColumn<ExerciseTV,Boolean>("Select");
-
+	@FXML
+	TableColumn<ExerciseTV, Boolean> activeCol = new TableColumn<ExerciseTV, Boolean>("Select");
 
 	/** The root. */
 	@FXML
@@ -75,11 +70,9 @@ public class CreateWorkoutController implements Initializable{
 	@FXML
 	private TextField tf_workoutname;
 
+	@FXML
+	private DatePicker datePicker;
 
-    @FXML
-    private DatePicker datePicker;
-    
-	
 	@FXML
 	private void handleBtn_newExercise(ActionEvent event) throws IOException {
 
@@ -99,7 +92,6 @@ public class CreateWorkoutController implements Initializable{
 
 	}
 
-	
 	/**
 	 * Handle btn save workout.
 	 *
@@ -108,60 +100,57 @@ public class CreateWorkoutController implements Initializable{
 	 * @throws SQLException the SQL exception
 	 */
 	@FXML
-	private void handleBtn_saveWorkout(ActionEvent event){
+	private void handleBtn_saveWorkout(ActionEvent event) {
 
 		for (int i = 0; i < olist.size(); i++) {
-            if(olist.get(i).getActive().isSelected() == true){
-                exercises.add(new Exercise(olist.get(i).getName(),olist.get(i).getTrains(),olist.get(i).getReps()));
-            }
-        }
-       
-        try {
-           
-            Database.getInstance().createWorkout(tf_workoutname.getText(), datePicker.getValue(), exercises);
+			if (olist.get(i).getActive().isSelected() == true) {
+				exercises.add(new Exercise(olist.get(i).getName(), olist.get(i).getTrains(), olist.get(i).getReps()));
+			}
+		}
 
+		try {
 
-		Stage oldStage;
-		oldStage = (Stage) root.getScene().getWindow();
+			Database.getInstance().createWorkout(tf_workoutname.getText(), datePicker.getValue(), exercises);
 
-		FXMLLoader fxmlLoader = new FXMLLoader();
-		fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
-		Parent root2 = (Parent) fxmlLoader.load();
-		Stage stage = new Stage();
-		stage.setTitle("Workout!");
-		stage.setScene(new Scene(root2));
-		stage.show();
-		oldStage.close();
-	 } catch (SQLException ex) {
-         Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
-     } catch (IOException ex) {
-         Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
-     }
+			Stage oldStage;
+			oldStage = (Stage) root.getScene().getWindow();
+
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
+			Parent root2 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.setTitle("Workout!");
+			stage.setScene(new Scene(root2));
+			stage.show();
+			oldStage.close();
+		} catch (SQLException ex) {
+			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
+	@FXML
+	private void handleBtn_backToMain(ActionEvent event) {
 
-	
-	  @FXML
-		private void handleBtn_backToMain(ActionEvent event) {
+		try {
+			Stage oldStage;
+			oldStage = (Stage) root.getScene().getWindow();
 
-	            try {
-	                Stage oldStage;
-	                oldStage = (Stage)root.getScene().getWindow();
-	                
-	                FXMLLoader fxmlLoader = new FXMLLoader();
-	                fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
-	                Parent root2 = (Parent) fxmlLoader.load();
-	                Stage stage = new Stage();
-	                stage.setTitle("Workouts");
-	                stage.setScene(new Scene(root2));
-	                stage.show();
-	                oldStage.close();
-	            } catch (IOException ex) {
-	                Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
-	            }
-	           
-			
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
+			Parent root2 = (Parent) fxmlLoader.load();
+			Stage stage = new Stage();
+			stage.setTitle("Workouts");
+			stage.setScene(new Scene(root2));
+			stage.show();
+			oldStage.close();
+		} catch (IOException ex) {
+			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
 		}
+
+	}
+
 	/**
 	 * Sets the data.
 	 *
@@ -170,41 +159,40 @@ public class CreateWorkoutController implements Initializable{
 	 */
 	public void setData(List<Exercise> oexercises, String oworkoutname) {
 
-        hexercises = oexercises;
-        workoutname = oworkoutname;
-        
-        tf_workoutname.setText(workoutname);
+		hexercises = oexercises;
+		workoutname = oworkoutname;
+
+		tf_workoutname.setText(workoutname);
 	}
-	
-	
+
 	public void initialize(URL location, ResourceBundle resources) {
-        try {
-           hexercises = Database.getInstance().getAllExercises();
-   
-        } catch (SQLException ex) {
-            Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        nameCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("name"));
-        muscleCol.setCellValueFactory(new PropertyValueFactory("trains"));
-        repsCol.setCellValueFactory(new PropertyValueFactory("reps"));
+		try {
+			hexercises = Database.getInstance().getAllExercises();
 
-        activeCol.setCellValueFactory(new PropertyValueFactory("active"));
+		} catch (SQLException ex) {
+			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
-        getExerciseList();
-        tvExercise.setItems(olist);
+		nameCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("name"));
+		muscleCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("trains"));
+		repsCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, Integer>("reps"));
 
-}
-	
+		activeCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, Boolean>("active"));
+
+		getExerciseList();
+		tvExercise.setItems(olist);
+
+	}
+
 	private void getExerciseList() {
-        List<ExerciseTV> list = new LinkedList<ExerciseTV>();
-        olist = FXCollections.observableArrayList();
-        for (int i = 0; i < hexercises.size(); i++) {
 
-            olist.add(new ExerciseTV(hexercises.get(i).getName(), hexercises.get(i).getTrains(), 
-            hexercises.get(i).getReps(), true));
+		olist = FXCollections.observableArrayList();
+		for (int i = 0; i < hexercises.size(); i++) {
 
-        }
+			olist.add(new ExerciseTV(hexercises.get(i).getName(), hexercises.get(i).getTrains(),
+					hexercises.get(i).getReps(), true));
 
+		}
+	}
 
-}
 }
