@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +16,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Exercise;
-import java.sql.SQLException;
-import model.Database;
 
 
 /**
@@ -51,12 +46,8 @@ public class CreateExerciseController {
 	@FXML
 	private void handleBtn_saveExercise(ActionEvent event) throws IOException {
 
-        try {
-            Database.getInstance().createExercise(tf_name.getText(), tf_muscle.getText(),Integer.parseInt(tf_reps.getText()));
-        } catch (SQLException ex) {
-            Logger.getLogger(CreateExerciseController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+		Exercise newExercise = new Exercise(tf_name.getText().toString(), tf_muscle.getText().toString(),Integer.parseInt(tf_reps.getText().toString()));
+		exercises.add(newExercise);	
 
 		Stage oldStage;
 		oldStage = (Stage) root.getScene().getWindow();
@@ -74,24 +65,6 @@ public class CreateExerciseController {
 
 	}
 
-	@FXML
-	private void handleBtn_backToMain(ActionEvent event) {
-		try {
-			Stage oldStage;
-			oldStage = (Stage) root.getScene().getWindow();
-
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
-			Parent root2 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
-			stage.setTitle("Workouts");
-			stage.setScene(new Scene(root2));
-			stage.show();
-			oldStage.close();
-		} catch (IOException ex) {
-			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
 
 	/**
 	 * Sets the data.

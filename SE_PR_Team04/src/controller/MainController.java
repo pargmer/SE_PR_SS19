@@ -12,8 +12,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -99,16 +97,16 @@ public class MainController implements Initializable {
 	@FXML
 	private void handleBtn_deleteWorkout(ActionEvent event) throws IOException, SQLException {
 
-		/*
-		 * for (Workout workout : workouts) { if
-		 * (workout.getName().equals(cb_workouts.getValue()) == true) {
-		 * workouts.remove(workout); } }
-		 */
-		// ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
-		Database.getInstance().deleteWorkout(cb_workouts.getValue());
+		for (Workout workout : workouts) { 
+			if (workout.getName().equals(cb_workouts.getValue()) == true) {
+				workouts.remove(workout); 
+			} 
+		}
+		
+		ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
 		ov_workouts.remove(cb_workouts.getValue());
 		cb_workouts.setItems(ov_workouts);
-		cb_workouts.setValue("Wähle ein Workout aus!");
+		cb_workouts.setValue("WÃ¤hle ein Workout aus!");
 
 		ov_exercises.removeAll();
 		lv_exercises.setItems(ov_exercises);
@@ -125,11 +123,20 @@ public class MainController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		List<String> sworkouts = new LinkedList<String>();
-
+		
 		try {
-			sworkouts = Database.getInstance().getWorkouts();
-		} catch (SQLException e) {
+			workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
+			exercises = ReadAndWriteCSV.getInstance().readExercisesFromCsv("exercises.csv"); 
+		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		 
+		for(Workout workout : workouts) {
+			sworkouts.add(workout.getName());
 		}
 
 		ov_workouts = FXCollections.observableArrayList(sworkouts);
@@ -146,21 +153,43 @@ public class MainController implements Initializable {
 	public void comboChanged(ActionEvent event) {
 
 		try {
+			workouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv("workouts.csv");
+			exercises = ReadAndWriteCSV.getInstance().readExercisesFromCsv("exercises.csv");
+			 
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-			List<String> lvexercises = new LinkedList<String>();
-			List<Exercise> exercises = Database.getInstance().getExercisesFromWorkout(cb_workouts.getValue());
-
-			lvexercises.clear();
-			for (Exercise exercise : exercises) {
-
-				lvexercises.add(exercise.getName());
-
+		List<String> lvexercises = new LinkedList<String>();
+			
+		/*for(Workout workout : workouts) {
+		System.out.println(workout.getName());
+		System.out.println(workout.getDate());
+		System.out.println();
+		for(int i = 0; i < workout.getExercises().size();i++) {
+				System.out.println(workout.getExercises().get(i).getName());
+				System.out.println(workout.getExercises().get(i).getReps());
+				System.out.println(workout.getExercises().get(i).getTrains());
 			}
+		}*/
+			
+
+		lvexercises.clear();
+		for(Workout workout : workouts) {
+			if(cb_workouts.getValue().equals(workout.getName()) == true) {
+				
+				for(int i = 0; i < workout.getExercises().size();i++) {
+					lvexercises.add(workout.getExercises().get(i).getName());
+				}		
+			}	
+		}
 			ov_exercises = FXCollections.observableArrayList(lvexercises);
 			lv_exercises.setItems(ov_exercises);
-		} catch (SQLException ex) {
+	}	
 
-			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
 }
+
