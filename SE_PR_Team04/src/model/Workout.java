@@ -20,7 +20,7 @@ public class Workout {
 
 	/** The exercises. */
 	private List<Exercise> exercises;
-	
+
 	/**
 	 * Instantiates a new workout without @param.
 	 */
@@ -113,15 +113,6 @@ public class Workout {
 		return false;
 	}
 
-	/*
-	 * public Exercise getExercise(String name) {
-	 * 
-	 * 
-	 * for(int i=0; i < exercises.size();i++) {
-	 * 
-	 * if(exercises.get(i).getName().toString() == name) { return exercises.get(i);
-	 * } } return null; }
-	 */
 
 	/**
 	 * Gets the date.

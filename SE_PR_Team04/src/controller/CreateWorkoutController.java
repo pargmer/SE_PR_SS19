@@ -3,7 +3,6 @@
  */
 package controller;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -30,8 +29,6 @@ import javafx.stage.Stage;
 import model.Database;
 import model.Exercise;
 import model.ExerciseTV;
-
-
 
 /**
  * The Class CreateWorkoutController.

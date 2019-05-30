@@ -3,20 +3,16 @@
  */
 package controller;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,11 +35,6 @@ import model.*;
  */
 public class MainController implements Initializable {
 
-	/** The exercises. */
-	//private List<Exercise> exercises;
-
-	/** The workouts. */
-	//private List<Workout> workouts;
 
 	/** The root. */
 	@FXML
@@ -94,18 +85,17 @@ public class MainController implements Initializable {
 
 	}
 
-	// JAVADOC
 
 	@FXML
 	private void handleBtn_deleteWorkout(ActionEvent event) throws IOException, SQLException {
 
 		try {
-		Database.getInstance().deleteWorkout(cb_workouts.getValue());
+			Database.getInstance().deleteWorkout(cb_workouts.getValue());
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		ov_workouts.remove(cb_workouts.getValue());
 		cb_workouts.setItems(ov_workouts);
 		cb_workouts.setValue("Wähle ein Workout aus!");
