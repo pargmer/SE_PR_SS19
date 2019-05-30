@@ -1,8 +1,7 @@
 /*
  * 
  */
-
-package application;
+package Managers.Managers;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
