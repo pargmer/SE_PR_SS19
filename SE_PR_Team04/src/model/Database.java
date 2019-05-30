@@ -82,8 +82,9 @@ public class Database {
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
-			if (rs != null)
+			if (rs != null) {
 				rs.close();
+			}
 		}
 		return outputList;
 	}
@@ -259,7 +260,6 @@ public class Database {
 
 			String statement = "Insert into Workout (date,name) values (?,?)";
 
-			// ResultSet rs = null;
 			PreparedStatement pstmt = conn.prepareStatement(statement);
 			pstmt.setString(1, date.toString());
 			pstmt.setString(2, name);
@@ -290,7 +290,6 @@ public class Database {
 
 			String statement = "Insert into Exercise (name,reps) values (?,?)";
 
-			// ResultSet rs = null;
 			PreparedStatement pstmt = conn.prepareStatement(statement);
 			pstmt.setString(1, name);
 			pstmt.setString(2, reps + "");

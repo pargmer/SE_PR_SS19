@@ -87,7 +87,7 @@ public class MainController implements Initializable {
 
 
 	@FXML
-	private void handleBtn_deleteWorkout(ActionEvent event) throws IOException, SQLException {
+	private void handleBtn_deleteWorkout(ActionEvent event) {
 
 		try {
 			Database.getInstance().deleteWorkout(cb_workouts.getValue());
