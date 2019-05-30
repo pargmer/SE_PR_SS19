@@ -24,10 +24,10 @@ public class Database {
 	private static Database instance;
 
 	/** The Constant CONNECTION_STRING. */
-	static final String CONNECTION_STRING = "jdbc:mysql://sql2.freesqldatabase.com:3306/sql2291991";
+	static final String CONNECTION_STRING = "jdbc:mysql://db4free.net:3306/fitnessjdk";
 
 	/** The Constant USER. */
-	static final String USER = "sql2291991";
+	static final String USER = "fitnessmanagjku";
 
 	/** The Constant PASSWORD. */
 	static final String PASSWORD = "fitnessmanager2019";
@@ -69,21 +69,22 @@ public class Database {
 	 * @throws SQLException the SQL exception
 	 */
 	public List<String> getWorkouts() {
-		List<String> outputList = new LinkedList<>();
-		try {
-
-			String statement = "Select name from WORKOUT";
-
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+		List<String> outputList = new LinkedList<String>();
+		String statement = "Select name from WORKOUT";
+		ResultSet rs = null;
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(statement)){
+		
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				outputList.add(rs.getString(1));
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return outputList;
+	    }finally {
+        	if(rs!=null)rs.close();
+        }
+        return outputList;
 	}
 
 	/**
@@ -104,21 +105,21 @@ public class Database {
 
 	public int getWorkoutId(String name) {
 		int id = 0;
-		try {
+		 String statement = "Select id from Workout where '" + name + "'=name";
+	     ResultSet rs = null;
+	     
+	     try(PreparedStatement pstmt = conn.prepareStatement(statement)) {
 
-			String statement = "Select id from Workout where '" + name + "'=name";
-
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
+	            rs = pstmt.executeQuery();
+	            while (rs.next()) {
 				id = Integer.parseInt(rs.getString(1));
-
-			}
+	            }
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		 }finally {
+	        	rs.close();
+	        }
 		return id;
 	}
 
