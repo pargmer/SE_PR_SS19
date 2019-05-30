@@ -40,10 +40,10 @@ import model.*;
 public class MainController implements Initializable {
 
 	/** The exercises. */
-	private List<Exercise> exercises;
+	//private List<Exercise> exercises;
 
 	/** The workouts. */
-	private List<Workout> workouts;
+	//private List<Workout> workouts;
 
 	/** The root. */
 	@FXML
@@ -99,13 +99,13 @@ public class MainController implements Initializable {
 	@FXML
 	private void handleBtn_deleteWorkout(ActionEvent event) throws IOException, SQLException {
 
-		/*
-		 * for (Workout workout : workouts) { if
-		 * (workout.getName().equals(cb_workouts.getValue()) == true) {
-		 * workouts.remove(workout); } }
-		 */
-		// ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
+		try {
 		Database.getInstance().deleteWorkout(cb_workouts.getValue());
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
 		ov_workouts.remove(cb_workouts.getValue());
 		cb_workouts.setItems(ov_workouts);
 		cb_workouts.setValue("Wähle ein Workout aus!");
