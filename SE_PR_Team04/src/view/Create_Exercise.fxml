@@ -11,15 +11,15 @@
       <TextField fx:id="tf_name" layoutX="38.0" layoutY="77.0" prefHeight="31.0" prefWidth="160.0" />
       <TextField fx:id="tf_muscle" layoutX="38.0" layoutY="134.0" prefHeight="31.0" prefWidth="160.0" />
       <TextField fx:id="tf_reps" layoutX="38.0" layoutY="193.0" prefHeight="31.0" prefWidth="160.0" />
-      <Label layoutX="92.0" layoutY="50.0" text="Name:" />
-      <Label layoutX="92.0" layoutY="109.0" text="Muskel:" />
-      <Label layoutX="67.0" layoutY="169.0" text="Wiederholungen:" />
-      <Button layoutX="46.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleBtn_saveExercise" prefHeight="32.0" prefWidth="149.0" text="Save Exercise" />
-      <Label layoutX="62.0" layoutY="14.0" text="Neue Übung">
+      <Label layoutX="95.0" layoutY="56.0" text="Name:" />
+      <Label layoutX="93.0" layoutY="113.0" text="Muscle:" />
+      <Label layoutX="89.0" layoutY="172.0" text="Repeats:" />
+      <Button layoutX="39.0" layoutY="234.0" mnemonicParsing="false" onAction="#handleBtn_saveExercise" prefHeight="32.0" prefWidth="160.0" text="Save Exercise" />
+      <Label layoutX="62.0" layoutY="14.0" prefHeight="27.0" prefWidth="114.0" text="New Exercise:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="42.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleBtn_backToMain" prefHeight="32.0" prefWidth="149.0" text="Back " />
+      <Button layoutX="37.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleBtn_backToMain" prefHeight="32.0" prefWidth="160.0" text="Back " />
    </children>
 </AnchorPane>
