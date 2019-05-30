@@ -68,20 +68,22 @@ public class Database {
 	 * @return the workouts
 	 * @throws SQLException the SQL exception
 	 */
-	public List<String> getWorkouts() {
+	public List<String> getWorkouts() throws SQLException {
 		List<String> outputList = new LinkedList<>();
-		try {
+		String statement = "Select name from WORKOUT";
+		ResultSet rs = null;
+		try(PreparedStatement pstmt = conn.prepareStatement(statement)) {
 
-			String statement = "Select name from WORKOUT";
-
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+		
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				outputList.add(rs.getString(1));
 			}
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			
+			if(rs!=null)rs.close();
 		}
 		return outputList;
 	}
@@ -93,7 +95,7 @@ public class Database {
 	 * @return the exercises from workout
 	 * @throws SQLException the SQL exception
 	 */
-	public List<Exercise> getExercisesFromWorkout(String name) {
+	public List<Exercise> getExercisesFromWorkout(String name) throws SQLException {
 		List<Exercise> outputList = new LinkedList<>();
 		int id = getWorkoutId(name);
 
@@ -102,14 +104,14 @@ public class Database {
 		return outputList;
 	}
 
-	public int getWorkoutId(String name) {
+	public int getWorkoutId(String name) throws SQLException {
 		int id = 0;
-		try {
+		ResultSet rs = null;
+		String statement = "Select id from Workout where '" + name + "'=name";
+		
+		try (PreparedStatement pstmt = conn.prepareStatement(statement)){
 
-			String statement = "Select id from Workout where '" + name + "'=name";
-
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				id = Integer.parseInt(rs.getString(1));
@@ -118,18 +120,22 @@ public class Database {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			
+			if(rs!=null)rs.close();
 		}
 		return id;
 	}
 
-	public int getExerciseId(String name) {
+	public int getExerciseId(String name) throws SQLException {
 		int id = 0;
-		try {
+		String statement = "Select id from Exercise where '" + name + "'=name";
 
-			String statement = "Select id from Exercise where '" + name + "'=name";
+		ResultSet rs = null;
+		try(PreparedStatement pstmt = conn.prepareStatement(statement)) {
 
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+			
+			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				id = Integer.parseInt(rs.getString(1));
@@ -138,39 +144,43 @@ public class Database {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			
+			if(rs!=null)rs.close();
 		}
 		return id;
 	}
 
-	public int getMuscleId(String name) {
+	public int getMuscleId(String name) throws SQLException {
 		int id = 0;
-		try {
-
-			String statement = "Select id from Muscle where '" + name + "'=name";
-
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+		ResultSet rs = null;
+		String statement = "Select id from Muscle where '" + name + "'=name";
+		try (PreparedStatement pstmt = conn.prepareStatement(statement)){
+			
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				id = Integer.parseInt(rs.getString(1));
 
 			}
+			
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			
+			if(rs!=null)rs.close();
 		}
 		return id;
 	}
 
-	public List<Exercise> getExercisesFromWorkout(int id) {
+	public List<Exercise> getExercisesFromWorkout(int id) throws SQLException {
 		List<String> exerciseId = new LinkedList<String>();
 		List<Exercise> exercises = new LinkedList<Exercise>();
-		try {
+		
+		String statement = "Select ExerciseID from WorkoutExercise where '" + id + "'=WorkoutId";
+		ResultSet rs = null;
+		try (PreparedStatement pstmt = conn.prepareStatement(statement)){
 
-			String statement = "Select ExerciseID from WorkoutExercise where '" + id + "'=WorkoutId";
-
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				exerciseId.add(rs.getString(1));
@@ -179,92 +189,122 @@ public class Database {
 
 			for (String help : exerciseId) {
 				statement = "Select name,reps from Exercise where '" + help + "'=Id";
-				pstmt = conn.prepareStatement(statement);
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					exercises.add(new Exercise(rs.getString(1), null, Integer.parseInt(rs.getString(2))));
+				ResultSet rs2 = null;
+				try(PreparedStatement pstmt2= conn.prepareStatement(statement)){
+				rs2 = pstmt2.executeQuery();
+				while (rs2.next()) {
+					exercises.add(new Exercise(rs2.getString(1), null, Integer.parseInt(rs2.getString(2))));
 				}
-			}
-
+			
+				}finally {
+					if(rs2!=null)rs2.close();
+				}
+				}
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			if(rs!=null)rs.close();
 		}
 		return exercises;
 	}
 
-	public void deleteWorkout(String name) {
+	public void deleteWorkout(String name) throws SQLException {
 		int id = getWorkoutId(name);
+		
+		PreparedStatement pstmt=null;
 		try {
 
 			String statement = "Delete from WorkoutExercise where '" + id + "'=WorkoutId";
-
-			// ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+			pstmt = conn.prepareStatement(statement);
 			pstmt.executeUpdate();
-
+			
+			pstmt.close();
 			statement = "Delete from Workout where '" + id + "'=id";
 			pstmt = conn.prepareStatement(statement);
 			pstmt.executeUpdate();
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+				if(pstmt!=null) pstmt.close();
+			
 		}
 
 	}
 
-	public List<Exercise> getAllExercises() {
+	public List<Exercise> getAllExercises() throws SQLException {
 		List<Exercise> outputList = new LinkedList<Exercise>();
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+	
 		try {
 
 			String statement = "Select name,reps from Exercise";
 
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+			
+			pstmt = conn.prepareStatement(statement);
 			rs = pstmt.executeQuery();
+			pstmt.close();
+			rs.close();
 			int mid = 0;
 			while (rs.next()) {
 
 				String statementem = "Select MuscleID from ExerciseMuscle where ExerciseID = " + rs.getString(1);
-
-				ResultSet rsem = null;
-				PreparedStatement pstmtem = conn.prepareStatement(statementem);
+				ResultSet rsem=null;
+				
+				try(PreparedStatement pstmtem = conn.prepareStatement(statementem)){
+					
 				rsem = pstmtem.executeQuery();
+				
 				while (rsem.next()) {
 					mid = Integer.parseInt(rsem.getString(1));
+					
 				}
-
+				}
+				finally {
+				if(rsem!=null)rsem.close();
+				}
 				String statementm = "Select name from Muscle where id = " + mid;
 				String muscle = "";
 				ResultSet rsm = null;
-				PreparedStatement pstmtm = conn.prepareStatement(statementm);
+				try(PreparedStatement pstmtm = conn.prepareStatement(statementm)){
 				rsm = pstmtm.executeQuery();
 
 				while (rsm.next()) {
 					muscle = rsm.getString(1);
 				}
+				}finally {
+					if(rsm!=null)rsm.close();
+				}
+				
 				outputList.add(new Exercise(rs.getString(2), muscle, Integer.parseInt(rs.getString(3))));
 			}
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			if(pstmt!=null) pstmt.close();
+			if(rs!=null) rs.close();
+			
 		}
 
 		return outputList;
 	}
 
-	public void createWorkout(String name, LocalDate date, List<Exercise> exercises) {
-
+	public void createWorkout(String name, LocalDate date, List<Exercise> exercises) throws SQLException {
+		PreparedStatement pstmt=null;
+		
 		try {
 
 			String statement = "Insert into Workout (date,name) values (?,?)";
 
-			// ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+
+			pstmt = conn.prepareStatement(statement);
 			pstmt.setString(1, date.toString());
 			pstmt.setString(2, name);
 
 			pstmt.executeUpdate();
-
+			pstmt.close();
 			int id = getWorkoutId(name);
 
 			int exid = 0;
@@ -275,36 +315,41 @@ public class Database {
 				exid = getExerciseId(exercises.get(i).getName());
 				pstmt.setString(2, exid + "");
 				pstmt.executeUpdate();
+				pstmt.close();
 			}
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			if(pstmt!=null) pstmt.close();
+			
 		}
 
 	}
 
-	public void createExercise(String name, String muscle, int reps) {
-
+	public void createExercise(String name, String muscle, int reps) throws SQLException {
+		PreparedStatement pstmt=null;
 		try {
 
 			String statement = "Insert into Exercise (name,reps) values (?,?)";
 
-			// ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+			pstmt= conn.prepareStatement(statement);
 			pstmt.setString(1, name);
 			pstmt.setString(2, reps + "");
 
 			pstmt.executeUpdate();
-
+			pstmt.close();
 			int id = getExerciseId(name);
 			int muscleid = getMuscleId(muscle);
-
+			
 			if (muscleid == 0) {
 				statement = "Insert into Muscle (name) values (?)";
 				pstmt = conn.prepareStatement(statement);
 				pstmt.setString(1, muscle);
 
 				pstmt.executeUpdate();
+				pstmt.close();
+			
 			}
 			muscleid = getMuscleId(muscle);
 			statement = "Insert into ExerciseMuscle (ExerciseID,MuscleId) values (?,?)";
@@ -316,6 +361,9 @@ public class Database {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			if(pstmt!=null) pstmt.close();
+			
 		}
 
 	}

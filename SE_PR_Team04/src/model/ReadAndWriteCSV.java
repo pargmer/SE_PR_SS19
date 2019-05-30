@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The Class ReadAndWriteCSV.
@@ -40,12 +42,14 @@ public class ReadAndWriteCSV {
 	 * @return the list
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public List<Workout> readWorkoutsFromCsv(String file) throws IOException {
+	public List<Workout> readWorkoutsFromCsv(String file) throws SQLException, IOException  {
 
 		List<Workout> workouts = new LinkedList<Workout>();
 		
 		String row;
-		BufferedReader csvReader = new BufferedReader(new FileReader(file));
+		
+		try(BufferedReader csvReader = new BufferedReader(new FileReader(file))){ 
+			
 
 		while ((row = csvReader.readLine()) != null) {
 			List<Exercise> exercises = new LinkedList<Exercise>();
@@ -62,10 +66,8 @@ public class ReadAndWriteCSV {
 			helpwork = new Workout(data[1], date, exercises);
 			
 			workouts.add(helpwork);
-
 		}
-		csvReader.close();
-
+		}
 		return workouts;
 	}
 
@@ -79,24 +81,23 @@ public class ReadAndWriteCSV {
 	public List<Exercise> readExercisesFromCsv(String file) throws IOException {
 
 		List<Exercise> exercises = new LinkedList<Exercise>();
-		// List<Exercise> exercises = new LinkedList<Exercise>();
+		
 		String row;
-		BufferedReader csvReader = new BufferedReader(new FileReader(file));
+		try(BufferedReader csvReader = new BufferedReader(new FileReader(file))){
 
 		while ((row = csvReader.readLine()) != null) {
 			String[] data = row.split(";");
 
 			exercises.add(new Exercise(data[0], data[1], Integer.parseInt(data[2])));
 		}
-		csvReader.close();
-
+		}
 		return exercises;
 	}
 
 	public void writeWorkoutsOnCSV(List<Workout> workouts) throws IOException {
 
 		String help = "";
-		FileWriter writer = new FileWriter("workouts.csv");
+		try(FileWriter writer = new FileWriter("workouts.csv")){
 		StringBuilder sb = new StringBuilder();
 		for (Workout workout : workouts) {
 			help = "";
@@ -119,6 +120,6 @@ public class ReadAndWriteCSV {
 
 		writer.write(sb.toString());
 		writer.flush();
-		writer.close();
+	}
 	}
 }
