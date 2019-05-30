@@ -91,11 +91,11 @@ public class Database {
 		List<Exercise> outputList = new LinkedList<>();
         String statement = "Select name, muscles, reps from EXERCISES";
 	
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-			     //outputList.add(new Exercise(rs.getString(1),rs.getString(2),Integer.parseInt(rs.getString(3)))); 
+		ResultSet rs = null;
+		PreparedStatement pstmt = conn.prepareStatement(statement);
+		rs = pstmt.executeQuery();
+		while (rs.next()) {
+			  //outputList.add(new Exercise(rs.getString(1),rs.getString(2),Integer.parseInt(rs.getString(3)))); 
 			}
 		return outputList;
 	}
