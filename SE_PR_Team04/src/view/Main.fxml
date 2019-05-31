@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="440.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane fx:id="root" prefHeight="440.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <ListView fx:id="lv_exercises" layoutX="219.0" layoutY="80.0" prefHeight="306.0" prefWidth="184.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="80.0" />
       <Button fx:id="btn_NewWorkout" layoutX="417.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleButton_newWorkout" prefHeight="34.0" prefWidth="156.0" text="New Workout" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="80.0" />
@@ -17,6 +17,6 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btn_deleteWorkout" layoutX="440.0" layoutY="333.0" mnemonicParsing="false" onAction="#handleBtn_deleteWorkout" prefHeight="34.0" prefWidth="156.0" text="Delet Workout" />
+      <Button fx:id="btn_deleteWorkout" layoutX="440.0" layoutY="333.0" mnemonicParsing="false" onAction="#handleBtn_deleteWorkout" prefHeight="34.0" prefWidth="156.0" text="Delete Workout" />
    </children>
 </AnchorPane>
