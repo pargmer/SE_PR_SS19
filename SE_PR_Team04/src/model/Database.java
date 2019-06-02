@@ -218,7 +218,7 @@ public class Database {
 		List<Exercise> outputList = new LinkedList<Exercise>();
 		try {
 
-			String statement = "Select name,reps from Exercise";
+			String statement = "Select id,name,reps from Exercise";
 
 			ResultSet rs = null;
 			PreparedStatement pstmt = conn.prepareStatement(statement);
