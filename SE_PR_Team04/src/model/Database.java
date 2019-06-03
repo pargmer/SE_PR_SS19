@@ -70,7 +70,7 @@ public class Database {
 	 */
 	public List<String> getWorkouts() throws SQLException {
 		List<String> outputList = new LinkedList<String>();
-		String statement = "Select name from WORKOUT";
+		String statement = "Select name from Workout";
 		ResultSet rs = null;
 
 		try (PreparedStatement pstmt = conn.prepareStatement(statement)) {
