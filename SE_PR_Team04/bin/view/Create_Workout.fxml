@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import org.controlsfx.control.CheckListView?>
 
-<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="494.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateWorkoutController">
+<AnchorPane fx:id="root" prefHeight="488.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateWorkoutController">
    <children>
-      <ListView fx:id="lv_exercises" layoutX="238.0" layoutY="84.0" prefHeight="299.0" prefWidth="200.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="238.0" AnchorPane.topAnchor="84.0" />
-      <Button fx:id="btn_newExercise" layoutX="31.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleBtn_newExercise" prefHeight="37.0" prefWidth="149.0" text="Neue Übung" />
-      <TextField fx:id="tf_workoutname" layoutX="30.0" layoutY="111.0" prefHeight="25.0" prefWidth="174.0" />
-      <Label layoutX="31.0" layoutY="84.0" text="Workout Name:" />
-      <Label layoutX="185.0" layoutY="28.0" text="Neues Workout">
+      <ImageView fitHeight="490.0" fitWidth="770.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../hintergrund.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="211.0" layoutX="280.0" layoutY="-32.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@../logo.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btn_newExercise" layoutX="31.0" layoutY="197.0" mnemonicParsing="false" onAction="#handleBtn_newExercise" prefHeight="37.0" prefWidth="149.0" text="New Exercise" />
+      <TextField fx:id="tf_workoutname" layoutX="30.0" layoutY="84.0" prefHeight="25.0" prefWidth="174.0" />
+      <Label layoutX="30.0" layoutY="57.0" text="Workout Name:">
          <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button layoutX="30.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleBtn_saveWorkout" prefHeight="37.0" prefWidth="149.0" text="Save Workout" />
-      <DatePicker fx:id="datePicker" layoutX="30.0" layoutY="144.0" />
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Button layoutX="31.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleBtn_saveWorkout" prefHeight="37.0" prefWidth="149.0" text="Save Workout" />
+      <DatePicker fx:id="datePicker" layoutX="30.0" layoutY="135.0" prefHeight="31.0" prefWidth="174.0" />
+      <Button layoutX="31.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleBtn_backToMain" prefHeight="37.0" prefWidth="149.0" text="Back " />
+      <TableView fx:id="tvExercise" layoutX="216.0" layoutY="84.0" prefHeight="304.0" prefWidth="460.0">
+        <columns>
+          <TableColumn fx:id="nameCol" prefWidth="131.0" text="Name" />
+          <TableColumn fx:id="muscleCol" prefWidth="134.0" text="Muscle" />
+            <TableColumn fx:id="repsCol" prefWidth="82.0" text="Reps" />
+            <TableColumn fx:id="activeCol" minWidth="0.0" prefWidth="112.0" text="Active" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
