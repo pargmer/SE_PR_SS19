@@ -3,6 +3,7 @@
  */
 package model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Workout {
 	private String name;
 
 	/** The date. */
-	private Date date;
+	private LocalDate date;
 
 	/** The exercises. */
 	private List<Exercise> exercises;
@@ -32,13 +33,13 @@ public class Workout {
 	 * Instantiates a new workout.
 	 *
 	 * @param name      the name
-	 * @param date      the date
+	 * @param localDate      the date
 	 * @param exercises the exercises
 	 */
-	public Workout(String name, Date date, List<Exercise> exercises) {
+	public Workout(String name, LocalDate localDate, List<Exercise> exercises) {
 
 		this.name = name;
-		this.date = date;
+		this.date = localDate;
 		this.exercises = exercises;
 	}
 
@@ -74,7 +75,7 @@ public class Workout {
 	 *
 	 * @param date the new date
 	 */
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
@@ -119,7 +120,7 @@ public class Workout {
 	 *
 	 * @return the date
 	 */
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 

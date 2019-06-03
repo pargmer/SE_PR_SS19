@@ -104,6 +104,25 @@ public class MainController implements Initializable {
 		lv_exercises.setItems(ov_exercises);
 
 	}
+	
+	@FXML
+	private void handlBtn_ExportWorkouts(ActionEvent event) throws SQLException, IOException {
+		
+		List<String> workoutsname = new LinkedList<String>();
+    
+		workoutsname = Database.getInstance().getWorkouts();
+		List<Workout> workouts = new LinkedList<Workout>();
+		List<Exercise> exercises = new LinkedList<Exercise>();
+		Workout workout;
+		for(String s : workoutsname) {
+			
+			 workout = Database.getInstance().getWorkoutInfo(s);
+			 exercises = Database.getInstance().getExercisesFromWorkout(s);
+			 workouts.add(new Workout(s,workout.getDate(),exercises));
+		}
+		 
+		 ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
+	}
 
 	/*
 	 * (non-Javadoc)

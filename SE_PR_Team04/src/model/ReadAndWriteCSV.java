@@ -8,7 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -52,7 +52,7 @@ public class ReadAndWriteCSV {
 			String[] data = row.split(";");
 			String[] dataexercise = data[2].split(",");
 			exercises.clear();
-			 Date date = new Date();
+			 LocalDate date = LocalDate.now();
 			
 			for (int i = 0; i < dataexercise.length; i++) {
 				exercises.add(new Exercise(dataexercise[i], "", 0));

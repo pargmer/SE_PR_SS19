@@ -88,6 +88,29 @@ public class Database {
 		}
 		return outputList;
 	}
+	
+	public Workout getWorkoutInfo(String name) throws SQLException {
+        Workout outputList = new Workout(); 
+        List<Exercise> exercises= new LinkedList<Exercise>(); 
+        String statement = "Select name, date from Workout where '" + name + "'=name";
+            ResultSet rs = null;
+        try(PreparedStatement pstmt = conn.prepareStatement(statement)) {
+
+          
+     
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                outputList = new Workout(rs.getString(1),LocalDate.parse(rs.getString(2)), exercises);
+            }
+            	
+        } catch (SQLException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }finally {
+        	if(rs!=null)rs.close();
+        }
+        return outputList;
+    }
 
 	/**
 	 * Gets the exercises from workout.

@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="lol" fx:id="root" prefHeight="440.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane id="lol" fx:id="root" prefHeight="440.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <ImageView fitHeight="449.0" fitWidth="640.0" pickOnBounds="true">
          <image>
@@ -15,9 +15,10 @@
          </image>
       </ImageView>
       <ListView fx:id="lv_exercises" layoutX="219.0" layoutY="80.0" prefHeight="306.0" prefWidth="184.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="80.0" />
-      <Button fx:id="btn_NewWorkout" layoutX="417.0" layoutY="88.0" mnemonicParsing="false" onAction="#handleButton_newWorkout" prefHeight="34.0" prefWidth="156.0" text="New Workout" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="80.0" />
+      <Button fx:id="btn_NewWorkout" layoutX="449.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleButton_newWorkout" prefHeight="34.0" prefWidth="156.0" text="New Workout" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="79.0" />
       <ComboBox fx:id="cb_workouts" layoutX="23.0" layoutY="80.0" onAction="#comboChanged" prefHeight="25.0" prefWidth="184.0" promptText="Choose a Workout!" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
-      <Button fx:id="btn_deleteWorkout" contentDisplay="CENTER" layoutX="457.0" layoutY="331.0" mnemonicParsing="false" onAction="#handleBtn_deleteWorkout" prefHeight="34.0" prefWidth="156.0" text="Delete Workout" />
+      <Button fx:id="btn_deleteWorkout" contentDisplay="CENTER" layoutX="449.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleBtn_deleteWorkout" prefHeight="34.0" prefWidth="156.0" text="Delete Workout" />
+      <Button layoutX="449.0" layoutY="384.0" mnemonicParsing="false" onAction="#handlBtn_ExportWorkouts" prefHeight="34.0" prefWidth="156.0" text="Export Workouts" />
       <ImageView fitHeight="150.0" fitWidth="206.0" layoutX="204.0" layoutY="-25.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../logo.png" />
