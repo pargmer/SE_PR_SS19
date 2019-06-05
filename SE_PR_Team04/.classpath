@@ -18,5 +18,9 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Pargan/Downloads/testFx-3.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pargan/Downloads/testfx-core-4.0.15-alpha.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pargan/Downloads/testfx-junit-4.0.15-alpha.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Pargan/Downloads/junit-4.12.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
