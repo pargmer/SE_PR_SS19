@@ -21,10 +21,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
@@ -122,6 +124,14 @@ public class MainController implements Initializable {
 		}
 		 
 		 ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
+		 
+		 
+         Alert alert = new Alert(AlertType.INFORMATION);
+         alert.setTitle("Information Dialog");
+         alert.setHeaderText(null);
+         alert.setContentText("Die Workouts wurden in die workouts.csv Datei exportiert!!");
+
+         alert.showAndWait();
 	}
 
 	/*
