@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test thread-count="5" name="Test">
+<suite name="model">
+  <test thread-count="5" name="WorkoutTest">
     <classes>
-      <class name="controllerTest.ControllerTest"/>
+      <class name="model.test.WorkoutTest"/>
     </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+  </test> <!-- WorkoutTest -->
+</suite> <!-- model -->
