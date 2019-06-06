@@ -1,7 +1,7 @@
 /*
  * 
  */
-package ApplicationTest;
+package application.test;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
