@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class ReadAndWriteCSV.
  */
@@ -93,6 +94,12 @@ public class ReadAndWriteCSV {
 		return exercises;
 	}
 
+	/**
+	 * Write workouts on CSV.
+	 *
+	 * @param workouts the workouts
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public void writeWorkoutsOnCSV(List<Workout> workouts) throws IOException {
 
 		String help = "";

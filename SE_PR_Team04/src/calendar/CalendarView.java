@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package calendar;
 
 import java.time.Duration;
@@ -15,16 +18,33 @@ import javafx.css.PseudoClass;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CalendarView.
+ */
 public class CalendarView extends Application {
 
+	/** The first slot start. */
 	private final LocalTime firstSlotStart = LocalTime.of(0, 0);
+	
+	/** The slot length. */
 	private final Duration slotLength = Duration.ofMinutes(15);
+	
+	/** The last slot start. */
 	private final LocalTime lastSlotStart = LocalTime.of(23, 59);
 
+	/** The Constant SELECTED_PSEUDO_CLASS. */
 	private static final PseudoClass SELECTED_PSEUDO_CLASS = PseudoClass.getPseudoClass("selected");
 
+	/** The time slots. */
 	private final List<TimeSlot> timeSlots = new ArrayList<>();
 
+	/**
+	 * Start.
+	 *
+	 * @param primaryStage the primary stage
+	 * @throws Exception the exception
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		GridPane calendarView = new GridPane();
@@ -53,6 +73,12 @@ public class CalendarView extends Application {
 		}
 	}
 
+	/**
+	 * Register drag handlers.
+	 *
+	 * @param timeSlot the time slot
+	 * @param mouseAnchor the mouse anchor
+	 */
 	private void registerDragHandlers(TimeSlot timeSlot, ObjectProperty<TimeSlot> mouseAnchor) {
 		timeSlot.getView().setOnDragDetected(event -> {
 			mouseAnchor.set(timeSlot);
@@ -69,6 +95,14 @@ public class CalendarView extends Application {
 
 	}
 
+	/**
+	 * Checks if is between.
+	 *
+	 * @param testSlot the test slot
+	 * @param startSlot the start slot
+	 * @param endSlot the end slot
+	 * @return true, if is between
+	 */
 	private boolean isBetween(TimeSlot testSlot, TimeSlot startSlot, TimeSlot endSlot) {
 		boolean daysBetween = testSlot.getDayOfWeek().compareTo(startSlot.getDayOfWeek())
 				* endSlot.getDayOfWeek().compareTo(testSlot.getDayOfWeek()) >= 0;
@@ -79,6 +113,11 @@ public class CalendarView extends Application {
 		return daysBetween && timesBetween;
 	}
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -31,11 +31,13 @@ import model.Database;
 import model.Exercise;
 import model.ExerciseTV;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CreateWorkoutController.
  */
 public class CreateWorkoutController implements Initializable {
 
+	/** The hexercises. */
 	List<Exercise> hexercises = new LinkedList<Exercise>();
 
 	/** The exercises. */
@@ -44,19 +46,26 @@ public class CreateWorkoutController implements Initializable {
 	/** The workoutname. */
 	String workoutname = "";
 
+	/** The tv exercise. */
 	@FXML
 	TableView<ExerciseTV> tvExercise;
+	
+	/** The olist. */
 	ObservableList<ExerciseTV> olist;
 
+	/** The name col. */
 	@FXML
 	TableColumn<ExerciseTV, String> nameCol = new TableColumn<ExerciseTV, String>("Name");
 
+	/** The muscle col. */
 	@FXML
 	TableColumn<ExerciseTV, String> muscleCol = new TableColumn<ExerciseTV, String>("Muscle");
 
+	/** The reps col. */
 	@FXML
 	TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV, Integer>("Reps");
 
+	/** The active col. */
 	@FXML
 	TableColumn<ExerciseTV, Boolean> activeCol = new TableColumn<ExerciseTV, Boolean>("Select");
 
@@ -68,9 +77,16 @@ public class CreateWorkoutController implements Initializable {
 	@FXML
 	private TextField tf_workoutname;
 
+	/** The date picker. */
 	@FXML
 	private DatePicker datePicker;
 
+	/**
+	 * Handle btn new exercise.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	private void handleBtn_newExercise(ActionEvent event) throws IOException {
 
@@ -94,8 +110,6 @@ public class CreateWorkoutController implements Initializable {
 	 * Handle btn save workout.
 	 *
 	 * @param event the event
-	 * @throws IOException  Signals that an I/O exception has occurred.
-	 * @throws SQLException the SQL exception
 	 */
 	@FXML
 	private void handleBtn_saveWorkout(ActionEvent event) {
@@ -128,6 +142,11 @@ public class CreateWorkoutController implements Initializable {
 		}
 	}
 
+	/**
+	 * Handle btn back to main.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	private void handleBtn_backToMain(ActionEvent event) {
 
@@ -163,6 +182,12 @@ public class CreateWorkoutController implements Initializable {
 		tf_workoutname.setText(workoutname);
 	}
 
+	/**
+	 * Initialize.
+	 *
+	 * @param location the location
+	 * @param resources the resources
+	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		try {
 			hexercises = Database.getInstance().getAllExercises();
@@ -182,6 +207,11 @@ public class CreateWorkoutController implements Initializable {
 
 	}
 
+	/**
+	 * Gets the exercise list.
+	 *
+	 * @return the exercise list
+	 */
 	private void getExerciseList() {
 
 		olist = FXCollections.observableArrayList();

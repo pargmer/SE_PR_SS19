@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Database.
  */
@@ -89,6 +90,13 @@ public class Database {
 		return outputList;
 	}
 	
+	/**
+	 * Gets the workout info.
+	 *
+	 * @param name the name
+	 * @return the workout info
+	 * @throws SQLException the SQL exception
+	 */
 	public Workout getWorkoutInfo(String name) throws SQLException {
         Workout outputList = new Workout(); 
         List<Exercise> exercises= new LinkedList<Exercise>(); 
@@ -128,6 +136,13 @@ public class Database {
 		return outputList;
 	}
 
+	/**
+	 * Gets the workout id.
+	 *
+	 * @param name the name
+	 * @return the workout id
+	 * @throws SQLException the SQL exception
+	 */
 	public int getWorkoutId(String name) throws SQLException {
 		int id = 0;
 		String statement = "Select id from Workout where '" + name + "'=name";
@@ -148,6 +163,12 @@ public class Database {
 		return id;
 	}
 
+	/**
+	 * Gets the exercise id.
+	 *
+	 * @param name the name
+	 * @return the exercise id
+	 */
 	public int getExerciseId(String name) {
 		int id = 0;
 		try {
@@ -168,6 +189,12 @@ public class Database {
 		return id;
 	}
 
+	/**
+	 * Gets the muscle id.
+	 *
+	 * @param name the name
+	 * @return the muscle id
+	 */
 	public int getMuscleId(String name) {
 		int id = 0;
 		try {
@@ -188,6 +215,12 @@ public class Database {
 		return id;
 	}
 
+	/**
+	 * Gets the exercises from workout.
+	 *
+	 * @param id the id
+	 * @return the exercises from workout
+	 */
 	public List<Exercise> getExercisesFromWorkout(int id) {
 		List<String> exerciseId = new LinkedList<String>();
 		List<Exercise> exercises = new LinkedList<Exercise>();
@@ -218,6 +251,12 @@ public class Database {
 		return exercises;
 	}
 
+	/**
+	 * Delete workout.
+	 *
+	 * @param name the name
+	 * @throws SQLException the SQL exception
+	 */
 	public void deleteWorkout(String name) throws SQLException {
 		int id = getWorkoutId(name);
 		try {
@@ -237,6 +276,11 @@ public class Database {
 
 	}
 
+	/**
+	 * Gets the all exercises.
+	 *
+	 * @return the all exercises
+	 */
 	public List<Exercise> getAllExercises() {
 		List<Exercise> outputList = new LinkedList<Exercise>();
 		try {
@@ -277,6 +321,13 @@ public class Database {
 		return outputList;
 	}
 
+	/**
+	 * Creates the workout.
+	 *
+	 * @param name the name
+	 * @param date the date
+	 * @param exercises the exercises
+	 */
 	public void createWorkout(String name, LocalDate date, List<Exercise> exercises) {
 
 		try {
@@ -307,6 +358,13 @@ public class Database {
 
 	}
 
+	/**
+	 * Creates the exercise.
+	 *
+	 * @param name the name
+	 * @param muscle the muscle
+	 * @param reps the reps
+	 */
 	public void createExercise(String name, String muscle, int reps) {
 
 		try {

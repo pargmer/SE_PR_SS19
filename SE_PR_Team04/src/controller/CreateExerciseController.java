@@ -22,6 +22,7 @@ import model.Exercise;
 import java.sql.SQLException;
 import model.Database;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class CreateExerciseController.
  */
@@ -73,6 +74,11 @@ public class CreateExerciseController {
 
 	}
 
+	/**
+	 * Handle btn back to main.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	private void handleBtn_backToMain(ActionEvent event) {
 		try {

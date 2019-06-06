@@ -88,6 +88,11 @@ public class MainController implements Initializable {
 	}
 
 
+	/**
+	 * Handle btn delete workout.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	private void handleBtn_deleteWorkout(ActionEvent event) {
 
@@ -107,6 +112,13 @@ public class MainController implements Initializable {
 
 	}
 	
+	/**
+	 * Handl btn export workouts.
+	 *
+	 * @param event the event
+	 * @throws SQLException the SQL exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	private void handlBtn_ExportWorkouts(ActionEvent event) throws SQLException, IOException {
 		
@@ -134,6 +146,12 @@ public class MainController implements Initializable {
          alert.showAndWait();
 	}
 
+	/**
+	 * Initialize.
+	 *
+	 * @param location the location
+	 * @param resources the resources
+	 */
 	/*
 	 * (non-Javadoc)
 	 * 
