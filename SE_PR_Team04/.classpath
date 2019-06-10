@@ -19,5 +19,15 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Johannes/.m2/repository/org/dbunit/dbunit/2.6.0/dbunit-2.6.0.jar" sourcepath="C:/Users/Johannes/.m2/repository/org/dbunit/dbunit/2.6.0/dbunit-2.6.0-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="test" value="true"/>
+			<attribute name="maven.groupId" value="org.dbunit"/>
+			<attribute name="maven.artifactId" value="dbunit"/>
+			<attribute name="maven.version" value="2.6.0"/>
+			<attribute name="maven.scope" value="test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
