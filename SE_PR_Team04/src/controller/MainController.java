@@ -6,6 +6,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -62,7 +63,7 @@ public class MainController implements Initializable {
 
 	/** The btn new workout. */
 	@FXML
-	private Button btn_NewWorkout, btn_deleteWorkout;
+	private Button btn_NewWorkout, btn_deleteWorkout,  btn_start;
 
 	/**
 	 * Handle button new workout.
@@ -105,7 +106,7 @@ public class MainController implements Initializable {
 
 		ov_workouts.remove(cb_workouts.getValue());
 		cb_workouts.setItems(ov_workouts);
-		cb_workouts.setValue("Wähle ein Workout aus!");
+		cb_workouts.setValue("Waehle ein Workout aus!");
 
 		ov_exercises.removeAll();
 		lv_exercises.setItems(ov_exercises);
@@ -145,7 +146,30 @@ public class MainController implements Initializable {
 
          alert.showAndWait();
 	}
+	
+	
+	
+	  @FXML
+		private void handleBtn_StartWorkout(ActionEvent event) throws SQLException, IOException {
+			  Stage oldStage;
+	          oldStage = (Stage)root.getScene().getWindow();
 
+	          FXMLLoader fxmlLoader = new FXMLLoader();
+	          
+	          fxmlLoader.setLocation(getClass().getResource("/view/Start_Workout.fxml")); 
+	          
+	          Parent root2 = (Parent) fxmlLoader.load();
+	         StartWorkoutController start = fxmlLoader.getController();
+	          start.setData(cb_workouts.getValue());
+	          Stage stage = new Stage();
+	          stage.setTitle("Create Workout!");
+	          stage.setScene(new Scene(root2));  
+	          stage.show();
+	          oldStage.close();
+			
+		}
+
+		
 	/**
 	 * Initialize.
 	 *

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartWorkoutController">
+   <children>
+      <Label fx:id="lb_workoutname" layoutX="14.0" layoutY="30.0" prefHeight="21.0" prefWidth="148.0">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <TextField fx:id="tf_date" alignment="CENTER" layoutX="14.0" layoutY="68.0" text="Start" />
+      <Button layoutX="393.0" layoutY="39.0" mnemonicParsing="false" onAction="#hndleBtn_Done" prefHeight="37.0" prefWidth="128.0" text="Done" />
+      <TableView fx:id="tvExercise" layoutX="14.0" layoutY="161.0" prefHeight="200.0" prefWidth="483.0">
+        <columns>
+          <TableColumn fx:id="nameCol" prefWidth="137.0" text="C1" />
+          <TableColumn fx:id="muscleCol" prefWidth="88.0" text="C2" />
+            <TableColumn fx:id="repsCol" prefWidth="140.0" text="Column X" />
+            <TableColumn fx:id="activeCol" prefWidth="77.0" text="Column X" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
