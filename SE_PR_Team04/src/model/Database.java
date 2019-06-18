@@ -158,7 +158,7 @@ public class Database {
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
-			rs.close();
+			if(rs!=null)rs.close();
 		}
 		return id;
 	}
@@ -168,15 +168,14 @@ public class Database {
 	 *
 	 * @param name the name
 	 * @return the exercise id
+	 * @throws SQLException 
 	 */
-	public int getExerciseId(String name) {
+	public int getExerciseId(String name) throws SQLException {
 		int id = 0;
-		try {
+		ResultSet rs = null;
+		String statement = "Select id from Exercise where '" + name + "'=name";
+		try (PreparedStatement pstmt = conn.prepareStatement(statement)){
 
-			String statement = "Select id from Exercise where '" + name + "'=name";
-
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				id = Integer.parseInt(rs.getString(1));
@@ -185,6 +184,9 @@ public class Database {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			
+			if(rs!=null)rs.close();
 		}
 		return id;
 	}
@@ -194,15 +196,15 @@ public class Database {
 	 *
 	 * @param name the name
 	 * @return the muscle id
+	 * @throws SQLException 
 	 */
-	public int getMuscleId(String name) {
+	public int getMuscleId(String name) throws SQLException {
 		int id = 0;
-		try {
 
-			String statement = "Select id from Muscle where '" + name + "'=name";
+		String statement = "Select id from Muscle where '" + name + "'=name";
+		ResultSet rs = null;
+		try (PreparedStatement pstmt = conn.prepareStatement(statement)){
 
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				id = Integer.parseInt(rs.getString(1));
@@ -211,6 +213,9 @@ public class Database {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			
+			if(rs!=null)rs.close();
 		}
 		return id;
 	}
