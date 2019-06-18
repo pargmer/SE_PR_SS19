@@ -99,7 +99,7 @@ public class Database {
 	 */
 	public Workout getWorkoutInfo(String name) throws SQLException {
         Workout outputList = new Workout(); 
-        List<Exercise> exercises= new LinkedList<Exercise>(); 
+        List<Exercise> exercises= new LinkedList<>(); 
         String statement = "Select name, date from Workout where '" + name + "'=name";
             ResultSet rs = null;
         try(PreparedStatement pstmt = conn.prepareStatement(statement)) {
@@ -225,16 +225,19 @@ public class Database {
 	 *
 	 * @param id the id
 	 * @return the exercises from workout
+	 * @throws SQLException 
 	 */
-	public List<Exercise> getExercisesFromWorkout(int id) {
+	public List<Exercise> getExercisesFromWorkout(int id) throws SQLException {
 		List<String> exerciseId = new LinkedList<String>();
 		List<Exercise> exercises = new LinkedList<Exercise>();
+		ResultSet rs = null;
+		PreparedStatement  pstmt=null;
 		try {
 
 			String statement = "Select ExerciseID from WorkoutExercise where '" + id + "'=WorkoutId";
 
-			ResultSet rs = null;
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+			
+			pstmt = conn.prepareStatement(statement);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				exerciseId.add(rs.getString(1));
@@ -252,6 +255,9 @@ public class Database {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+			if(rs!=null)rs.close();
+			if(pstmt!=null)pstmt.close();
 		}
 		return exercises;
 	}
@@ -335,14 +341,15 @@ public class Database {
 	 * @param name the name
 	 * @param date the date
 	 * @param exercises the exercises
+	 * @throws SQLException 
 	 */
-	public void createWorkout(String name, LocalDate date, List<Exercise> exercises) {
-
+	public void createWorkout(String name, LocalDate date, List<Exercise> exercises) throws SQLException {
+		PreparedStatement pstmt=null;
 		try {
 
 			String statement = "Insert into Workout (date,name) values (?,?)";
 
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+			pstmt = conn.prepareStatement(statement);
 			pstmt.setString(1, date.toString());
 			pstmt.setString(2, name);
 
@@ -358,10 +365,15 @@ public class Database {
 				exid = getExerciseId(exercises.get(i).getName());
 				pstmt.setString(2, exid + "");
 				pstmt.executeUpdate();
+				pstmt.close();
 			}
+			
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		finally {
+			if(pstmt!=null)pstmt.close();
 		}
 
 	}
