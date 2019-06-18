@@ -421,4 +421,39 @@ public class Database {
 
 	}
 
+	public void WorkoutDone(Workout workout) {
+		 try {
+	            int id = getWorkoutId(workout.getName());
+	            String statement = "Select id from Statistic where '" + id + "'=WorkoutId";
+
+	            String help = "";
+
+	            ResultSet rs = null;
+	            PreparedStatement pstmt = conn.prepareStatement(statement);
+	            rs = pstmt.executeQuery();
+	            while (rs.next()) {
+	                help = rs.getString(1);
+
+	            }
+
+	            if (help.equals("")) {
+	                statement = "Insert into Statistic (workoutid,workoutdone) values (?,?)";
+	                pstmt = conn.prepareStatement(statement);
+	                pstmt.setString(1, "" + id);
+	                pstmt.setString(2, "1");
+
+	            } else {
+	                statement = "Update Statistic set workoutdone = workoutdone + 1 where id = " + help;
+	                pstmt = conn.prepareStatement(statement);
+	            }
+
+	            pstmt.executeUpdate();
+
+	        } catch (SQLException ex) {
+	            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+
+	}
+
+
 }
