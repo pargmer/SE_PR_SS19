@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controller;
 
 import java.util.List;
@@ -28,39 +31,69 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Workout;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StartWorkoutController.
+ */
 public class StartWorkoutController implements Initializable {
 
+	/** The workoutname. */
 	String workoutname;
+	
+	/** The workout. */
 	Workout workout = new Workout();
+	
+	/** The wexercises. */
 	List<Exercise> wexercises;
+	
+	/** The allexercises. */
 	List<Exercise> allexercises;
+	
+	/** The allchecked. */
 	Boolean allchecked;
 
+	/** The lb workoutname. */
 	@FXML
 	private Label lb_workoutname;
 
+	/** The root. */
 	@FXML
 	private AnchorPane root;
 
+	/** The tf date. */
 	@FXML
 	private TextField tf_date;
 
+	/** The tv exercise. */
 	@FXML
 	TableView<ExerciseTV> tvExercise;
+	
+	/** The olist. */
 	ObservableList<ExerciseTV> olist;
 
+	/** The name col. */
 	@FXML
 	TableColumn<ExerciseTV, String> nameCol = new TableColumn<ExerciseTV, String>("Name");
 
+	/** The muscle col. */
 	@FXML
 	TableColumn<ExerciseTV, String> muscleCol = new TableColumn<ExerciseTV, String>("Muscle");
 
+	/** The reps col. */
 	@FXML
 	TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV, Integer>("Reps");
 
+	/** The active col. */
 	@FXML
 	TableColumn<ExerciseTV, Boolean> activeCol = new TableColumn<ExerciseTV, Boolean>("Select");
 
+	/**
+	 * Handle btn done.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws SQLException the SQL exception
+	 */
 	@FXML
 	private void handleBtn_Done(ActionEvent event) throws IOException, SQLException {
 		allchecked = true;
@@ -102,6 +135,11 @@ public class StartWorkoutController implements Initializable {
 
 	}
 
+	/**
+	 * Sets the data.
+	 *
+	 * @param oworkoutname the new data
+	 */
 	public void setData(String oworkoutname) {
 		this.workoutname = oworkoutname;
 		try {
@@ -126,6 +164,12 @@ public class StartWorkoutController implements Initializable {
 		tvExercise.setItems(olist);
 	}
 
+	/**
+	 * Initialize.
+	 *
+	 * @param location the location
+	 * @param resources the resources
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
