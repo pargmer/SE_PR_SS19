@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,7 +26,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
@@ -37,7 +39,6 @@ import model.*;
  * The Class MainController.
  */
 public class MainController implements Initializable {
-
 
 	/** The root. */
 	@FXML
@@ -49,10 +50,14 @@ public class MainController implements Initializable {
 
 	/** The lv exercises. */
 	@FXML
-	private ListView<String> lv_exercises;
+	TableView<ExerciseTVMain> tvExercise;
+	ObservableList<ExerciseTVMain> olist;
 
-	/** The ov exercises. */
-	private ObservableList<String> ov_exercises;
+	@FXML
+	TableColumn<ExerciseTVMain, String> nameCol = new TableColumn<ExerciseTVMain, String>("Name");
+
+	@FXML
+	TableColumn<ExerciseTVMain, Integer> repsCol = new TableColumn<ExerciseTVMain, Integer>("Reps");
 
 	/** The cb workouts. */
 	@FXML
@@ -63,7 +68,7 @@ public class MainController implements Initializable {
 
 	/** The btn new workout. */
 	@FXML
-	private Button btn_NewWorkout, btn_deleteWorkout,  btn_start;
+	private Button btn_NewWorkout, btn_deleteWorkout, btn_start;
 
 	/**
 	 * Handle button new workout.
@@ -88,7 +93,6 @@ public class MainController implements Initializable {
 
 	}
 
-
 	/**
 	 * Handle btn delete workout.
 	 *
@@ -108,72 +112,65 @@ public class MainController implements Initializable {
 		cb_workouts.setItems(ov_workouts);
 		cb_workouts.setValue("Waehle ein Workout aus!");
 
-		ov_exercises.removeAll();
-		lv_exercises.setItems(ov_exercises);
-
 	}
-	
+
 	/**
 	 * Handl btn export workouts.
 	 *
 	 * @param event the event
 	 * @throws SQLException the SQL exception
-	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws IOException  Signals that an I/O exception has occurred.
 	 */
 	@FXML
 	private void handlBtn_ExportWorkouts(ActionEvent event) throws SQLException, IOException {
-		
+
 		List<String> workoutsname = new LinkedList<String>();
-    
+
 		workoutsname = Database.getInstance().getWorkouts();
 		List<Workout> workouts = new LinkedList<Workout>();
 		List<Exercise> exercises = new LinkedList<Exercise>();
 		Workout workout;
-		for(String s : workoutsname) {
-			
-			 workout = Database.getInstance().getWorkoutInfo(s);
-			 exercises = Database.getInstance().getExercisesFromWorkout(s);
-			 workouts.add(new Workout(s,workout.getDate(),exercises));
-		}
-		 
-		 ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
-		 
-		 
-         Alert alert = new Alert(AlertType.INFORMATION);
-         alert.setTitle("Information Dialog");
-         alert.setHeaderText(null);
-         alert.setContentText("Die Workouts wurden in die workouts.csv Datei exportiert!!");
+		for (String s : workoutsname) {
 
-         alert.showAndWait();
+			workout = Database.getInstance().getWorkoutInfo(s);
+			exercises = Database.getInstance().getExercisesFromWorkout(s);
+			workouts.add(new Workout(s, workout.getDate(), exercises));
+		}
+
+		ReadAndWriteCSV.getInstance().writeWorkoutsOnCSV(workouts);
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Die Workouts wurden in die workouts.csv Datei exportiert!!");
+
+		alert.showAndWait();
 	}
-	
-	
-	
-	  @FXML
-		private void handleBtn_StartWorkout(ActionEvent event) throws SQLException, IOException {
-			  Stage oldStage;
-	          oldStage = (Stage)root.getScene().getWindow();
 
-	          FXMLLoader fxmlLoader = new FXMLLoader();
-	          
-	          fxmlLoader.setLocation(getClass().getResource("/view/Start_Workout.fxml")); 
-	          
-	          Parent root2 = (Parent) fxmlLoader.load();
-	         StartWorkoutController start = fxmlLoader.getController();
-	          start.setData(cb_workouts.getValue());
-	          Stage stage = new Stage();
-	          stage.setTitle("Create Workout!");
-	          stage.setScene(new Scene(root2));  
-	          stage.show();
-	          oldStage.close();
-			
-		}
+	@FXML
+	private void handleBtn_StartWorkout(ActionEvent event) throws SQLException, IOException {
+		Stage oldStage;
+		oldStage = (Stage) root.getScene().getWindow();
 
-		
+		FXMLLoader fxmlLoader = new FXMLLoader();
+
+		fxmlLoader.setLocation(getClass().getResource("/view/Start_Workout.fxml"));
+
+		Parent root2 = (Parent) fxmlLoader.load();
+		StartWorkoutController start = fxmlLoader.getController();
+		start.setData(cb_workouts.getValue());
+		Stage stage = new Stage();
+		stage.setTitle("Create Workout!");
+		stage.setScene(new Scene(root2));
+		stage.show();
+		oldStage.close();
+
+	}
+
 	/**
 	 * Initialize.
 	 *
-	 * @param location the location
+	 * @param location  the location
 	 * @param resources the resources
 	 */
 	/*
@@ -184,6 +181,9 @@ public class MainController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
+		nameCol.setCellValueFactory(new PropertyValueFactory<ExerciseTVMain, String>("name"));
+		repsCol.setCellValueFactory(new PropertyValueFactory<ExerciseTVMain, Integer>("reps"));
 
 		List<String> sworkouts = new LinkedList<String>();
 
@@ -205,20 +205,22 @@ public class MainController implements Initializable {
 	 */
 	@FXML
 	public void comboChanged(ActionEvent event) {
+		btn_start.setDisable(false);
 
 		try {
 
 			List<String> lvexercises = new LinkedList<String>();
 			List<Exercise> exercises = Database.getInstance().getExercisesFromWorkout(cb_workouts.getValue());
-
+			olist = FXCollections.observableArrayList();
 			lvexercises.clear();
 			for (Exercise exercise : exercises) {
 
 				lvexercises.add(exercise.getName());
-
+				olist.add(new ExerciseTVMain(exercise.getName(),exercise.getReps()));
 			}
-			ov_exercises = FXCollections.observableArrayList(lvexercises);
-			lv_exercises.setItems(ov_exercises);
+
+			tvExercise.setItems(olist);
+			
 		} catch (SQLException ex) {
 
 			Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
