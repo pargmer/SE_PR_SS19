@@ -264,21 +264,24 @@ public class Database {
 	 */
 	public void deleteWorkout(String name) throws SQLException {
 		int id = getWorkoutId(name);
+		PreparedStatement pstmt=null;
 		try {
 
 			String statement = "Delete from WorkoutExercise where '" + id + "'=WorkoutId";
-
-			PreparedStatement pstmt = conn.prepareStatement(statement);
+			pstmt = conn.prepareStatement(statement);
 			pstmt.executeUpdate();
-
+			
+			pstmt.close();
 			statement = "Delete from Workout where '" + id + "'=id";
 			pstmt = conn.prepareStatement(statement);
 			pstmt.executeUpdate();
 
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+		}finally {
+				if(pstmt!=null) pstmt.close();
+			
 		}
-
 	}
 
 	/**
