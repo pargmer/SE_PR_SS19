@@ -8,13 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="394.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane fx:id="root" prefHeight="394.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StartWorkoutController">
    <children>
+   
       <Label fx:id="lb_workoutname" layoutX="61.0" layoutY="31.0" prefHeight="27.0" prefWidth="187.0">
          <font>
             <Font size="18.0" />
          </font></Label>
       <TextField fx:id="tf_date" editable="false" layoutX="61.0" layoutY="61.0" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="61.0" />
+      <Button layoutX="416.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleBtn_Done" prefHeight="37.0" prefWidth="128.0" text="Done" />
       <TableView fx:id="tvExercise" layoutX="61.0" layoutY="126.0" prefHeight="250.0" prefWidth="483.0">
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="137.0" text="Name" />

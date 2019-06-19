@@ -167,6 +167,22 @@ public class MainController implements Initializable {
 
 	}
 
+	@FXML
+    private void handleButton_getStatistics(ActionEvent event) throws IOException {
+
+        Stage oldStage;
+        oldStage = (Stage) root.getScene().getWindow();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/view/Statistics.fxml"));
+        Parent root2 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Create Workout!");
+        stage.setScene(new Scene(root2));
+        stage.show();
+        oldStage.close();
+        
+	}
 	/**
 	 * Initialize.
 	 *

@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -49,7 +50,7 @@ public class CreateWorkoutController implements Initializable {
 	/** The tv exercise. */
 	@FXML
 	TableView<ExerciseTV> tvExercise;
-	
+
 	/** The olist. */
 	ObservableList<ExerciseTV> olist;
 
@@ -122,24 +123,63 @@ public class CreateWorkoutController implements Initializable {
 
 		try {
 
-			Database.getInstance().createWorkout(tf_workoutname.getText(), datePicker.getValue(), exercises);
+			if (exercises.isEmpty()) {
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("Error Dialog");
+				alert.setHeaderText(null);
+				alert.setContentText("Für das Workout wurden keine Übungen ausgewählt");
 
-			Stage oldStage;
-			oldStage = (Stage) root.getScene().getWindow();
+				alert.showAndWait();
+			} else {
 
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
-			Parent root2 = (Parent) fxmlLoader.load();
-			Stage stage = new Stage();
-			stage.setTitle("Workout!");
-			stage.setScene(new Scene(root2));
-			stage.show();
-			oldStage.close();
+				Database.getInstance().createWorkout(tf_workoutname.getText(), datePicker.getValue(), exercises);
+
+				Stage oldStage;
+				oldStage = (Stage) root.getScene().getWindow();
+
+				FXMLLoader fxmlLoader = new FXMLLoader();
+				fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
+				Parent root2 = (Parent) fxmlLoader.load();
+				Stage stage = new Stage();
+				stage.setTitle("Workout!");
+				stage.setScene(new Scene(root2));
+				stage.show();
+				oldStage.close();
+			}
 		} catch (SQLException ex) {
 			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
 			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
 		}
+	}
+
+	@FXML
+	private void handleBtn_deleteExercise(ActionEvent event) throws SQLException {
+
+		for (int i = 0; i < olist.size(); i++) {
+			if (olist.get(i).getActive().isSelected() == true) {
+				Database.getInstance().deleteExercise(
+						new Exercise(olist.get(i).getName(), olist.get(i).getTrains(), olist.get(i).getReps()));
+			}
+		}
+
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Information Dialog");
+		alert.setHeaderText(null);
+		alert.setContentText("Ausgewählte Übungen wurden gelöscht");
+		alert.showAndWait();
+		hexercises.clear();
+
+		try {
+
+			hexercises = Database.getInstance().getAllExercises();
+
+		} catch (SQLException ex) {
+			Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		getExerciseList();
+		tvExercise.setItems(olist);
+
 	}
 
 	/**
@@ -185,7 +225,7 @@ public class CreateWorkoutController implements Initializable {
 	/**
 	 * Initialize.
 	 *
-	 * @param location the location
+	 * @param location  the location
 	 * @param resources the resources
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
@@ -199,7 +239,6 @@ public class CreateWorkoutController implements Initializable {
 		nameCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("name"));
 		muscleCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("trains"));
 		repsCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, Integer>("reps"));
-
 		activeCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, Boolean>("active"));
 
 		getExerciseList();
