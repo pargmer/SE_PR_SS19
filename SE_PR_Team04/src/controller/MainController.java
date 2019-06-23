@@ -3,6 +3,7 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -31,6 +32,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.*;
 
@@ -147,6 +149,42 @@ public class MainController implements Initializable {
 		alert.showAndWait();
 	}
 
+	@FXML
+    private void handlBtn_ImportWorkouts(ActionEvent event) throws SQLException, IOException {
+
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open File");
+        File file = chooser.showOpenDialog(new Stage());
+        System.out.println(file.getAbsolutePath());
+        
+        
+        List<Workout> newWorkouts = ReadAndWriteCSV.getInstance().readWorkoutsFromCsv(file.getAbsolutePath());
+        
+        for(Workout workout : newWorkouts){
+            Database.getInstance().createWorkoutfromCSV(workout);
+        }
+        
+        
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText("Die Workouts wurden von der workouts.csv Datei importiert!!");
+
+        alert.showAndWait();
+        
+          List<String> sworkouts = new LinkedList<String>();
+        try {
+            sworkouts = Database.getInstance().getWorkouts();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ov_workouts = FXCollections.observableArrayList(sworkouts);
+        cb_workouts.setItems(ov_workouts);
+
+    }
+	
 	@FXML
 	private void handleBtn_StartWorkout(ActionEvent event) throws SQLException, IOException {
 		Stage oldStage;

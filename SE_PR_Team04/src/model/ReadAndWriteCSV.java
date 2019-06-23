@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ReadAndWriteCSV.
  */
@@ -60,7 +59,7 @@ public class ReadAndWriteCSV {
 
 			}
 			Workout helpwork = new Workout();
-			helpwork = new Workout(data[1], date, exercises);
+			helpwork = new Workout(data[1], LocalDate.parse(data[0]), exercises);
 			
 			workouts.add(helpwork);
 
