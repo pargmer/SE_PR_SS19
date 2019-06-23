@@ -402,5 +402,52 @@ public class Database {
 			createWorkout(workout.getName(), workout.getDate(), workout.getExercises());
 		}
 	}
+	
+	public List<Statistic> getStatisticBetween(LocalDate from, LocalDate to) throws SQLException {
+        List<String> workouts = new LinkedList<String>();
+        List<Statistic> statistics = new LinkedList<Statistic>();
+       String sstatement = "Select id from Workout where date between '" + from + "' and '"+to+ "'";
+
+      
+
+       ResultSet rss = null;
+       PreparedStatement pstmts = conn.prepareStatement(sstatement);
+       rss = pstmts.executeQuery();
+       while (rss.next()) {
+           workouts.add(rss.getString(1));
+       }
+       
+       for (int i = 0; i < workouts.size(); i++) {
+            String statement = "Select workoutid, workoutdone from Statistic where '" + workouts.get(i) + "'=workoutid";
+
+       String help = "";
+
+       ResultSet rs = null;
+       PreparedStatement pstmt = conn.prepareStatement(statement);
+       rs = pstmt.executeQuery();
+       while (rs.next()) {
+           String statement1 = "Select name from Workout where id =" + rs.getString(1);
+           ResultSet rs1 = null;
+           PreparedStatement pstmt1 = conn.prepareStatement(statement1);
+           rs1 = pstmt1.executeQuery();
+           String name = "";
+           while (rs1.next()) {
+
+               name = rs1.getString(1);
+
+           }
+           if (!name.equals("")) {
+               statistics.add(new Statistic(name, Integer.parseInt(rs.getString(2))));
+           }
+           
+       }
+     
+           
+
+       }
+       return statistics;
+   
+   
+   }
 
 }
