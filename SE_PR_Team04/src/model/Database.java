@@ -112,7 +112,7 @@ public class Database {
 		} catch (SQLException ex) {
 			Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
 		} finally {
-			rs.close();
+			if(rs!=null)rs.close();
 		}
 		return id;
 	}
