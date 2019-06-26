@@ -61,6 +61,8 @@ public class MainController implements Initializable {
 	@FXML
 	TableColumn<ExerciseTVMain, Integer> repsCol = new TableColumn<ExerciseTVMain, Integer>("Reps");
 
+        @FXML
+        TableColumn<ExerciseTVMain, String> unitCol = new TableColumn<ExerciseTVMain, String>("Unit");
 	/** The cb workouts. */
 	@FXML
 	private ComboBox<String> cb_workouts;
@@ -238,7 +240,7 @@ public class MainController implements Initializable {
 
 		nameCol.setCellValueFactory(new PropertyValueFactory<ExerciseTVMain, String>("name"));
 		repsCol.setCellValueFactory(new PropertyValueFactory<ExerciseTVMain, Integer>("reps"));
-
+                unitCol.setCellValueFactory(new PropertyValueFactory<ExerciseTVMain, String>("unit"));
 		List<String> sworkouts = new LinkedList<String>();
 
 		try {
@@ -270,7 +272,7 @@ public class MainController implements Initializable {
 			for (Exercise exercise : exercises) {
 
 				lvexercises.add(exercise.getName());
-				olist.add(new ExerciseTVMain(exercise.getName(),exercise.getReps()));
+				olist.add(new ExerciseTVMain(exercise.getName(), exercise.getReps(), exercise.getUnit()));
 			}
 
 			tvExercise.setItems(olist);

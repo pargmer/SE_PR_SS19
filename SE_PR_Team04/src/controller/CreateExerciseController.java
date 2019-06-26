@@ -20,6 +20,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Exercise;
 import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ComboBox;
 import model.Database;
 
 // TODO: Auto-generated Javadoc
@@ -42,6 +45,10 @@ public class CreateExerciseController {
 	/** The workoutname. */
 	String workoutname;
 
+        
+        @FXML
+        private ComboBox<String> cb_unit;
+        private ObservableList<String> ov_unit;
 	/**
 	 * Handle btn save exercise.
 	 *
@@ -52,8 +59,7 @@ public class CreateExerciseController {
 	private void handleBtn_saveExercise(ActionEvent event) throws IOException {
 
 		try {
-			Database.getInstance().createExercise(tf_name.getText(), tf_muscle.getText(),
-					Integer.parseInt(tf_reps.getText()));
+			  Database.getInstance().createExercise(tf_name.getText(), tf_muscle.getText(), Integer.parseInt(tf_reps.getText()),cb_unit.getValue());
 		} catch (SQLException ex) {
 			Logger.getLogger(CreateExerciseController.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -108,5 +114,7 @@ public class CreateExerciseController {
 		exercises = oexercises;
 		workoutname = oworkoutname;
 
+                 ov_unit = FXCollections.observableArrayList("Wh","min","sek");
+                 cb_unit.setItems(ov_unit);
 	}
 }

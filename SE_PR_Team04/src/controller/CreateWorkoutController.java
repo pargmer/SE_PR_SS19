@@ -66,6 +66,8 @@ public class CreateWorkoutController implements Initializable {
 	@FXML
 	TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV, Integer>("Reps");
 
+        @FXML
+        TableColumn<ExerciseTV, String> unitCol = new TableColumn<ExerciseTV, String>("Unit");
 	/** The active col. */
 	@FXML
 	TableColumn<ExerciseTV, Boolean> activeCol = new TableColumn<ExerciseTV, Boolean>("Select");
@@ -117,7 +119,7 @@ public class CreateWorkoutController implements Initializable {
 
 		for (int i = 0; i < olist.size(); i++) {
 			if (olist.get(i).getActive().isSelected() == true) {
-				exercises.add(new Exercise(olist.get(i).getName(), olist.get(i).getTrains(), olist.get(i).getReps()));
+				 exercises.add(new Exercise(olist.get(i).getName(), olist.get(i).getTrains(), olist.get(i).getReps(), olist.get(i).getUnit()));
 			}
 		}
 
@@ -158,8 +160,7 @@ public class CreateWorkoutController implements Initializable {
 
 		for (int i = 0; i < olist.size(); i++) {
 			if (olist.get(i).getActive().isSelected() == true) {
-				Database.getInstance().deleteExercise(
-						new Exercise(olist.get(i).getName(), olist.get(i).getTrains(), olist.get(i).getReps()));
+				 Database.getInstance().deleteExercise(new Exercise(olist.get(i).getName(), olist.get(i).getTrains(), olist.get(i).getReps(), olist.get(i).getUnit()));
 			}
 		}
 
@@ -239,6 +240,7 @@ public class CreateWorkoutController implements Initializable {
 		nameCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("name"));
 		muscleCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("trains"));
 		repsCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, Integer>("reps"));
+                unitCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("unit"));
 		activeCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, Boolean>("active"));
 
 		getExerciseList();
@@ -256,8 +258,7 @@ public class CreateWorkoutController implements Initializable {
 		olist = FXCollections.observableArrayList();
 		for (int i = 0; i < hexercises.size(); i++) {
 
-			olist.add(new ExerciseTV(hexercises.get(i).getName(), hexercises.get(i).getTrains(),
-					hexercises.get(i).getReps(), true));
+			olist.add(new ExerciseTV(hexercises.get(i).getName(), hexercises.get(i).getTrains(), hexercises.get(i).getReps(), hexercises.get(i).getUnit()));
 
 		}
 	}

@@ -55,7 +55,7 @@ public class ReadAndWriteCSV {
 			 LocalDate date = LocalDate.now();
 			
 			for (int i = 0; i < dataexercise.length; i++) {
-				exercises.add(new Exercise(dataexercise[i], "", 0));
+				exercises.add(new Exercise(dataexercise[i], "", 0,null));
 
 			}
 			Workout helpwork = new Workout();
@@ -84,7 +84,7 @@ public class ReadAndWriteCSV {
 		while ((row = csvReader.readLine()) != null) {
 			String[] data = row.split(";");
 
-			exercises.add(new Exercise(data[0], data[1], Integer.parseInt(data[2])));
+			 exercises.add(new Exercise(data[0],data[1],Integer.parseInt(data[2]),null));
 		}
 		}
 		return exercises;

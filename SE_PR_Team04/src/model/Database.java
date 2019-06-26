@@ -173,11 +173,11 @@ public class Database {
 			}
 
 			for (String help : exerciseId) {
-				statement = "Select name,reps from Exercise where '" + help + "'=Id";
+				statement = "Select name,reps,unit from Exercise where '" + help + "'=Id";
 				pstmt = conn.prepareStatement(statement);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
-					exercises.add(new Exercise(rs.getString(1), null, Integer.parseInt(rs.getString(2))));
+					exercises.add(new Exercise(rs.getString(1), null, Integer.parseInt(rs.getString(2)),rs.getString(3)));
 				}
 			}
 
@@ -205,7 +205,7 @@ public class Database {
 		List<Exercise> outputList = new LinkedList<Exercise>();
 		try {
 
-			String statement = "Select id,name,reps from Exercise";
+			String statement = "Select id,name,reps,unit from Exercise";
 
 			ResultSet rs = null;
 			PreparedStatement pstmt = conn.prepareStatement(statement);
@@ -231,7 +231,7 @@ public class Database {
 				while (rsm.next()) {
 					muscle = rsm.getString(1);
 				}
-				outputList.add(new Exercise(rs.getString(2), muscle, Integer.parseInt(rs.getString(3))));
+				outputList.add(new Exercise(rs.getString(2), muscle, Integer.parseInt(rs.getString(3)),rs.getString(4)));
 			}
 
 		} catch (SQLException ex) {
@@ -275,15 +275,16 @@ public class Database {
 
 	}
 
-	public void createExercise(String name, String muscle, int reps) {
+	public void createExercise(String name, String muscle, int reps, String unit) {
 
 		try {
 
-			String statement = "Insert into Exercise (name,reps) values (?,?)";
+			String statement = "Insert into Exercise (name,reps,unit) values (?,?,?)";
 
 			PreparedStatement pstmt = conn.prepareStatement(statement);
 			pstmt.setString(1, name);
 			pstmt.setString(2, reps + "");
+                        pstmt.setString(3, unit);
 
 			pstmt.executeUpdate();
 

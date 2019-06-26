@@ -32,12 +32,13 @@
       <Button layoutX="31.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleBtn_saveWorkout" prefHeight="37.0" prefWidth="149.0" text="Save Workout" />
       <DatePicker fx:id="datePicker" layoutX="30.0" layoutY="135.0" prefHeight="31.0" prefWidth="174.0" />
       <Button layoutX="31.0" layoutY="410.0" mnemonicParsing="false" onAction="#handleBtn_backToMain" prefHeight="37.0" prefWidth="149.0" text="Back " />
-      <TableView fx:id="tvExercise" layoutX="216.0" layoutY="84.0" prefHeight="363.0" prefWidth="464.0">
+      <TableView fx:id="tvExercise" layoutX="216.0" layoutY="84.0" prefHeight="363.0" prefWidth="530.0">
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="131.0" text="Name" />
           <TableColumn fx:id="muscleCol" prefWidth="134.0" text="Muscle" />
             <TableColumn fx:id="repsCol" prefWidth="82.0" text="Reps" />
-            <TableColumn fx:id="activeCol" minWidth="0.0" prefWidth="112.0" text="Active" />
+            <TableColumn fx:id="unitCol" minWidth="0.0" prefWidth="92.0" text="Unit" />
+            <TableColumn fx:id="activeCol" prefWidth="95.0" text="Active" />
         </columns>
       </TableView>
       <Button fx:id="btn_newExercise1" layoutX="31.0" layoutY="251.0" mnemonicParsing="false" onAction="#handleBtn_deleteExercise" prefHeight="37.0" prefWidth="149.0" text="Delete Exercise" />

@@ -84,6 +84,9 @@ public class StartWorkoutController implements Initializable {
 	@FXML
 	TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV, Integer>("Reps");
 
+        @FXML
+        TableColumn<ExerciseTV, String> unitCol = new TableColumn<ExerciseTV, String>("Unit");
+        
 	/** The active col. */
 	@FXML
 	TableColumn<ExerciseTV, Boolean> activeCol = new TableColumn<ExerciseTV, Boolean>("Select");
@@ -135,6 +138,29 @@ public class StartWorkoutController implements Initializable {
 		}
 
 	}
+        
+        
+        @FXML
+        private void handleBtn_backToMain(ActionEvent event) {
+
+        try {
+            Stage oldStage;
+            oldStage = (Stage) root.getScene().getWindow();
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/view/Main.fxml"));
+            Parent root2 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Workouts");
+            stage.setScene(new Scene(root2));
+            stage.show();
+            oldStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(CreateWorkoutController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+        
 
 	/**
 	 * Sets the data.
@@ -151,7 +177,7 @@ public class StartWorkoutController implements Initializable {
 			for (Exercise help : wexercises) {
 				for (Exercise ahelp : allexercises) {
 					if (help.getName().equals(ahelp.getName())) {
-						olist.add(new ExerciseTV(ahelp.getName(), ahelp.getTrains(), ahelp.getReps(), true));
+						olist.add(new ExerciseTV(ahelp.getName(), ahelp.getTrains(), ahelp.getReps(), ahelp.getUnit()));
 					}
 				}
 			}
@@ -177,6 +203,7 @@ public class StartWorkoutController implements Initializable {
 		nameCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("name"));
 		muscleCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("trains"));
 		repsCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, Integer>("reps"));
+                unitCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, String>("unit"));
 		activeCol.setCellValueFactory(new PropertyValueFactory<ExerciseTV, Boolean>("active"));
 
 	}

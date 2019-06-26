@@ -1,30 +1,39 @@
 package model;
 
 public class ExerciseTVMain {
-	
-	 private String name;
-	    private int reps;
 
-	    public ExerciseTVMain(String name, int reps) {
-	        this.name = name;
-	        this.reps = reps;
-	    }
-	    
-	    public String getName() {
-	        return name;
-	    }
+    private String name;
+    private int reps;
+    private String unit;
 
-	    public int getReps() {
-	        return reps;
-	    }
+    public ExerciseTVMain(String name, int reps, String unit) {
+        this.name = name;
+        this.reps = reps;
+        this.unit = unit;
+    }
 
-	    public void setName(String name) {
-	        this.name = name;
-	    }
+    public String getName() {
+        return name;
+    }
 
-	    public void setReps(int reps) {
-	        this.reps = reps;
-	    }
-	    
+    public int getReps() {
+        return reps;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
 
 }

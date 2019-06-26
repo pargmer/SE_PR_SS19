@@ -17,13 +17,15 @@
          </font></Label>
       <TextField fx:id="tf_date" editable="false" layoutX="61.0" layoutY="61.0" AnchorPane.bottomAnchor="328.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="61.0" />
       <Button layoutX="416.0" layoutY="58.0" mnemonicParsing="false" onAction="#handleBtn_Done" prefHeight="37.0" prefWidth="128.0" text="Done" />
-      <TableView fx:id="tvExercise" layoutX="61.0" layoutY="126.0" prefHeight="250.0" prefWidth="483.0">
+      <TableView fx:id="tvExercise" layoutX="61.0" layoutY="126.0" prefHeight="200.0" prefWidth="481.0">
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="137.0" text="Name" />
           <TableColumn fx:id="muscleCol" prefWidth="124.0" text="Muscle" />
-            <TableColumn fx:id="repsCol" prefWidth="139.0" text="Reps" />
-            <TableColumn fx:id="activeCol" prefWidth="82.0" text="Done" />
+            <TableColumn fx:id="repsCol" prefWidth="71.0" text="Reps" />
+            <TableColumn fx:id="unitCol" prefWidth="75.0" text="Unit" />
+            <TableColumn fx:id="activeCol" prefWidth="75.0" text="Done" />
         </columns>
       </TableView>
+      <Button layoutX="382.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleBtn_backToMain" prefHeight="32.0" prefWidth="160.0" text="Back " />
       </children>
 </AnchorPane>

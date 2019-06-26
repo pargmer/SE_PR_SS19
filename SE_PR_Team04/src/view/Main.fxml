@@ -8,29 +8,30 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="lol" fx:id="root" prefHeight="440.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane id="lol" fx:id="root" prefHeight="440.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
-      <ImageView fitHeight="449.0" fitWidth="640.0" pickOnBounds="true">
+      <ImageView fitHeight="449.0" fitWidth="679.0" pickOnBounds="true">
          <image>
             <Image url="@../hintergrund.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="btn_NewWorkout" layoutX="34.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButton_newWorkout" prefHeight="34.0" prefWidth="156.0" text="New Workout" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="308.0" />
+      <Button fx:id="btn_NewWorkout" layoutX="34.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButton_newWorkout" prefHeight="34.0" prefWidth="156.0" text="New Workout" AnchorPane.topAnchor="308.0" />
       <ComboBox fx:id="cb_workouts" layoutX="23.0" layoutY="80.0" onAction="#comboChanged" prefHeight="25.0" prefWidth="184.0" promptText="Choose a Workout!" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0" />
       <Button fx:id="btn_deleteWorkout" contentDisplay="CENTER" layoutX="34.0" layoutY="384.0" mnemonicParsing="false" onAction="#handleBtn_deleteWorkout" prefHeight="34.0" prefWidth="156.0" text="Delete Workout" />
-      <Button layoutX="449.0" layoutY="384.0" mnemonicParsing="false" onAction="#handlBtn_ExportWorkouts" prefHeight="34.0" prefWidth="156.0" text="Export Workouts" />
-      <Button layoutX="449.0" layoutY="325.0" mnemonicParsing="false" onAction="#handlBtn_ImportWorkouts" prefHeight="34.0" prefWidth="156.0" text="Import Workouts" />
+      <Button layoutX="489.0" layoutY="384.0" mnemonicParsing="false" onAction="#handlBtn_ExportWorkouts" prefHeight="34.0" prefWidth="156.0" text="Export Workouts" />
+      <Button layoutX="489.0" layoutY="325.0" mnemonicParsing="false" onAction="#handlBtn_ImportWorkouts" prefHeight="34.0" prefWidth="156.0" text="Import Workouts" />
       <Button fx:id="btn_start" disable="true" layoutX="34.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleBtn_StartWorkout" prefHeight="34.0" prefWidth="156.0" text="Start Workout" />
-      <Button layoutX="436.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleButton_getStatistics" prefHeight="34.0" prefWidth="156.0" text="Statistics" />
+      <Button layoutX="489.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleButton_getStatistics" prefHeight="34.0" prefWidth="156.0" text="Statistics" />
       <ImageView fitHeight="150.0" fitWidth="206.0" layoutX="204.0" layoutY="-25.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@../logo.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tvExercise" layoutX="220.0" layoutY="80.0" prefHeight="347.0" prefWidth="206.0">
+      <TableView fx:id="tvExercise" layoutX="220.0" layoutY="80.0" prefHeight="347.0" prefWidth="262.0">
         <columns>
           <TableColumn fx:id="nameCol" prefWidth="143.0" text="Name" />
           <TableColumn fx:id="repsCol" prefWidth="62.0" text="Reps" />
+            <TableColumn fx:id="unitCol" prefWidth="56.0" text="Unit" />
         </columns>
       </TableView>
    </children>
