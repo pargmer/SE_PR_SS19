@@ -112,7 +112,7 @@ public class MainController implements Initializable {
 
 		ov_workouts.remove(cb_workouts.getValue());
 		cb_workouts.setItems(ov_workouts);
-		cb_workouts.setValue("Waehle ein Workout aus!");
+		cb_workouts.setValue("Choose a Workout!");
 
 	}
 
@@ -144,7 +144,7 @@ public class MainController implements Initializable {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Die Workouts wurden in die workouts.csv Datei exportiert!!");
+		alert.setContentText("The workouts were exported to the workouts.csv file!");
 
 		alert.showAndWait();
 	}
@@ -168,7 +168,7 @@ public class MainController implements Initializable {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information Dialog");
         alert.setHeaderText(null);
-        alert.setContentText("Die Workouts wurden von der workouts.csv Datei importiert!!");
+        alert.setContentText("The workouts were imported from the workouts.csv file!");
 
         alert.showAndWait();
         

@@ -108,14 +108,14 @@ public class StartWorkoutController implements Initializable {
 			Alert alert = new Alert(Alert.AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText("Es wurden nicht alle Aufgaben erledigt");
+			alert.setContentText("Not all Exercise are done!");
 
 			alert.showAndWait();
 		} else {
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setTitle("Information Dialog");
 			alert.setHeaderText(null);
-			alert.setContentText("Gratulation du hast alle Übungen erledigt und somit das Workout bestanden!!");
+			alert.setContentText("Congratulations you have done all exercises and passed the workout!");
 
 			alert.showAndWait();
 

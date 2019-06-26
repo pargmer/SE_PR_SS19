@@ -127,7 +127,7 @@ public class CreateWorkoutController implements Initializable {
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Error Dialog");
 				alert.setHeaderText(null);
-				alert.setContentText("Für das Workout wurden keine Übungen ausgewählt");
+				alert.setContentText("No exercises were selected!");
 
 				alert.showAndWait();
 			} else {
@@ -166,7 +166,7 @@ public class CreateWorkoutController implements Initializable {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Information Dialog");
 		alert.setHeaderText(null);
-		alert.setContentText("Ausgewählte Übungen wurden gelöscht");
+		alert.setContentText("Selected exercises were deleted!");
 		alert.showAndWait();
 		hexercises.clear();
 
