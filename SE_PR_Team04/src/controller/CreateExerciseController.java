@@ -46,8 +46,11 @@ public class CreateExerciseController {
 	String workoutname;
 
         
+        /** The cb unit. */
         @FXML
         private ComboBox<String> cb_unit;
+        
+        /** The ov unit. */
         private ObservableList<String> ov_unit;
 	/**
 	 * Handle btn save exercise.

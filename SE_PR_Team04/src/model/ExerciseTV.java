@@ -26,6 +26,7 @@ public class ExerciseTV {
      */
     private int reps;
 
+    /** The unit. */
     private String unit;
 
     /**
@@ -39,7 +40,7 @@ public class ExerciseTV {
      * @param sname the sname
      * @param strains the strains
      * @param sreps the sreps
-     * @param active the active
+     * @param unit the unit
      */
     public ExerciseTV(String sname, String strains, int sreps, String unit) {
         this.name = sname;
@@ -121,10 +122,20 @@ public class ExerciseTV {
         this.active = active;
     }
 
+    /**
+     * Gets the unit.
+     *
+     * @return the unit
+     */
     public String getUnit() {
         return unit;
     }
 
+    /**
+     * Sets the unit.
+     *
+     * @param unit the new unit
+     */
     public void setUnit(String unit) {
         this.unit = unit;
     }

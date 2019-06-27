@@ -53,14 +53,19 @@ public class MainController implements Initializable {
 	/** The lv exercises. */
 	@FXML
 	TableView<ExerciseTVMain> tvExercise;
+	
+	/** The olist. */
 	ObservableList<ExerciseTVMain> olist;
 
+	/** The name col. */
 	@FXML
 	TableColumn<ExerciseTVMain, String> nameCol = new TableColumn<ExerciseTVMain, String>("Name");
 
+	/** The reps col. */
 	@FXML
 	TableColumn<ExerciseTVMain, Integer> repsCol = new TableColumn<ExerciseTVMain, Integer>("Reps");
 
+        /** The unit col. */
         @FXML
         TableColumn<ExerciseTVMain, String> unitCol = new TableColumn<ExerciseTVMain, String>("Unit");
 	/** The cb workouts. */
@@ -151,6 +156,13 @@ public class MainController implements Initializable {
 		alert.showAndWait();
 	}
 
+	/**
+	 * Handl btn import workouts.
+	 *
+	 * @param event the event
+	 * @throws SQLException the SQL exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
     private void handlBtn_ImportWorkouts(ActionEvent event) throws SQLException, IOException {
 
@@ -187,6 +199,13 @@ public class MainController implements Initializable {
 
     }
 	
+	/**
+	 * Handle btn start workout.
+	 *
+	 * @param event the event
+	 * @throws SQLException the SQL exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
 	private void handleBtn_StartWorkout(ActionEvent event) throws SQLException, IOException {
 		Stage oldStage;
@@ -207,6 +226,12 @@ public class MainController implements Initializable {
 
 	}
 
+	/**
+	 * Handle button get statistics.
+	 *
+	 * @param event the event
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	@FXML
     private void handleButton_getStatistics(ActionEvent event) throws IOException {
 

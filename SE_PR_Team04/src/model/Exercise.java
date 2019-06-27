@@ -24,6 +24,7 @@ public class Exercise {
      */
     private int reps;
 
+    /** The unit. */
     private String unit;
 
     /**
@@ -32,6 +33,7 @@ public class Exercise {
      * @param name the name
      * @param trains the trains
      * @param reps the reps
+     * @param unit the unit
      */
     public Exercise(String name, String trains, int reps, String unit) {
         this.name = name;
@@ -101,10 +103,20 @@ public class Exercise {
         this.reps = reps;
     }
 
+    /**
+     * Sets the unit.
+     *
+     * @param unit the new unit
+     */
     public void setUnit(String unit) {
         this.unit = unit;
     }
 
+    /**
+     * Gets the unit.
+     *
+     * @return the unit
+     */
     public String getUnit() {
         return unit;
     }

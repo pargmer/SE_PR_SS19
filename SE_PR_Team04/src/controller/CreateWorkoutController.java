@@ -66,6 +66,7 @@ public class CreateWorkoutController implements Initializable {
 	@FXML
 	TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV, Integer>("Reps");
 
+        /** The unit col. */
         @FXML
         TableColumn<ExerciseTV, String> unitCol = new TableColumn<ExerciseTV, String>("Unit");
 	/** The active col. */
@@ -155,6 +156,12 @@ public class CreateWorkoutController implements Initializable {
 		}
 	}
 
+	/**
+	 * Handle btn delete exercise.
+	 *
+	 * @param event the event
+	 * @throws SQLException the SQL exception
+	 */
 	@FXML
 	private void handleBtn_deleteExercise(ActionEvent event) throws SQLException {
 

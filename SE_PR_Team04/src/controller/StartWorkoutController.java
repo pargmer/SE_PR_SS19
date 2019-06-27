@@ -84,6 +84,7 @@ public class StartWorkoutController implements Initializable {
 	@FXML
 	TableColumn<ExerciseTV, Integer> repsCol = new TableColumn<ExerciseTV, Integer>("Reps");
 
+        /** The unit col. */
         @FXML
         TableColumn<ExerciseTV, String> unitCol = new TableColumn<ExerciseTV, String>("Unit");
         
@@ -140,6 +141,11 @@ public class StartWorkoutController implements Initializable {
 	}
         
         
+        /**
+         * Handle btn back to main.
+         *
+         * @param event the event
+         */
         @FXML
         private void handleBtn_backToMain(ActionEvent event) {
 

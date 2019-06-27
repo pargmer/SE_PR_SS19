@@ -1,3 +1,6 @@
+/*
+ * 
+ */
 package controller;
 
 import java.io.IOException;
@@ -25,28 +28,47 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class StatisticsController.
+ */
 public class StatisticsController implements Initializable {
 
+	/** The statistics. */
 	List<Statistic> statistics;
+	
+	/** The timestatistics. */
 	List<Statistic> timestatistics;
+	
+	/** The root. */
 	@FXML
 	private AnchorPane root;
 
+	/** The pie chart. */
 	@FXML
 	private PieChart pieChart;
 
+	/** The x axis. */
 	@FXML
 	private CategoryAxis xAxis;
 
+	/** The y axis. */
 	@FXML
 	private NumberAxis yAxis;
 
+	/** The bar chart. */
 	@FXML
 	private BarChart<String, Number> barChart;
 
+	/** The dpto. */
 	@FXML
 	private DatePicker dpfrom, dpto;
 
+	/**
+	 * Handle btn back to main.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	private void handleBtn_backToMain(ActionEvent event) {
 
@@ -68,6 +90,11 @@ public class StatisticsController implements Initializable {
 
 	}
 
+	/**
+	 * Handle btn search.
+	 *
+	 * @param event the event
+	 */
 	@FXML
 	private void handleBtn_search(ActionEvent event) {
 		XYChart.Series<String, Number> dataSeries1 = new XYChart.Series<>();
@@ -84,6 +111,12 @@ public class StatisticsController implements Initializable {
 		}
 	}
 
+	/**
+	 * Initialize.
+	 *
+	 * @param arg0 the arg 0
+	 * @param arg1 the arg 1
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		XYChart.Series<String, Number> dataSeries1 = new XYChart.Series<>();

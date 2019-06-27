@@ -21,12 +21,26 @@ import java.util.logging.Logger;
  */
 public class Database {
 
+	/** The instance. */
 	private static Database instance;
+	
+	/** The Constant CONNECTION_STRING. */
 	static final String CONNECTION_STRING = "jdbc:mysql://db4free.net:3306/fitnessjdk";
+	
+	/** The Constant USER. */
 	static final String USER = "fitnessmanagjku";
+	
+	/** The Constant PASSWORD. */
 	static final String PASSWORD = "fitnessmanager2019";
+	
+	/** The conn. */
 	private Connection conn;
 
+	/**
+	 * Instantiates a new database.
+	 *
+	 * @throws SQLException the SQL exception
+	 */
 	private Database() throws SQLException {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -36,6 +50,12 @@ public class Database {
 		}
 	}
 
+	/**
+	 * Gets the single instance of Database.
+	 *
+	 * @return single instance of Database
+	 * @throws SQLException the SQL exception
+	 */
 	public static Database getInstance() throws SQLException {
 		if (instance == null) {
 			instance = new Database();
@@ -43,6 +63,12 @@ public class Database {
 		return instance;
 	}
 
+	/**
+	 * Gets the workouts.
+	 *
+	 * @return the workouts
+	 * @throws SQLException the SQL exception
+	 */
 	public List<String> getWorkouts() throws SQLException {
 		List<String> outputList = new LinkedList<String>();
 		String statement = "Select name from Workout";
@@ -65,6 +91,13 @@ public class Database {
 		return outputList;
 	}
 
+	/**
+	 * Gets the workout info.
+	 *
+	 * @param name the name
+	 * @return the workout info
+	 * @throws SQLException the SQL exception
+	 */
 	public Workout getWorkoutInfo(String name) throws SQLException {
 		Workout outputList = new Workout();
 		List<Exercise> exercises = new LinkedList<Exercise>();
@@ -88,6 +121,13 @@ public class Database {
 		return outputList;
 	}
 
+	/**
+	 * Gets the exercises from workout.
+	 *
+	 * @param name the name
+	 * @return the exercises from workout
+	 * @throws SQLException the SQL exception
+	 */
 	public List<Exercise> getExercisesFromWorkout(String name) throws SQLException {
 		List<Exercise> outputList = new LinkedList<Exercise>();
 		int id = getWorkoutId(name);
@@ -97,6 +137,13 @@ public class Database {
 		return outputList;
 	}
 
+	/**
+	 * Gets the workout id.
+	 *
+	 * @param name the name
+	 * @return the workout id
+	 * @throws SQLException the SQL exception
+	 */
 	public int getWorkoutId(String name) throws SQLException {
 		int id = 0;
 		String statement = "Select id from Workout where '" + name + "'=name";
@@ -117,6 +164,12 @@ public class Database {
 		return id;
 	}
 
+	/**
+	 * Gets the exercise id.
+	 *
+	 * @param name the name
+	 * @return the exercise id
+	 */
 	public int getExerciseId(String name) {
 		int id = 0;
 		try {
@@ -137,6 +190,12 @@ public class Database {
 		return id;
 	}
 
+	/**
+	 * Gets the muscle id.
+	 *
+	 * @param name the name
+	 * @return the muscle id
+	 */
 	public int getMuscleId(String name) {
 		int id = 0;
 		try {
@@ -157,6 +216,12 @@ public class Database {
 		return id;
 	}
 
+	/**
+	 * Gets the exercises from workout.
+	 *
+	 * @param id the id
+	 * @return the exercises from workout
+	 */
 	public List<Exercise> getExercisesFromWorkout(int id) {
 		List<String> exerciseId = new LinkedList<String>();
 		List<Exercise> exercises = new LinkedList<Exercise>();
@@ -187,6 +252,12 @@ public class Database {
 		return exercises;
 	}
 
+	/**
+	 * Delete workout.
+	 *
+	 * @param name the name
+	 * @throws SQLException the SQL exception
+	 */
 	public void deleteWorkout(String name) throws SQLException {
 		int id = getWorkoutId(name);
 		try {
@@ -201,6 +272,11 @@ public class Database {
 
 	}
 
+	/**
+	 * Gets the all exercises.
+	 *
+	 * @return the all exercises
+	 */
 	public List<Exercise> getAllExercises() {
 		List<Exercise> outputList = new LinkedList<Exercise>();
 		try {
@@ -241,6 +317,13 @@ public class Database {
 		return outputList;
 	}
 
+	/**
+	 * Creates the workout.
+	 *
+	 * @param name the name
+	 * @param date the date
+	 * @param exercises the exercises
+	 */
 	public void createWorkout(String name, LocalDate date, List<Exercise> exercises) {
 
 		try {
@@ -275,6 +358,14 @@ public class Database {
 
 	}
 
+	/**
+	 * Creates the exercise.
+	 *
+	 * @param name the name
+	 * @param muscle the muscle
+	 * @param reps the reps
+	 * @param unit the unit
+	 */
 	public void createExercise(String name, String muscle, int reps, String unit) {
 
 		try {
@@ -312,6 +403,11 @@ public class Database {
 
 	}
 
+	/**
+	 * Workout done.
+	 *
+	 * @param workout the workout
+	 */
 	public void WorkoutDone(Workout workout) {
 
 		try {
@@ -347,6 +443,12 @@ public class Database {
 
 	}
 
+	/**
+	 * Gets the statistic.
+	 *
+	 * @return the statistic
+	 * @throws SQLException the SQL exception
+	 */
 	public List<Statistic> getStatistic() throws SQLException {
 		List<Statistic> statistics = new LinkedList<Statistic>();
 		String statement = "Select workoutid, workoutdone from Statistic";
@@ -375,10 +477,21 @@ public class Database {
 		return statistics;
 	}
 
+	/**
+	 * Import workout.
+	 *
+	 * @throws SQLException the SQL exception
+	 */
 	public void importWorkout() throws SQLException {
 
 	}
 
+	/**
+	 * Delete exercise.
+	 *
+	 * @param exercise the exercise
+	 * @throws SQLException the SQL exception
+	 */
 	public void deleteExercise(Exercise exercise) throws SQLException {
 		int id = getExerciseId(exercise.getName());
 		String statement = "Delete from Exercise where '" + id + "'=id";
@@ -386,6 +499,12 @@ public class Database {
 		pstmt.executeUpdate();
 	}
 
+	/**
+	 * Creates the workoutfrom CSV.
+	 *
+	 * @param workout the workout
+	 * @throws SQLException the SQL exception
+	 */
 	public void createWorkoutfromCSV(Workout workout) throws SQLException {
 		String statement = "Select id from Workout where '" + workout.getName() + "'=name and '" + workout.getDate()
 				+ "'=date";
@@ -404,6 +523,14 @@ public class Database {
 		}
 	}
 	
+	/**
+	 * Gets the statistic between.
+	 *
+	 * @param from the from
+	 * @param to the to
+	 * @return the statistic between
+	 * @throws SQLException the SQL exception
+	 */
 	public List<Statistic> getStatisticBetween(LocalDate from, LocalDate to) throws SQLException {
         List<String> workouts = new LinkedList<String>();
         List<Statistic> statistics = new LinkedList<Statistic>();
