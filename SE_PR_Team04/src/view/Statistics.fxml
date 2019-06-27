@@ -32,11 +32,11 @@
         </yAxis>
       </BarChart>
       <Button layoutX="397.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleBtn_search" prefHeight="34.0" prefWidth="156.0" text="Search" />
-      <Label layoutX="115.0" layoutY="19.0" prefHeight="43.0" prefWidth="156.0" text="STATISTICS">
+      <Label layoutX="115.0" layoutY="19.0" prefHeight="43.0" prefWidth="202.0" text="STATISTICS">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <Label layoutX="39.0" layoutY="341.0" text="Number of Workouts done" />
+      <Label layoutX="228.0" layoutY="351.0" text="Number of Workouts done" />
   </children>
 </AnchorPane>
