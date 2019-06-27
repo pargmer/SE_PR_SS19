@@ -1,0 +1,14 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Window2" locator="/UIAWindow[2]">
+    <ObjectMapEntry id="26" locator="//UIATextBlock[@name=&apos;26&apos;][2]"/>
+    <ObjectMapEntry id="ComboBox" locator="//UIAComboBox"/>
+    <ObjectMapEntry id="Delete Workout" locator="//UIAButton[@name=&apos;Delete Workout&apos;]"/>
+    <ObjectMapEntry id="ListItem" locator="//UIAListItem"/>
+    <ObjectMapEntry id="New Workout" locator="//UIAButton[@name=&apos;New Workout&apos;]"/>
+    <ObjectMapEntry id="Strukturansicht" locator="//UIATreeView[@name=&apos;Strukturansicht&apos;]"/>
+    <ObjectMapEntry id="System ItemNameDisplay" locator="//UIATextBox[@automationId=&apos;System.ItemNameDisplay&apos;][5]"/>
+    <ObjectMapEntry id="test" locator="//UIAListItem[@name=&apos;test&apos;]"/>
+    <ObjectMapEntry id="Test" locator="//UIAListItem[@name=&apos;Test&apos;]"/>
+    <ObjectMapEntry id="TestWorkout" locator="//UIAListItem[@name=&apos;TestWorkout&apos;]"/>
+  </ObjectMapEntry>
+</ObjectMap>

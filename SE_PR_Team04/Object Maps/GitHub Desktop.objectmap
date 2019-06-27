@@ -1,0 +1,3 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="GitHub Desktop" locator="/Window[@caption=&apos;GitHub Desktop&apos;]"/>
+</ObjectMap>

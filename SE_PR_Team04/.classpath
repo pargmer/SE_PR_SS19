@@ -19,5 +19,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
+	<classpathentry kind="con" path="com.borland.silktest.JTF_LIB"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="src" path="Object Maps"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

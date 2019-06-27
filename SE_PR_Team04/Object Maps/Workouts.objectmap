@@ -1,0 +1,5 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Workouts" locator="/UIAWindow[@caption=&apos;Workouts&apos;]">
+    <ObjectMapEntry id="New Workout" locator="//UIAButton[@name=&apos;New Workout&apos;]"/>
+  </ObjectMapEntry>
+</ObjectMap>

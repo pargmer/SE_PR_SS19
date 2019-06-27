@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recorderProject version="19.5">
+  <applicationConfiguration>
+    <moduleNamePattern>*\GitHubDesktop.exe</moduleNamePattern>
+    <baseStateInfo>
+      <executable>%USERPROFILE%\AppData\Local\GitHubDesktop\app-2.0.4\GitHubDesktop.exe</executable>
+      <workingDirectory>%USERPROFILE%\AppData\Local\GitHubDesktop\app-2.0.4</workingDirectory>
+      <locator>GitHub Desktop</locator>
+    </baseStateInfo>
+  </applicationConfiguration>
+  <applicationConfiguration>
+    <moduleNamePattern>*\Explorer.EXE</moduleNamePattern>
+  </applicationConfiguration>
+  <agentOptions>
+    <entry>
+      <string>OPT_ASSET_NAMESPACE</string>
+      <string>SE_PR_Team04</string>
+    </entry>
+  </agentOptions>
+</recorderProject>

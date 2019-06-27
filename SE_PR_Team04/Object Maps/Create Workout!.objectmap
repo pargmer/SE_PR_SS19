@@ -1,0 +1,22 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Create Workout!" locator="/UIAWindow[@caption=&apos;Create Workout!&apos;]">
+    <ObjectMapEntry id="Back" locator="//UIAButton[@name=&apos;Back &apos;]"/>
+    <ObjectMapEntry id="Back to Main" locator="//UIAButton[@name=&apos;Back to Main&apos;]"/>
+    <ObjectMapEntry id="Button" locator="//UIAButton"/>
+    <ObjectMapEntry id="CheckBox" locator="//UIACheckBox[4]"/>
+    <ObjectMapEntry id="CheckBox2" locator="//UIACheckBox"/>
+    <ObjectMapEntry id="Done" locator="//UIAButton[@name=&apos;Done&apos;]"/>
+    <ObjectMapEntry id="GlassWndClass-GlassWindowClass-12" locator="//UIAObject[@className=&apos;GlassWndClass-GlassWindowClass-12&apos;]"/>
+    <ObjectMapEntry id="GlassWndClass-GlassWindowClass-13" locator="//UIAObject[@className=&apos;GlassWndClass-GlassWindowClass-13&apos;]"/>
+    <ObjectMapEntry id="GlassWndClass-GlassWindowClass-16" locator="//UIAObject[@className=&apos;GlassWndClass-GlassWindowClass-16&apos;]"/>
+    <ObjectMapEntry id="GlassWndClass-GlassWindowClass-23" locator="//UIAObject[@className=&apos;GlassWndClass-GlassWindowClass-23&apos;]"/>
+    <ObjectMapEntry id="GlassWndClass-GlassWindowClass-6" locator="//UIAObject[@className=&apos;GlassWndClass-GlassWindowClass-6&apos;]"/>
+    <ObjectMapEntry id="GlassWndClass-GlassWindowClass-7" locator="//UIAObject[@className=&apos;GlassWndClass-GlassWindowClass-7&apos;]"/>
+    <ObjectMapEntry id="Pane" locator="//UIAPane[2]"/>
+    <ObjectMapEntry id="Save Workout" locator="//UIAButton[@name=&apos;Save Workout&apos;]"/>
+    <ObjectMapEntry id="Search" locator="//UIAButton[@name=&apos;Search&apos;]"/>
+    <ObjectMapEntry id="Window" locator="//UIAWindow">
+      <ObjectMapEntry id="19" locator="//UIATextBlock[@name=&apos;19&apos;]"/>
+    </ObjectMapEntry>
+  </ObjectMapEntry>
+</ObjectMap>

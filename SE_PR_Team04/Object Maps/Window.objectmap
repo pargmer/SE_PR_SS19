@@ -1,0 +1,35 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Window" locator="/UIAWindow">
+    <ObjectMapEntry id="Back" locator="//UIAButton[@name=&apos;Back &apos;]"/>
+    <ObjectMapEntry id="CheckBox" locator="//UIACheckBox[2]"/>
+    <ObjectMapEntry id="CheckBox13" locator="//UIACheckBox[13]"/>
+    <ObjectMapEntry id="CheckBox2" locator="//UIACheckBox"/>
+    <ObjectMapEntry id="CheckBox3" locator="//UIACheckBox[3]"/>
+    <ObjectMapEntry id="ComboBox" locator="//UIAComboBox"/>
+    <ObjectMapEntry id="Delete Exercise" locator="//UIAButton[@name=&apos;Delete Exercise&apos;]"/>
+    <ObjectMapEntry id="Delete Workout" locator="//UIAButton[@name=&apos;Delete Workout&apos;]"/>
+    <ObjectMapEntry id="Export Workouts" locator="//UIAButton[@name=&apos;Export Workouts&apos;]"/>
+    <ObjectMapEntry id="GlassWndClass-GlassWindowClass-4" locator="//UIAObject[@className=&apos;GlassWndClass-GlassWindowClass-4&apos;]"/>
+    <ObjectMapEntry id="Image" locator="//UIAImage[2]"/>
+    <ObjectMapEntry id="Import Workouts" locator="//UIAButton[@name=&apos;Import Workouts&apos;]"/>
+    <ObjectMapEntry id="New Exercise" locator="//UIAButton[@name=&apos;New Exercise&apos;]"/>
+    <ObjectMapEntry id="New Workout" locator="//UIAButton[@name=&apos;New Workout&apos;]"/>
+    <ObjectMapEntry id="Pane" locator="//UIAPane"/>
+    <ObjectMapEntry id="Save Exercise" locator="//UIAButton[@name=&apos;Save Exercise&apos;]"/>
+    <ObjectMapEntry id="Save Workout" locator="//UIAButton[@name=&apos;Save Workout&apos;]"/>
+    <ObjectMapEntry id="Start Workout" locator="//UIAButton[@name=&apos;Start Workout&apos;]"/>
+    <ObjectMapEntry id="Statistics" locator="//UIAButton[@name=&apos;Statistics&apos;]"/>
+    <ObjectMapEntry id="TextBox" locator="//UIATextBox"/>
+    <ObjectMapEntry id="TextBox2" locator="//UIATextBox[2]"/>
+    <ObjectMapEntry id="TextBox3" locator="//UIATextBox[3]"/>
+    <ObjectMapEntry id="Window" locator="//UIAWindow">
+      <ObjectMapEntry id="Leichtes Training" locator="//UIAListItem[@name=&apos;Leichtes Training&apos;]"/>
+      <ObjectMapEntry id="test" locator="//UIAListItem[@name=&apos;test&apos;]"/>
+      <ObjectMapEntry id="test2" locator="//UIAListItem[@name=&apos;test&apos;][2]"/>
+      <ObjectMapEntry id="test3" locator="//UIAListItem[@name=&apos;test&apos;][3]"/>
+      <ObjectMapEntry id="test4" locator="//UIAListItem[@name=&apos;test&apos;][4]"/>
+      <ObjectMapEntry id="Wh" locator="//UIAListItem[@name=&apos;Wh&apos;]"/>
+      <ObjectMapEntry id="Wochenende" locator="//UIAListItem[@name=&apos;Wochenende&apos;]"/>
+    </ObjectMapEntry>
+  </ObjectMapEntry>
+</ObjectMap>

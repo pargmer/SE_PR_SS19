@@ -1,0 +1,5 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Window3" locator="/UIAWindow[3]">
+    <ObjectMapEntry id="TestWorkout" locator="//UIAListItem[@name=&apos;TestWorkout&apos;]"/>
+  </ObjectMapEntry>
+</ObjectMap>

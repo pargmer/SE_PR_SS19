@@ -1,0 +1,5 @@
+<ObjectMap version="1">
+  <ObjectMapEntry id="Information Dialog" locator="/UIAWindow[@caption=&apos;Information Dialog&apos;]">
+    <ObjectMapEntry id="OK" locator="//UIAButton[@name=&apos;OK&apos;]"/>
+  </ObjectMapEntry>
+</ObjectMap>
